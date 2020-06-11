@@ -1,0 +1,42 @@
+// just find the min value after current node and swap the value of it
+//it doesn't manipute on the link list.
+ListNode* insertionSortList(ListNode* head) {
+        if(!head) return head;
+        ListNode* cur = head;
+        while(cur){
+            ListNode* tmp = cur; ListNode* min = cur;
+            int g = cur->val;
+            while(tmp){
+                if(tmp->val < g){
+                    g = tmp->val;
+                    min = tmp;
+                }
+                tmp = tmp->next;
+            }
+            swap(cur->val, min->val);
+            cur = cur->next;
+        }
+        return head;
+ }
+ //Real Insertion Sort O(n^2)
+ ListNode* insertionSortList(ListNode* head) {
+        if(!head) return head;
+        ListNode* dummy = new ListNode(0); dummy->next = head;
+        ListNode* pre = dummy; ListNode* cur = head;
+        while(cur){
+            if((cur->next) && (cur->val > cur->next->val)){
+                while((pre->next) && (pre->next->val < cur->next->val)){
+                    pre = pre->next;
+                }
+                ListNode* tmp = pre->next;
+                pre->next = cur->next;
+                cur->next = cur->next->next;
+                pre->next->next = tmp;
+                pre = dummy;
+            } 
+            else{
+                cur = cur->next;
+            }
+        }
+        return dummy->next;
+}
