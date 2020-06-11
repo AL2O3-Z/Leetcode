@@ -1,0 +1,7 @@
+int distributeCandies(vector<int>& candies) {
+        unordered_map<int,int> map;
+        for(int i : candies) map[i]++;
+        return min(candies.size()/2, map.size());
+ }
+ //Using unordered_set works well too
+ //Someone uses bitset, don't know why it can be faster
