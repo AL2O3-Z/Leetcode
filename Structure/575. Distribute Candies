@@ -5,3 +5,4 @@ int distributeCandies(vector<int>& candies) {
  }
  //Using unordered_set works well too
  //Someone uses bitset, don't know why it can be faster
+ //
