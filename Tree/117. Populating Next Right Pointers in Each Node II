@@ -1,0 +1,23 @@
+Node* connect(Node* root) {
+        if(!root) return nullptr;
+        Node* parent = root;
+        Node* start = new Node(-1, nullptr, nullptr, nullptr);
+        Node* cur = start;
+        while(parent){
+            while(parent){
+                if(parent->left){
+                    cur->next = parent->left;
+                    cur = cur->next;
+                }
+                if(parent->right){
+                    cur->next = parent->right;
+                    cur = cur->next;
+                }
+                parent = parent->next;
+            }
+            parent = start->next;
+            start->next = nullptr;
+            cur = start;
+        }
+        return root;
+    }
