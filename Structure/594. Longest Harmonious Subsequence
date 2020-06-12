@@ -1,0 +1,50 @@
+//Time O(n) two pass
+although it's O(n), but in the second for, it must loop all the element, and map takes more space in comparing with the second solution
+int findLHS(vector<int>& nums) {
+        unordered_map<int,vector<int> > m;
+        int res = 0;
+        for(int i : nums){
+            m[i].push_back(i);
+        }
+        for(int i = 0; i < nums.size(); i++){
+            if(m.count(nums[i] + 1)){
+                m[nums[i] + 1].push_back(nums[i]);
+                int tmp = m[nums[i] + 1].size();
+                res = std::max(res, tmp);
+            }
+        }
+        return res;      
+}
+//Time O(n)
+//This solution loop the size of map, in most of cases, the size of case is less than nums. But in the worst case, it's same with the first
+int findLHS(vector<int>& nums) {
+        unordered_map<int,int > m;
+        int res = 0;
+        for(int i : nums){
+            m[i]++;
+        }
+        for(auto i : m){
+            if(m.count(i.first + 1)){
+                res = max(res, i.second + m[i.first + 1]);
+            }
+        }
+        return res;      
+}
+//Time O(nlogn)
+//When the number is different from previous number, update the new start position. 
+//When difference between current position and start position is bigger than 1 then update start position.
+int findLHS(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int len = 0;
+        for(int i = 1, start = 0, new_start = 0; i<nums.size(); i++)
+        {
+
+            if (nums[i] - nums[start] > 1)    
+                start = new_start;
+            if (nums[i] != nums[i-1]) 
+                new_start = i;
+            if(nums[i] - nums[start] == 1)
+                len = max(len, i-start+1);
+        }
+        return len;
+ }
