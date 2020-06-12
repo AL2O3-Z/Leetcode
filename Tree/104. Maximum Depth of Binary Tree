@@ -1,0 +1,15 @@
+int maxDepth(TreeNode* root) {
+        if(!root) return 0;
+        return maxDepthHelper(root)+1;
+    }
+    
+    int maxDepthHelper(TreeNode* node){
+        if(!node) return 0;
+        if(!node->left && !node->right){
+            return 0;
+        }
+        
+        return max(maxDepthHelper(node->left)+1,maxDepthHelper(node->right)+1);
+        
+
+}
