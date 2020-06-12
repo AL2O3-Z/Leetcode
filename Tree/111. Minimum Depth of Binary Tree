@@ -1,0 +1,15 @@
+int minDepth(TreeNode* root) {
+        return minDepthHelper(root);
+    }
+    int minDepthHelper(TreeNode* node){
+        if(!node){
+            return 0;
+        }
+        //if(!node->left && !node->right) return 1;
+        if(node->left && node->right){
+            return min(minDepthHelper(node->left), minDepthHelper(node->right)) + 1;
+        }
+        if(!node->left) return minDepthHelper(node->right)+1;
+        if(!node->right) return minDepthHelper(node->left)+1;
+        return 0;
+}
