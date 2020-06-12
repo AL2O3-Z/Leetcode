@@ -1,0 +1,9 @@
+int sumOfLeftLeaves(TreeNode* root) {
+        int res = sumOfLeftLeavesHelper(root, false);
+        return res;
+    }
+    int sumOfLeftLeavesHelper(TreeNode* root, bool isleft) {
+        if (!root) return 0;
+        if (!root->left && !root->right) return isleft ? root->val : 0;
+        return sumOfLeftLeavesHelper(root->left, true) + sumOfLeftLeavesHelper(root->right, false);
+    }
