@@ -1,0 +1,29 @@
+vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<vector<int>> res;
+        vector<int> tmp;
+        pathSumHelper(root, sum, tmp, res);
+        return res;
+    }
+    //PASS BY REFERENCE
+    void pathSumHelper(TreeNode* node, int sum, vector<int>& path, vector<vector<int> >& paths) {
+        if (!node) return;
+        path.push_back(node -> val);
+        if (!(node -> left) && !(node -> right) && sum == node -> val)
+            paths.push_back(path);
+        pathSumHelper(node -> left, sum - node -> val, path, paths);
+        pathSumHelper(node -> right, sum - node -> val, path, paths);
+        path.pop_back();
+        //backtracking
+        
+    }
+    ////PASS BY VALUE will copy the path every time, which costs more time.
+    //void pathSumHelper(TreeNode* root, int sum, vector<vector<int>>& res, vector<int> tmp){
+    //    if(!root) return;
+    //    sum -=root->val;
+    //    vector<int> newTmp = tmp;
+    //    newTmp.push_back(root->val);
+    //    if(root->left == root->right && sum == 0) res.push_back(newTmp);
+    //    if(root->left) pathSumHelper(root->left, sum, res, newTmp);
+    //    if(root->right) pathSumHelper(root->right, sum, res, newTmp);
+    //    
+    //}
