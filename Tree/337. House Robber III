@@ -1,0 +1,18 @@
+int rob(TreeNode* root) {
+        if(!root) return 0;
+        vector<int> res = robHelper(root);
+        return max(res[0], res[1]);
+    }
+    vector<int> robHelper(TreeNode* root){
+        vector<int> res(2, 0);
+        if(!root) return res;
+        if(root->left == root->right){
+            res[0] = root->val;
+            return res;
+        } 
+        vector<int> l = robHelper(root->left);
+        vector<int> r = robHelper(root->right);
+        res[0] = l[1] + r[1] + root->val;
+        res[1] = max(max(l[1] + r[1], l[0] + r[0]), max(l[1] + r[0], l[0] + r[1]));
+        return res;
+    }
