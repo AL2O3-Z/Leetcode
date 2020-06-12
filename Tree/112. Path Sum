@@ -1,0 +1,27 @@
+bool hasPathSum(TreeNode* root, int sum) {
+        int res=0;
+        if(!root) return false;
+        int rrr= hasPathSumHelper(root, res, sum);
+        //std::cout << rrr << endl;
+        if(rrr){
+            return true;
+        }else return false;
+    }
+    int hasPathSumHelper(TreeNode* node, int& res, int sum){
+        if(!node){
+            //if(!sum) return 0;
+            if(res == sum ){
+                return 1;
+            }else return 0;
+        }
+        res = res + node->val;
+        int resLeft = res;
+        int resRight = res;
+        if(node->left && hasPathSumHelper(node->left, resLeft, sum))  return 1;
+        if(node->right && hasPathSumHelper(node->right, resRight, sum)) return 1;
+        if(node->left == node->right){
+            if(hasPathSumHelper(node->left, resLeft, sum)) return 1;
+            if(hasPathSumHelper(node->right, resRight, sum)) return 1;
+        }
+        return 0;
+}
