@@ -1,0 +1,13 @@
+int sumNumbers(TreeNode* root) {
+        int res = 0;
+        sumNumbersHelper(root, 0, res);
+        return res;
+    }
+    void sumNumbersHelper(TreeNode* root, int tmp, int& res){
+        if(!root) return;
+        if(root->left == root->right){
+            res += tmp*10 + root->val;
+        }
+        sumNumbersHelper(root->left, tmp*10 + root->val, res);
+        sumNumbersHelper(root->right, tmp*10 + root->val, res);
+    }
