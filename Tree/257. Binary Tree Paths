@@ -1,0 +1,15 @@
+vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> res;
+        string str = "";
+        binaryTreePathsHelper(root, res, str);
+        return res;
+    }
+    string binaryTreePathsHelper(TreeNode* root, vector<string>& s, string& str){
+        if(root == NULL) return str;
+        if(root->left == root->right) s.push_back(str + to_string(root->val));
+        string strleft = str  + to_string(root->val) + "->";
+        string strright = str  + to_string(root->val) + "->";
+        if(root->left) binaryTreePathsHelper(root->left, s, strleft);
+        if(root->right) binaryTreePathsHelper(root->right, s, strright);
+        return str;
+    }
