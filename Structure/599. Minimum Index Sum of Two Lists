@@ -1,0 +1,38 @@
+// Time O(m * n);
+vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+        int index = INT_MAX;
+        vector<string> res;
+        for(int i = 0; i < list1.size(); i++){
+            for(int j = 0; j < list2.size(); j++){
+                if(list1[i] == list2[j]){
+                    if(i + j < index){
+                        index = i + j;
+                        res.clear();
+                        res.push_back(list1[i]);
+                    }else if( i + j == index) res.push_back(list1[i]);
+                }
+            }
+        }
+        return res;
+}
+// Time O(m + n);
+vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+        unordered_map<string,int> m1;
+        unordered_map<string,int> m2;
+        vector<string> res;
+        int index = INT_MAX;
+        for(int i = 0; i < list1.size(); i++) m1[list1[i]] = i;
+        for(int i = 0; i < list2.size(); i++) m2[list2[i]] = i;
+        for(auto m : m1){
+            if(m2.count(m.first)){
+                if(m.second + m2[m.first] < index){
+                    index = m.second + m2[m.first];
+                    res.clear();
+                    res.push_back(m.first);
+                }else if(m.second + m2[m.first] == index){
+                    res.push_back(m.first);
+                }
+            }
+        }
+        return res;
+}
