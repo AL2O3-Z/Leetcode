@@ -1,0 +1,29 @@
+public:
+    BSTIterator(TreeNode* root) {
+       
+        while(root){
+            stack.push(root);
+            root = root->left;
+        }
+        
+    }
+    
+    /** @return the next smallest number */
+    int next() {
+        TreeNode* node = stack.top();
+        stack.pop();
+        TreeNode* right = node->right;
+        while(right){
+            stack.push(right);
+            right = right->left;
+        }
+        return node->val;
+        
+    }
+    
+    /** @return whether we have a next smallest number */
+    bool hasNext() {
+        return !stack.empty();
+    }
+private:
+    stack<TreeNode*> stack;
