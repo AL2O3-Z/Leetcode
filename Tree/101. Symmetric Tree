@@ -1,0 +1,18 @@
+bool isSymmetric(TreeNode* root) {
+        if(!root){return true;}
+        queue<TreeNode*> q;
+        q.push(root->left);
+        q.push(root->right);
+        while(!q.empty()){
+            TreeNode* nleft = q.front();q.pop();
+            TreeNode* nright = q.front();q.pop();
+            if(!nleft && !nright) continue;
+            if(!nleft || !nright) return false;
+            if(nleft->val != nright->val) return false;
+            q.push(nleft->left);
+            q.push(nright->right);
+            q.push(nleft->right);
+            q.push(nright->left);
+        }
+        return true;
+}
