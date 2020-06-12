@@ -1,0 +1,17 @@
+bool isBalanced(TreeNode* root) {
+        int height = 0;
+        
+        return isBalancedHelper(root,height);
+}
+bool isBalancedHelper(TreeNode* node, int& res){
+        if(!node){
+            res = 0;
+            return true;
+        } 
+        int l = 0, r = 0;
+        if(!isBalancedHelper(node->left,l)) return false;
+        if(!isBalancedHelper(node->right,r)) return false;
+        if(abs(l - r) > 1) return false;
+        res = max(l, r) + 1;
+        return true;
+}
