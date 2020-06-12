@@ -1,4 +1,4 @@
-Time O(m * n * ops.size())
+Time O(m * n * ops.size()) TLE
 int maxCount(int m, int n, vector<vector<int>>& ops) {
         int maxV = 0;
         int count = 0;
@@ -18,4 +18,14 @@ int maxCount(int m, int n, vector<vector<int>>& ops) {
             }
         }
         return count;
+}
+//Time O(ops.size())
+int maxCount(int m, int n, vector<vector<int>>& ops) {
+        int row = INT_MAX, col = INT_MAX;
+        if(ops.size() == 0) return m * n;
+        for(vector<int> o : ops){
+            row = min(row, o[0]);
+            col = min(col, o[1]);
+        }
+        return row * col;
 }
