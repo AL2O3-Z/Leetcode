@@ -1,0 +1,15 @@
+int maxPathSum(TreeNode* root) {
+        int res = INT_MIN;
+        maxPathSumHelper(root, res);
+        return res;
+    }
+    int maxPathSumHelper(TreeNode* node, int& res){
+        if(!node) return 0;
+        int l = max(0, maxPathSumHelper(node->left,res));
+        int r = max(0, maxPathSumHelper(node->right,res));
+        int sum = l + r + node->val;
+        res = max(res, sum);
+        return node->val + max(l,r);
+        //函数返回值和修改引用参数不同，在修改引用参数时，须用到返回值
+        
+    }
