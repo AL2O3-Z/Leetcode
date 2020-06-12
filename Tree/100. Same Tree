@@ -1,0 +1,15 @@
+bool isSameTree(TreeNode* p, TreeNode* q) {
+        //if (!p || !q) return q == p;
+        //就是在比较二者是否同时是null， 如果都是null，那二者相等，如果不等，那就意味着其中有一个是非null
+        //retrun p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        if(p == NULL && q == NULL){
+            return true;
+        }
+        else if(p == NULL || q == NULL){
+           return false;
+        }
+        else if(p->val != q->val){
+            return false;
+        }
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+}
