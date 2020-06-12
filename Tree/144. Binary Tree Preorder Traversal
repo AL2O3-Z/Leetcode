@@ -1,0 +1,15 @@
+vector<int> preorderTraversal(TreeNode* root) {
+        
+        vector<int> res;
+        if(!root) return res;
+        stack<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            TreeNode* cur = q.top();
+            res.push_back(cur->val);
+            q.pop();
+            if(cur->right) q.push(cur->right);
+            if(cur->left) q.push(cur->left);
+        }
+        return res;
+}
