@@ -1,0 +1,8 @@
+int pathSum(TreeNode* root, int sum) {
+        if(!root) return 0;
+        return pathSumHelper(root, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
+    }
+int pathSumHelper(TreeNode* root, int sum){
+        if(!root) return 0;
+        return pathSumHelper(root->left, sum - root->val) + pathSumHelper(root->right, sum - root->val) + (root->val == sum);
+}
