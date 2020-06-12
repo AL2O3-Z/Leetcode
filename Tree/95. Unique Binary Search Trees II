@@ -1,0 +1,23 @@
+vector<TreeNode*> generateTrees(int n) {
+       if(n == 0) return {};
+        return generateTreesHelper(1,n);
+    }
+    vector<TreeNode*> generateTreesHelper(int i, int j){
+        vector<TreeNode*> res;
+        if(i > j){
+            res.push_back(NULL);
+            return res;
+        } 
+        for(int k = i; k <= j; k++){
+            vector<TreeNode*> lv = generateTreesHelper(i,k-1);
+            vector<TreeNode*> rv = generateTreesHelper(k+1, j);
+            for(int m = 0; m < lv.size(); m++){
+                //TreeNode* left = new TreeNode()
+                for(int n = 0; n < rv.size(); n++){
+                    TreeNode* root = new TreeNode(k,lv[m], rv[n]);
+                    res.push_back(root);
+                }
+            }
+        }
+        return res;
+}
