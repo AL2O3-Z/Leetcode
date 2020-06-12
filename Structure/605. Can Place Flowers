@@ -1,0 +1,15 @@
+bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        if(n == 0) return true;
+        for (int i = 0; i < flowerbed.size(); i++) {            
+            if(flowerbed[i]){
+                // Even next one can't plant so skip that
+                i++;
+            } else if (!flowerbed[i] && (i == 0 || !flowerbed[i - 1]) && (i == flowerbed.size() - 1 || !flowerbed[i + 1])) {
+                flowerbed[i] = 1;
+                n--;
+                // Now that we have planted on this one, skip next.
+                i++;
+            }
+        }
+        return n <= 0;
+}
