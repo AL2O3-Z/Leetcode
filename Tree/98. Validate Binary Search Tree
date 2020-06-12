@@ -1,0 +1,9 @@
+bool isValidBST(TreeNode* root) {
+        return isValideBSTHelper(root, LONG_MIN, LONG_MAX);
+        
+    }
+    bool isValideBSTHelper(TreeNode* root, long low, long hight){
+        if(!root) return true;
+        return low < root->val && hight > root->val && isValideBSTHelper(root->left, low, root->val) 
+            && isValideBSTHelper(root->right, root->val, hight);
+}
