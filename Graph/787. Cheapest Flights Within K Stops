@@ -1,4 +1,4 @@
-// DFS + prunning 
+// DFS + prunning  68s Time O(n^(k+1))
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
         g.clear();
@@ -26,4 +26,43 @@ private:
             helper(v.first, dst, cost + v.second, k-1, visited, res);
             visited[v.first] = 0;
         }
+}
+//BFS 52K Time O(n^(k+1))
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        unordered_map<int, vector<pair<int, int>>> g;
+        for(const auto& f : flights){
+            g[f[0]].emplace_back(f[1], f[2]);
+        }
+        queue<pair<int,int>> q;
+        q.push({src, 0});
+        int res = INT_MAX;
+        int step = 0;
+        while(!q.empty()){
+            int n = q.size();
+            while(n--){
+                int cur = q.front().first;
+                int cost = q.front().second;
+                q.pop();
+                if(cur == dst) res = min(res, cost);
+                for(const auto& p : g[cur]){
+                    if(cost + p.second > res) continue;
+                    q.push({p.first, cost + p.second});
+                }
+            }
+            if(step++ > K) break;
+        }
+        return res == INT_MAX ? -1 : res;
+}
+//DP solution
+int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        vector<vector<int>> dp(K + 2, vector<int>(n, 1e9));//overflow if it's INT_MAX;
+        dp[0][src] = 0;
+        for(int i = 1; i < K + 2; i++){
+            dp[i][src] = 0;
+            for(const auto& p : flights){
+                dp[i][p[1]] = min(dp[i][p[1]], dp[i-1][p[0]] + p[2]);
+            }
+        }
+        return dp[K + 1][dst] >= 1e9 ? -1 : dp[K + 1][dst];
 }
