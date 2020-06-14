@@ -1,0 +1,35 @@
+//Time O(n^2)
+//it's better to understand 300. Longest Increasing Subsequence
+使用一个一维DP，其含义是题目要求的数组，DP[i]的含义是，从0~i位置满足题目的最长数组。
+先用i遍历每个数字，然后用j从后向前寻找能被nums[i]整除的数字，
+  这样如果判断能整除的时候，再判断dp[i] < dp[j] + 1，即对于以i索引结尾的最长的数组是否变长了。
+    在变长的情况下，需要更新dp[i]，同时使用parent[i]更新i的前面能整除的数字。另外还要统计对于整个数组最长的子数组长度。
+
+知道了对于每个位置最长的子数组之后，我们也就知道了对于0~n区间内最长的满足题目条件的数组，
+最后需要再次遍历，使用parent就能把正儿个数组统计输出出来。因为这个最大的索引mx_index是对n而言的，所以输出是逆序的。
+
+public:
+    vector<int> largestDivisibleSubset(vector<int>& nums) {
+        if(nums.size() == 0 || nums.size() == 1) return nums;
+        sort(nums.begin(), nums.end());
+        vector<int> dp(nums.size(), 1);
+        int maxV = INT_MIN;
+        for(int i = 1; i < nums.size(); i++){
+            for(int j = i-1; j >= 0; j--){
+                if(nums[i] % nums[j] == 0){
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+                maxV = max(maxV, dp[i]);
+            }
+        }
+        vector<int> res;
+        int pivot = -1;
+        for(int i = nums.size() - 1; i >= 0; i--){
+            if(dp[i] == maxV && (pivot == -1 || pivot % nums[i] == 0)){
+                pivot = nums[i];
+                res.push_back(nums[i]);
+                maxV--;
+            }
+        }
+        return res;
+}
