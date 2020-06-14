@@ -54,7 +54,8 @@ public:
         }
         return res == INT_MAX ? -1 : res;
 }
-//DP solution
+//DP solution Time O(n^2)
+//AND we can use rotation array to do dimensionality reduction in space to O(n)
 int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
         vector<vector<int>> dp(K + 2, vector<int>(n, 1e9));//overflow if it's INT_MAX;
         dp[0][src] = 0;
