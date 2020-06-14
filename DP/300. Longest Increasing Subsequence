@@ -1,0 +1,34 @@
+//DP classic solution. Time O(n^2)
+int lengthOfLIS(vector<int>& nums) {
+        if(nums.size() == 0) return 0;
+        vector<int> dp(nums.size(), 1);
+        dp[0] = 1;
+        for(int i = 1; i < nums.size(); i++){
+            for(int j = i-1; j >= 0; j--){
+                if(nums[j] < nums[i]){
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+            
+        }
+        return *max_element(dp.begin(), dp.end());
+}
+
+//Time O(nlogn)
+//Base on Patience Sort.
+//If element is greater than the last in the sorted vector, just add it to make it longer
+//else replace the first element not less than its value to make possible the subsequence longer.
+//As the result sorted not in the order, only the size of it matters
+int lengthOfLIS(vector<int>& nums) {
+        if(nums.size() == 0) return 0;
+        vector<int> tmp;
+        tmp.push_back(nums[0]);
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] > tmp.back()) tmp.push_back(nums[i]);
+            else{
+                auto it = lower_bound(tmp.begin(), tmp.end(), nums[i]);
+                *it = nums[i];
+            }
+        }
+        return tmp.size();
+}
