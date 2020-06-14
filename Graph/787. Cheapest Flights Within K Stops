@@ -1,0 +1,29 @@
+// DFS + prunning 
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        g.clear();
+        for(const auto& f : flights){
+            g[f[0]].emplace_back(f[1], f[2]);
+        }
+        vector<int> visited(n, 0);
+        visited[src] = 1;
+        int res = INT_MAX;
+        helper(src, dst, 0, K + 1, visited, res);
+        return res == INT_MAX ? -1: res;
+    }
+private:
+    unordered_map<int, vector<pair<int,int>>> g;
+    void helper(int src, int dst, int cost, int k, vector<int>& visited, int& res){
+        if(src == dst){
+            res = cost;
+            return;
+        }
+        if(k == 0) return;
+        for(const auto& v : g[src]){
+            if(visited[v.first]) continue;
+            if(cost + v.second > res) continue;
+            visited[v.first] = 1;
+            helper(v.first, dst, cost + v.second, k-1, visited, res);
+            visited[v.first] = 0;
+        }
+}
