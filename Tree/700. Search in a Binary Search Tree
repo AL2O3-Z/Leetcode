@@ -1,0 +1,9 @@
+//take the proprity of BST
+TreeNode* searchBST(TreeNode* root, int val) {
+        if(!root) return nullptr;
+        if(root->val == val) return root;
+        TreeNode* res;
+        if(val < root->val) res = searchBST(root->left, val) ;
+        if(val > root->val) res = searchBST(root->right, val) ;
+        return res;;
+}
