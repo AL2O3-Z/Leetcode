@@ -8,6 +8,7 @@ int calPoints(vector<string>& ops) {
             else score.push_back(stoi(s));
         }
 }
+//string to int for all type "-1945", "673", "0045"
 int str2int(string s) {
        stringstream ss;
        int n;
