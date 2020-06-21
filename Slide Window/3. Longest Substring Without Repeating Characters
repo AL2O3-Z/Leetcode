@@ -1,0 +1,15 @@
+int lengthOfLongestSubstring(string s) {
+        int res = 0;
+        int last = 0;
+        unordered_map<int,int> map;
+        for(int i = 0; i < s.length(); i++){
+            if(!map.count(s[i])){
+                map[s[i]] = i;
+            }else{
+                if(map[s[i]] >= last) last = map[s[i]] + 1;
+                map[s[i]] = i;
+            }
+            res = max(res, i - last + 1);
+        }
+        return res;
+    }
