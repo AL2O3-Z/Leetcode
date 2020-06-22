@@ -1,0 +1,12 @@
+//Time O(n)
+int maxArea(vector<int>& height) {
+        int res = 0;
+        int left = 0, right = height.size() - 1;
+        while(left < right){
+            int tmp = min(height[left], height[right]);
+            res = max(res, tmp * (right - left));
+            if(tmp == height[left]) left++;
+            else  right--;
+        }
+        return res;
+    }
