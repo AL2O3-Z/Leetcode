@@ -1,16 +1,50 @@
+// General solution
 int countNodes(TreeNode* root) {
         if(!root) return 0;
-        int hl = 0, hr = 0;
-        TreeNode* l = root;
-        TreeNode* r = root;
-        while(l) {
-            hl++;
-            l = l->left;
-        }
-        while(r){
-            hr++;
-            r = r ->right;
-        }
-        if(hr == hl) return (1 << hl) - 1;
         return 1 + countNodes(root->left) + countNodes(root->right);
+}
+//use the property of complete tree
+int countNodes(TreeNode* root) {
+    if(!root) return 0;
+    int hl = 0, hr = 0;
+    TreeNode* l = root;
+    TreeNode* r = root;
+    while(l) {
+        hl++;
+        l = l->left;
     }
+    while(r){
+        hr++;
+        r = r ->right;
+    }
+    if(hr == hl) return (1 << hl) - 1;
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+//BFS
+int countNodes(TreeNode* root) {
+    int res = 0;
+    if(!root) return res;
+    queue<TreeNode*> q;
+    q.push(root);
+    int level = 0;
+    while(!q.empty()){
+        TreeNode* cur = q.front();
+        int n = q.size();
+        if(n < pow(2, level)){
+            res++;
+            q.pop();
+        }else{
+            for(int i = 0; i < n; i++){
+                TreeNode* curFull = q.front();
+                if(i == 0){
+                    res += pow(2, level);
+                    level++;
+                }
+                q.pop();
+                if(curFull->right) q.push(curFull->right);
+                if(curFull->left) q.push(curFull->left);
+            }
+        }
+    }
+    return res;
+}
