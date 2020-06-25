@@ -1,0 +1,52 @@
+//
+//Pass parameter as reference is a good habit in such situations, it avoids creating local temporary variables
+//
+vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        string cur = "";
+        helper(res, cur, n, 0, 0);
+        return res;
+    }
+    void helper(vector<string>& res, string& cur, int n, int left,int right){
+        if(left > n || right > left) return;
+        if(left + right == 2*n){
+            res.push_back(cur);
+            return;
+        }
+        cur.push_back('(');
+        helper(res, cur, n, left+1, right);
+        cur.pop_back();
+        cur.push_back(')');
+        helper(res, cur, n, left, right + 1);
+        cur.pop_back();
+}
+
+//Passing by param ===>>> it has to copy every time.
+vector<string> generateParenthesis(int n) {
+    vector<string> res;
+    string cur = "";
+    int left = 0, right = 0;
+    helper(res, "", n, left, right);
+    return res;
+}
+void helper(vector<string>& res, string cur, int n, int left,int right){
+    if(left == n){
+        while(cur.length() < 2*n) cur += ")";
+        res.push_back(cur);
+        return;
+    }
+    cur += "(";
+    helper(res, cur, n, left+1, right);
+    
+    cur.pop_back();
+    
+    if(cur.length() == 0) return;
+    if(left > right){
+        cur += ")";
+        helper(res, cur, n, left, right + 1);
+        return;
+    }
+    
+    
+    
+}
