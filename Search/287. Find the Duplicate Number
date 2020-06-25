@@ -1,0 +1,33 @@
+//Binary Search
+//抽屉原理：桌上有十个苹果，要把这十个苹果放到九个抽屉里，无论怎样放，我们会发现至少会有一个抽屉里面放不少于两个苹果。
+//
+int findDuplicate(vector<int>& nums) {
+        int l = 1, r = nums.size();
+        while(l < r){
+            int mid = l + (r - l) / 2;
+            int cnt = 0;
+            for(const auto i : nums){
+                if(i <= mid) cnt++;
+            }
+            if(cnt > mid){
+                r = mid;
+            }else l = mid + 1;
+        }
+        return l;
+}
+//Slow-Fast pointers
+int findDuplicate(vector<int>& nums) {
+    int slow = 0;
+    int fast = 0;
+    while(true){
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+        if(slow == fast) break;
+    }
+    int find = 0;
+    while(slow != find){
+        slow = nums[slow];
+        find = nums[find];
+    }
+    return find;
+}
