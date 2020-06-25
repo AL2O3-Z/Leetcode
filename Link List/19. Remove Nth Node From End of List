@@ -1,0 +1,41 @@
+//Slide window to keep n+1 elements
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode dummy;
+        dummy.next = head;
+        ListNode* cur = &dummy;
+        queue<ListNode*> q;
+        while(cur){
+            q.push(cur);
+            cur = cur->next;
+            while(q.size() > n + 1){
+                q.pop();
+            }
+        }
+        ListNode* tmp = q.front(); q.pop();
+        cout<<tmp->val<<endl;
+        ListNode* toRe = q.front(); q.pop();
+        tmp->next = toRe->next;
+        return dummy.next;
+}
+//Two Pointers :the first is an offset
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        ListNode* start = new ListNode(0);
+        start->next = head;
+        
+        ListNode* fast = start;
+        ListNode* slow = start;     
+
+        for(int i = 1; i <= n; ++i)
+            fast = fast->next;
+    
+        while(fast->next != NULL)
+        {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        
+        slow->next = slow->next->next;
+        
+        return start->next;
+}
