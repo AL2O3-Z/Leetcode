@@ -103,3 +103,4 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
         }
         return dummy.next;
     }
+    
