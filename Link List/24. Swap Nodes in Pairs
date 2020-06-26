@@ -1,0 +1,28 @@
+
+ListNode* swapPairs(ListNode* head) {
+    ListNode dummy(0);
+    dummy.next = head;
+    ListNode* pre = &dummy;
+    ListNode* cur = head;
+    
+    while(cur && cur->next){
+        ListNode* tmp = cur->next;
+        cur->next = tmp->next;
+        tmp->next = cur;
+        pre->next = tmp;
+        pre = cur;
+        cur = cur->next;
+    }
+    return dummy.next;
+}
+//pointer of a pointer
+ListNode* swapPairs(ListNode* head) {
+    ListNode **pp = &head, *a, *b;
+    while ((a = *pp) && (b = a->next)) {
+        a->next = b->next;
+        b->next = a;
+        *pp = b;
+        pp = &(a->next);
+    }
+    return head;
+}
