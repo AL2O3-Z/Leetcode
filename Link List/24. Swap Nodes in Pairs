@@ -26,3 +26,13 @@ ListNode* swapPairs(ListNode* head) {
     }
     return head;
 }
+//Recursion
+ListNode* swapPairs(ListNode* head) {
+    //base case here
+    if(!head || !head->next) return head;
+    //Swapping part happens here, please draw to visualize
+    ListNode *temp = head->next;
+    head->next = swapPairs(temp->next); 
+    temp->next = head;
+    return temp;
+}
