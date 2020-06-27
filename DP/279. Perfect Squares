@@ -1,0 +1,32 @@
+//DP solution
+int numSquares(int n) {
+    vector<int> dp(n + 1, INT_MAX);
+    int s = sqrt(n);
+    dp[0] = 0;
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j * j <= i; j++){
+            dp[i] = min(dp[i], dp[i - j*j] + 1);
+        }
+    }
+    return dp[n];
+}
+// DFS + backtracking
+int numSquares(int n) {
+    int res = INT_MAX;
+    helper(n, 0, res);
+    return res;
+}
+void helper(int n, int cur, int& res){
+    if(!n){
+        res = min(res, cur);
+        return;
+    }
+    if(cur >= res) return;
+    int s = sqrt(n);
+    for(int i = s; i >= 1; i--){
+        int tmp = n;
+        n -= i * i;
+        helper(n, cur + 1, res);
+        n = tmp;
+    }
+}
