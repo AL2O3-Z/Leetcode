@@ -1,0 +1,26 @@
+    //Solution 1
+    bool canArrange(vector<int>& arr, int k) {
+        vector<int> remainderFreq(k, 0);
+        
+        for(auto &num : arr){
+            /* Add k to ensure this works for negative numbers */
+            ++remainderFreq[(num%k + k) % k];
+        }
+        
+        if(remainderFreq[0] % 2 != 0) return false;
+        
+        for(int rmd = 1; rmd < k; rmd++){
+            if(remainderFreq[rmd] != remainderFreq[k-rmd]) return false;
+        }
+        
+        return true;
+    }
+    //Solution 2
+    bool canArrange(vector<int>& arr, int k) {
+        long long sum = 0;
+        for(auto &item : arr){
+            sum += item;
+        }
+        
+        return (sum%k==0);
+    }
