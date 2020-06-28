@@ -1,0 +1,26 @@
+//Back tracking
+class Solution {
+public:
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        vector<string> res;
+        unordered_map<string, multiset<string>> m;
+        for(auto& t : tickets){
+            m[t[0]].insert(t[1]);
+        }
+        vector<string> match = {"JFK"};
+        while(match.size()){
+            string from = match.back();
+            if(m.count(from) && m[from].size() != 0){
+                auto it = m[from].begin();
+                match.push_back(*it);
+                m[from].erase(it);
+            }else{
+                res.push_back(from);
+                match.pop_back();
+            }
+            
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
