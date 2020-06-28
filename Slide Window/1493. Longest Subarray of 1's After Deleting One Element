@@ -1,0 +1,49 @@
+
+//sliding Windows
+//intuition
+//Almost exactly same as 1004. Max Consecutive Ones III
+//Given an array A of 0s and 1s,
+//we may change up to k = 1 values from 0 to 1.
+//Return the length - 1 of the longest (contiguous) subarray that contains only 1s.
+int longestSubarray(vector<int>& nums) {
+	int count = 0, start = 0, result = 0;
+	for (int i = 0; i < nums.size(); ++i){
+		count += nums[i] == 0;
+
+		while(count > 1)
+			count -= nums[start++] == 0;
+
+		result = max(result, i - start);
+	}
+
+	return result;
+}
+//two pointers
+int longestSubarray(vector<int>& nums) {
+  int res = INT_MIN;
+  for(int i = 0; i < nums.size(); i++){
+      if(nums[i] == 1) continue;
+      int l = i, r = i;
+      while(l - 1 >= 0 && nums[l-1] == 1) l--;
+      while(r + 1 <= nums.size() - 1 && nums[r+1] == 1) r++;
+      res = max(res, r - l);
+  }
+  return res == INT_MIN ? nums.size() - 1 : res;
+}
+
+More Similar Sliding Window Problems
+Here are some similar sliding window problems.
+Also find more explanations and discussion.
+Good luck and have fun.
+
+Longest Subarray of 1's After Deleting One Element
+Constrained Subsequence Sum
+Number of Substrings Containing All Three Characters
+Count Number of Nice Subarrays
+Replace the Substring for Balanced String
+Max Consecutive Ones III
+Binary Subarrays With Sum
+Subarrays with K Different Integers
+Fruit Into Baskets
+Shortest Subarray with Sum at Least K
+Minimum Size Subarray Sum
