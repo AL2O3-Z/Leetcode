@@ -1,0 +1,12 @@
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int cnt = nums.size();
+        unordered_map<int,int> m;
+        
+        for (int i = 0; i < cnt; ++i) {
+            if (m.count(target - nums[i])){
+                return {m[target - nums[i]] , i};
+            }
+            m.insert({nums[i],i});
+        }
+        return {0,0};
+    }
