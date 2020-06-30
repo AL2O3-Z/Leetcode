@@ -1,0 +1,51 @@
+//Time O(nlogk) Space O(k) Queue;
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+        for(const auto& n : nums){
+            m[n]++;
+        }
+        typedef pair<int,int> Node;
+        auto cmp = [](Node& a, Node& b){
+            return a.second > b.second;
+        };
+        priority_queue<Node, vector<Node>, decltype(cmp)> q(cmp);
+        for(const auto& e : m){
+            q.push(e);
+            if(q.size() > k){
+                q.pop();
+            }
+        }
+        vector<int> res;
+        while(q.size()){
+            res.push_back(q.top().first);
+            q.pop();
+        }
+        return res;
+    }
+};
+
+//Time O(n) && Space O(n) Bucket sorting
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+        int count = INT_MIN;
+        for(const auto& i : nums){
+            m[i]++;
+            count = max(count, m[i]);
+        }
+        unordered_map<int,vector<int>> bucket;
+        for(const auto& e : m){
+            bucket[e.second].push_back(e.first);
+        }
+        vector<int> res;
+        for(int i = count; i >= 1; i--){
+            if(bucket.count(i) == 0) continue;
+            res.insert(res.end(), bucket[i].begin(), bucket[i].end());
+            if(res.size() == k) return res;
+        }
+        return res;
+    }
+};
