@@ -1,3 +1,4 @@
+It's similaire with LC347 which is in Sort Section
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {
@@ -27,3 +28,4 @@ public:
         return res;
     }
 };
+It's similaire with LC347
