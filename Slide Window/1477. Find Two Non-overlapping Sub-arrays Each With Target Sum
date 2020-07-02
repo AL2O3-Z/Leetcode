@@ -1,0 +1,26 @@
+
+//In this pb, all elements are positive, so we can use prefix sum + dp[l-1] which representes the smallest length before left index because il must avoid overlapping of two array
+otherwisem in case of negative and positive number, we can use prefix sum + hashmap to store if a sub array saitisfy the target.
+class Solution {
+public:
+    int minSumOfLengths(vector<int>& arr, int target) {
+        const int k = INT_MAX / 2;
+        int l = 0;
+        int cur = k; int minlen = k;
+        int res = k; int sum = 0;
+        vector<int> memo(arr.size(), k);
+        for(int i = 0; i < arr.size(); i++){
+            sum += arr[i];
+            while(sum > target) sum -= arr[l++];
+            if(sum == target){
+                cur = i - l + 1;
+                if(l > 0 && memo[l - 1] != k){
+                    res = min(res, cur + memo[l - 1]);
+                }
+                minlen = min(minlen, cur);
+            }
+            memo[i] = minlen;
+        }
+        return res == k ? -1 : res;
+    }
+};
