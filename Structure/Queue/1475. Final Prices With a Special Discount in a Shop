@@ -1,0 +1,34 @@
+//Monotpnic Stack Time O(n)
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        vector<int> res = prices;
+        stack<int> q;
+        for(int i = prices.size() - 1; i >= 0; i--){
+            
+            while(!q.empty() && q.top() > prices[i]){
+                q.pop();
+            }
+            if(!q.empty()) res[i] = prices[i] - q.top();
+            q.push(prices[i]);
+        }
+        return res;
+    }
+};
+//Brute Force  Time O(n^2)
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        vector<int> res(prices.size(), INT_MAX);
+        for(int i = 0; i < prices.size(); i++){
+            for(int j = i + 1; j < prices.size(); j++){
+                if(prices[j] <= prices[i]){
+                    res[i] = prices[i] - prices[j];
+                    break;
+                } 
+            }
+            if(res[i] == INT_MAX) res[i] = prices[i];
+        }
+        return res;
+    }
+};
