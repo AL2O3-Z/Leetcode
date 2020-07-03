@@ -1,0 +1,75 @@
+// 异或运算：
+// 异或表示当两个数的二进制表示，进行异或运算时，当前位的两个二进制表示不同则为1相同则为0.
+// 参与运算的两个值，如果两个相应bit位相同，则结果为0，否则为1。
+// 即：
+// 　　0^0 = 0，
+// 　　1^0 = 1，
+// 　　0^1 = 1，
+// 　　1^1 = 0
+// 按位异或的3个特点:
+// (1) 0^0=0,0^1=1 0异或任何数＝任何数
+// (2) 1^0=1,1^1=0 1异或任何数－任何数取反
+// (3) 任何数异或自己＝把自己置0
+
+// 对数10100001的第2位和第3位翻转，可以将该数与00000110进行按位异或运算。
+// 10100001^00000110 = 10100111
+// 两个值的交换，而不必使用临时变量 (a=10100001，b=00000110)
+//　　　　a = a^b； 　　//a=10100111
+//　　　　b = b^a； 　　//b=10100001
+//　　　　a = a^b； 　　//a=00000110
+class Solution {
+public:
+    int xorOperation(int n, int start) {
+        int res = start;
+        for(int i = 1; i < n; i++){
+            res ^= start + i * 2;
+        }
+        return res;
+    }
+};
+
+XOR 有很多有用的特性：
+
+x \oplus x = 0x⊕x=0
+0 \oplus x = x0⊕x=x
+2x \oplus (2x+1) = 12x⊕(2x+1)=1
+我们来看看题目的要求：
+start \oplus start + 2 \oplus start + 4 ... \oplus start + 2n-2start⊕start+2⊕start+4...⊕start+2n−2
+
+你会发现题目的要求和上面我们列举的特性 3 很像，只是异或元素每次都是递增 2。
+
+因此，我们可以对题目进行一次处理，也就是对所有异或元素右移一位，得到 start/2 \oplus start/2 + 1 \oplus start/2 + 2 ... \oplus start/2 + n-1start/2⊕start/2+1⊕start/2+2...⊕start/2+n−1
+
+相当于我们将最终结果向右移动了一位，那么最后一位是什么呢？
+我们会发现最后一位是由 startstart 和 数组长度 nn 决定的。这是由于 2,4,...2,4,... 这些转换成二进制后最后一位都是 0。
+
+因此如果 start 是偶数，那么最后一位肯定是 0.
+如果 start 是奇数，但是 nn 是偶数，这里我们使用特性 1，得到最后一位也是 0.
+其他情况下，最后一位是 1.
+那么 start/2 \oplus start/2 + 1 \oplus start/2 + 2 ... \oplus start/2 + n-1start/2⊕start/2+1⊕start/2+2...⊕start/2+n−1 该怎么计算呢？
+我们可以按照特性 3 来补全：
+
+如果 start/2start/2 是偶数，我们只需要看 nn 是否是偶数即可：
+如果 nn 是偶数，该公式结果就是 n/2n/2 个 1 进行异或。也就是 (n/2) \& 1(n/2)&1
+如果 nn 是奇数，该公式结果就是 ((n/2) \& 1) \oplus (start+n-1)((n/2)&1)⊕(start+n−1)
+如果 start/2start/2 是奇数，那么我们可以在前面补充 (start/2-1) \oplus (start/2-1)(start/2−1)⊕(start/2−1)，就回到了情况 1.
+class Solution{
+    int xorOperationB(int n, int start){
+        if (n % 2 == 0)
+            return (n / 2) & 1;
+        else
+            return ((n / 2) & 1) ^ (start + n - 1);
+    }
+    int xorOperationA(int n, int start){
+        if (start & 1)
+            return (start - 1) ^ xorOperationB(n + 1, start - 1);
+        else
+            return xorOperationB(n, start);
+    }
+public:
+    int xorOperation(int n, int start){
+        int ret = 2 * xorOperationA(n, start / 2);
+        if (n & start & 1) ret++;
+        return ret;
+    }
+};
