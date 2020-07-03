@@ -1,0 +1,19 @@
+
+// the key is finding the loop of 14 sinon, when N is great, we get TLE
+class Solution {
+public:
+    vector<int> prisonAfterNDays(vector<int>& cells, int N) {
+        vector<int> tmp(cells.begin(), cells.end());
+        N = (N - 1) % 14 + 1;
+        while(N > 0){
+            for(int i = 1; i < cells.size() - 1; i++){
+                tmp[i] = 1 - cells[i - 1] ^ cells[i + 1];
+            }
+            tmp[0] = 0;
+            tmp[cells.size() - 1] = 0;
+            swap(tmp, cells);
+            N--;
+        }
+        return cells;
+    }
+};
