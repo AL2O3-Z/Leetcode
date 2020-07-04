@@ -12,7 +12,7 @@ Otherwise, we can use sliding window and verify if the condition is satisfied.<b
 If needed, use `priority_queue` or `bucket sorting` to sort the frequence.<br>
 [692. Top K Frequent Words](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Queue/692.%20Top%20K%20Frequent%20Words)<br>
 [347. Top K Frequent Elements](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/347.%20Top%20K%20Frequent%20Elements)<br>
-
+[1481. Least Number of Unique Integers after K Removals](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1481.%20Least%20Number%20of%20Unique%20Integers%20after%20K%20Removals)<br>
 ### Tips
 * modulo of a number(n or p): 
 ```cpp
