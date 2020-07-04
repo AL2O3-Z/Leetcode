@@ -4,7 +4,7 @@
 得：a%K-b%K = 0<Br>
 得：a%K = b%K<br>
 特别注意：取余是负数时，需要加上K， 这里是为了消除负数的影响，在所有取余的题解中，都要加入这行代码<br>
-`int modulo = (sum % k + k )% k;`
+int modulo = (sum % k + k )% k;
 
 class Solution {
 public:
