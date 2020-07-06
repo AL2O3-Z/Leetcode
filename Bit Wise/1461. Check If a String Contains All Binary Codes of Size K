@@ -1,0 +1,39 @@
+Time O(n*k)
+class Solution {
+public:
+    bool hasAllCodes(string s, int k) {
+        if(k >= s.length()) return false;
+        unordered_set<string> set;
+        for(int i = 0; i < s.length() - k + 1; i++){
+            string tmp = s.substr(i, k);
+            set.insert(tmp);
+            if(set.size() == (1<<k)) return true;
+        }
+        return false;
+    }
+};
+//Time O(n)
+//use sliding window
+class Solution {
+public:
+    bool hasAllCodes(string s, int k) {
+        int mask = (1 << k) - 1;
+        int sum = 0;
+        int ans = 0;
+        
+        vector<bool> cnt(1 << k);
+        
+        for (int i = 0; i < s.size(); ++i) {
+            sum = mask & ((sum << 1) + s[i] - '0');
+            
+            if (i >= k - 1) {
+                if (!cnt[sum]) {
+                    cnt[sum] = true;
+                    ++ans;
+                }
+            }
+        }
+        
+        return cnt.size() == ans;
+    }
+};
