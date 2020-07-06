@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        unordered_map<int,int> m;
+        for(const auto& i : target){
+            m[i]++;
+        }
+        for(const auto& i : arr){
+            if(m.count(i) == 0) return false;
+            m[i]--;
+            if(m[i] < 0) return false;
+        }
+        return true;
+    }
+};
