@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int isPrefixOfWord(string sentence, string searchWord) {
+        
+        stringstream ss(sentence);
+        string str;
+        int c = 1;
+        
+        while (ss >> str) {
+            auto p = str.find(searchWord);
+            if (p == 0) return c;
+            c++;
+        }
+        
+        return -1;
+    }
+};
+//STL find 
+//string.find in C++ is KPM
+int isPrefixOfWord(string sentence, string searchWord) {
+    auto sent = " " + sentence, word = " " + searchWord;
+    auto pos = sent.find(word);
+    if (pos != string::npos)
+        return count(begin(sent), begin(sent) + pos + 1, ' ');
+    return -1;
+}
+//My solution
+class Solution {
+public:
+    int isPrefixOfWord(string sentence, string searchWord) {
+        int res = 0;
+        sentence += " ";
+        map<int, string> m;
+        int num = 1;
+        int start = 0;
+        for(int i = 0; i < sentence.size(); i++){
+            if(sentence[i] == ' '){
+                string tmp = sentence.substr(start, i-start+1);
+                m[num] = tmp;
+                num++;
+                start = i + 1;
+            }
+        }
+        int n = searchWord.size();
+        for(const auto& e : m){
+            if(e.second.length() < n) continue;
+            string tmp = e.second.substr(0, n);
+            if(tmp == searchWord) return e.first;
+        }
+        return -1;
+    }
+};
