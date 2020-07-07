@@ -14,8 +14,11 @@ If needed, use `priority_queue` or `bucket sorting` to sort the frequence.<br>
 [347. Top K Frequent Elements](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/347.%20Top%20K%20Frequent%20Elements)<br>
 [1481. Least Number of Unique Integers after K Removals](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1481.%20Least%20Number%20of%20Unique%20Integers%20after%20K%20Removals)<br>
 ## DFS in matrix
+Just pay attention to the edge of the matrix and the condition of termination of current recursion<br>
+What is more interesting is if we must do the backtrack or not : The same cell may or may not be used more than once.<br>
 [463. Island Perimeter](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/463.%20Island%20Perimeter)<br>
 [130. Surrounded Regions](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/130.%20Surrounded%20Regions)<br>
+[79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)
 ### Tips
 * modulo of a number(n or p): 
 ```cpp
