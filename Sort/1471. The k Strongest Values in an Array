@@ -1,0 +1,58 @@
+//Time O(n)
+//Quick Sorting
+//nth_element(first,nth,last) 这个stl允许找数组里第k小的元素，但是以k为分界点前后两个子数组并没有被排好序
+//如果你只需要n个最大或最小元素，但不要求他们必须处于排序状态(sorted)，这个算法就很有用
+//那求第k大时呢？我们可以转化成求第n-k+1小，此时下标应该是n - k。因为数组是默认升序排列
+vector<int> getStrongest(vector<int>& arr, int k) {
+    nth_element(begin(arr), begin(arr) + (arr.size() - 1) / 2, end(arr));
+    int m = arr[(arr.size() -1) / 2];
+    //使用lamda表达式，使全局变量加入
+    nth_element(begin(arr), begin(arr) + k, end(arr), [&](int a, int b) { 
+        return abs(a - m) == abs(b - m) ? a > b : abs(a - m) > abs(b - m); 
+    });
+    arr.resize(k);
+    return arr;
+}
+
+//Two Pointers
+vector<int> getStrongest(vector<int>& arr, int k) {
+    sort(begin(arr), end(arr));
+    int i = 0, j = arr.size() - 1;
+    int med = arr[(arr.size() - 1) / 2];
+    while (--k >= 0)
+        if (med - arr[i] > arr[j] - med)
+            ++i;  
+        else
+            --j;
+    arr.erase(begin(arr) + i, begin(arr) + j + 1);
+    return arr;
+}
+class Solution {
+public:
+    vector<int> getStrongest(vector<int>& arr, int k) {
+        vector<int> res;
+        vector<int> tmp = arr;
+        sort(tmp.begin(), tmp.end());
+        int m = tmp[(tmp.size() - 1) / 2];
+        //struct cmp{
+        //    cmp(int m){
+        //        this->m = m;
+        //    }
+        //    bool operator()(int a, int b) const{   
+        //        if(abs(a - m) > abs(b - m)) return true;
+        //        if(abs(a - m) == abs(b - m)) return a > b;
+        //        return false;
+        //    }
+        //    
+        //    int m;
+        //};
+        //sort(arr.begin(), arr.end(), cmp(m));
+        sort(arr.begin(), arr.end(), [&](int& a, int& b){
+            if(abs(a - m) > abs(b - m)) return true;
+            if(abs(a - m) == abs(b - m)) return a > b;
+            return false;
+        });
+        arr.resize(k);
+        return arr;
+    }
+};
