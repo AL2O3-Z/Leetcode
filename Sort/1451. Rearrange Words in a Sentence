@@ -1,0 +1,75 @@
+
+//Solution 1 : 112s Time O(n)
+//Hash_map + split the word by index
+class Solution {
+public:
+    string arrangeWords(string text) {
+        text += " ";
+        text[0] = tolower(text[0]);
+        int n = text.size();
+        map<int, vector<string>> m;
+        
+        int l = 0, r = 0;
+        while(r < n){
+            if(text[r] == ' '){
+                m[r - l + 1].push_back(text.substr(l, r - l + 1));
+                l = r + 1;
+            }
+            r++;
+        }
+        string s = "";
+        for(const auto e : m){
+           for(const auto& i : e.second){
+               s += i;
+           }
+        } 
+        s.pop_back();
+        s[0] = toupper(s[0]);
+        return s;
+    }
+};
+//Solution 2 
+//Hash map Time O(n) + stringstream 176s
+//n is the number of words
+string arrangeWords(string text) {
+    text[0] = tolower(text[0]);
+    stringstream ss(text), rs;
+    string word;
+    map<int, string> m;
+    while (ss >> word) m[word.size()] += word + " ";
+    
+    for (const auto& pair: m) rs << pair.second;
+    string result = rs.str();
+    result.pop_back();
+    result[0] = toupper(result[0]);
+    return result;
+}
+//Solution 3
+//Sort by length Time O(nlogn) 276s
+//because sort isn't stable, so here we use stable_sort
+//sort isn't stable. when same length string appears their relative order is not maintained
+class Solution {
+public:
+    string arrangeWords(string text) {
+        text += " ";
+        text[0] = tolower(text[0]);
+        int n = text.size();
+        vector<string> res;
+        
+        stringstream buffer(text), rs;
+        string word;
+        while (getline(buffer, word,' ')){
+            res.push_back(word);
+        }
+        stable_sort(res.begin(), res.end(), [&](const auto& a, const auto& b){
+            return a.length() < b.length();
+        });
+        string s = "";
+        for(const auto e : res){
+           s += e + " "; 
+        } 
+        s.pop_back();
+        s[0] = toupper(s[0]);
+        return s;
+    }
+};
