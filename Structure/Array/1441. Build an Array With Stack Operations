@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        vector<string> res;
+        int num = 1;
+        int i = 0;
+        while(num <= n && i < target.size()){
+            if(num - 1 > target.back()) break;
+            res.push_back("Push");
+            
+            if(num < target[i]){
+                i--;
+                res.push_back("Pop");
+            }
+            num++;
+            i++;
+        }
+        return res;
+    }
+};
