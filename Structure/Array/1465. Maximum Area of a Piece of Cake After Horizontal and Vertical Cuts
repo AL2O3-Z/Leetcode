@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxArea(int h, int w, vector<int>& ho, vector<int>& ve) {
+        const int modu = pow(10, 9) + 7;
+        ho.push_back(0);
+        ho.push_back(h);
+        ve.push_back(0);
+        ve.push_back(w);
+        sort(ho.begin(), ho.end());
+        sort(ve.begin(), ve.end());
+        int y = 0; int x = 0;
+        for(int i = 1; i < ho.size(); i++){
+            y = max(y, ho[i] - ho[i - 1]);
+        }
+        for(int j = 1; j < ve.size(); j++){
+            x = max(x, ve[j] - ve[j - 1]);
+        }
+        int res = ((long long)(x % modu) * (y % modu)) % modu;
+        return res;
+    }
+};
