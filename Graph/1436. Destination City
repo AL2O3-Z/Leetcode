@@ -1,3 +1,25 @@
+//Graph Solution
+unordered_map<string, vector<string>> ump;
+unordered_set<string> visited;
+vector<string> st;
+void dfs(const string &node) {
+    if(visited.find(node) != visited.end())
+        return;
+	visited.insert(node);
+    for(const auto &s: ump[node])
+        dfs(s);
+    st.push_back(node);
+}
+
+string destCity(vector<vector<string>>& paths) {
+    for(const auto &v: paths)
+        ump[v[0]].push_back(v[1]);
+    for(const auto &itr: ump)
+        for(const auto &str: itr.second)
+            if(visited.find(str) == visited.end())
+                dfs(str);
+    return st.front();
+}
 //set
 class Solution {
 public:
