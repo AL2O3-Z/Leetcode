@@ -1,0 +1,61 @@
+Regardless whether these nodes exist:
+
+Always make the id of left child as parent_id * 2;
+Always make the id of right child as parent_id * 2 + 1;
+//DFS + Return value
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        if(!root) return 0;
+        vector<pair<double, double>> vec;
+        return helper(root, 0, 1, vec);
+    }
+    double helper(TreeNode* root, int level, double order, vector<pair<double,double>>& vec){
+        if(!root) return 0;
+        if(vec.size() == level) vec.push_back({order, order});
+        else vec[level].second = order;
+        double l = helper(root->left, level + 1, order*2, vec);
+        double r = helper(root->right, level + 1, order*2+1, vec);
+        return max((vec[level].second - vec[level].first + 1), max(l, r));
+    }
+};
+//DFS + no Return Value
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        vector<int> lefts; // left most nodes at each level;
+        int maxwidth = 0;
+        dfs(root, 1, 0, lefts, maxwidth);
+        return maxwidth;
+    }
+private:
+    void dfs(TreeNode* node, int id, int depth, vector<int>& lefts, int& maxwidth) {
+        if (!node) return;
+        if (depth >= lefts.size()) lefts.push_back(id);  // add left most node
+        maxwidth = max(maxwidth, id + 1 - lefts[depth]);
+        dfs(node->left, id * 2, depth + 1, lefts, maxwidth);
+        dfs(node->right, id * 2 + 1, depth + 1, lefts, maxwidth);
+    }
+};
+//BFS
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        if (!root) return 0;
+        int max = 0;
+        queue<pair<TreeNode*, int>> q;
+        q.push(pair<TreeNode*, int>(root, 1));
+        while (!q.empty()) {
+            int l = q.front().second, r = l; // right started same as left
+            for (int i = 0, n = q.size(); i < n; i++) {
+                TreeNode* node = q.front().first;
+                r = q.front().second;
+                q.pop();
+                if (node->left) q.push(pair<TreeNode*, int>(node->left, r * 2));
+                if (node->right) q.push(pair<TreeNode*, int>(node->right, r * 2 + 1));
+            }
+            max = std::max(max, r + 1 - l);
+        }
+        return max;
+    }
+};
