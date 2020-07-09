@@ -23,7 +23,11 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 1. nth_element(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
 This STL allows abtain the kth element satisfy the comparasion condition. And it's Time O(n) <br>
 2. cmp in sort()<Br>
-[1471. The k Strongest Values in an Array](https://leetcode.com/problems/the-k-strongest-values-in-an-array/)
+[1471. The k Strongest Values in an Array](https://leetcode.com/problems/the-k-strongest-values-in-an-array/)<br>
+
+## Array
+permutation of two parts of sub-arrray<br>
+[1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
 ### Tips
 * modulo of a number(n or p): 
 ```cpp
