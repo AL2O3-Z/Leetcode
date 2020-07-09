@@ -28,6 +28,8 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 ## Array
 permutation of two parts of sub-arrray<br>
 [1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
+## Bit wise
+[Properties of XOR ](https://accu.org/index.php/journals/1915)
 ### Tips
 * modulo of a number(n or p): 
 ```cpp
