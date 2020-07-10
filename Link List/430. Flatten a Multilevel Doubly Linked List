@@ -1,0 +1,35 @@
+
+class Solution {
+public:
+    Node* flatten(Node* head) {
+        for(Node* h = head; h; h = h->next){
+            if(h->child){
+                Node* pro = h->next;
+                h->next = h->child;
+                h->next->prev = h;
+                h->child = nullptr;
+                Node* p = h->next;
+                while(p->next) p = p->next;
+                p->next = pro;
+                if(pro) pro->prev = p;
+            }
+        }
+        return head;
+    }
+};
+
+class Solution {
+public:
+    Node* flatten(Node* head) {
+        Node* cur = head;
+        return helper(cur, nullptr);
+    }
+    Node* helper(Node* cur, Node* to){
+        if(!cur) return to;
+        Node* pro = cur->next;
+        cur->next = helper(cur->child, helper(cur->next, to));
+        if(cur->next) cur->next->prev = cur;
+        cur->child = nullptr;
+        return cur;
+    }
+};
