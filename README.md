@@ -26,8 +26,12 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 [1471. The k Strongest Values in an Array](https://leetcode.com/problems/the-k-strongest-values-in-an-array/)<br>
 
 ## Array
-permutation of two parts of sub-arrray<br>
+1. Permutation of two parts of sub-arrray<br>
 [1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
+2. Contanation of two array : 
+```cpp
+vec1.insert(vec1.end(), vec2.begin(), vec2.end());
+```
 ## Bit wise
 [Properties of XOR ](https://accu.org/index.php/journals/1915)
 ## Link list
