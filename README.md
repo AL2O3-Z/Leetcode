@@ -20,7 +20,7 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 [130. Surrounded Regions](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/130.%20Surrounded%20Regions)<br>
 [79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)
 ## Sort
-1. nth_element(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
+1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
 This STL allows abtain the kth element satisfy the comparasion condition. And it's Time O(n) <br>
 2. cmp in sort()<Br>
 [1471. The k Strongest Values in an Array](https://leetcode.com/problems/the-k-strongest-values-in-an-array/)<br>
