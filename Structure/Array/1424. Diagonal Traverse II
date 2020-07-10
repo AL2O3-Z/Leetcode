@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& nums) {
+        vector<int> res;
+        map<int,vector<int>> m;
+        for(int i = 0; i < nums.size(); i++){
+            for(int j = 0; j < nums[i].size(); j++){
+                m[i + j].push_back(nums[i][j]);
+            }
+        }
+        for(const auto& i : m){
+            auto tmp = i.second;
+            reverse(tmp.begin(), tmp.end());
+            res.insert(res.end(), tmp.begin(), tmp.end());
+        }
+        return res;
+    }
+};
+//TLE
+class Solution {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& nums) {
+        vector<int> res ;
+        int leng = 0;
+        for(int i = 0; i < nums.size(); i++){
+            int test = i + nums[i].size() - 1;
+            leng = std::max(leng, test);
+        }
+        for(int l = 0; l <= leng; l++){
+            for(int x = 0; x <= l; x++){
+                int y = l - x;
+                if(y >= nums.size() || x >= nums[y].size()) continue;
+                res.push_back(nums[y][x]);
+            }
+        }
+        return res;
+    }
+};
