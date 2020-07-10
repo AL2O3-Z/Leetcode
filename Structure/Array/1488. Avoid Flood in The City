@@ -1,0 +1,28 @@
+//这是一个延迟决策的题，因为在某一位置的决策是取决于当前位置之后的元素，所以对下标的记录和读取就很重要了。
+//当当前位置是0的时候，不做任何操作，只有在遇到某天已经满了的湖中下雨的时候，才临时抱佛脚使上次下雨后第一个晴天清空当前湖
+//这个满足某个条件后的第一次出现的位置很有作用
+//
+class Solution {
+public:
+     vector<int> avoidFlood(vector<int>& rains) {
+        vector<int> res(rains.size(), -1);
+        unordered_map<int,int> rain;
+        set<int> sun;
+        for(int i = 0; i < rains.size(); i++){
+            int tmp = rains[i];
+            if(tmp == 0){
+                sun.insert(i);
+                res[i] = 1;
+            }else{
+                if(rain.count(tmp)){
+                    auto it = sun.upper_bound(rain[tmp]);
+                    if(it == sun.end()) return {};
+                    res[*it] = tmp;
+                    sun.erase(it);
+                }
+                rain[tmp] = i;
+            }
+        }
+        return res;
+    }
+};
