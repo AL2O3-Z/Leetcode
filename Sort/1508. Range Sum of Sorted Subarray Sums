@@ -1,0 +1,59 @@
+//16s
+class Solution {
+public:
+    int rangeSum(vector<int>& nums, int n, int left, int right) {
+        priority_queue<pair<int, int>, vector<pair<int,int>>, greater<>> q;
+        for(int i = 0; i < n; i++){
+            q.push({nums[i], i + 1});
+        }
+        int res = 0;
+        for(int i = 1; i <= right; i++){
+            auto tmp = q.top(); q.pop();
+            if(i >= left){
+                res += tmp.first;
+            }
+            if(tmp.second < n){
+                tmp.first += nums[tmp.second++];
+                q.push(tmp);
+            }
+        }
+        return res;
+    }
+};
+In initial state, we have:
+nums[0], 1 (sub-array sum, starting from nums[0])
+nums[1], 2 (sub-array sum, starting from nums[1])
+nums[2], 3 (sub-array sum, starting from nums[2])
+...
+nums[n-1], n (sub-array sum, starting from nums[n-1])
+
+in the for-loop "for (int i=1; i<=right; i++)", we keep update these sub-array's sum.
+e.g.
+update: nums[0], 1 => nums[0] + nums[1], 2, so now it is the sub-array sum of nums[0] to nums[1]
+
+Then put the result back to priority queue.
+The top of priority queue is always the current minimum sub-array sum, so we take the top element, do the above update, then put the result back to priority queue.
+
+Then we can naturally add all of "sub-array sum" starting from left to right.
+
+Similar idea:
+merge k-sorted array (geeks for geeks: merge-k-sorted-arrays-set-2-different-sized-arrays/)
+merge k-sorted lists (https://leetcode.com/problems/merge-k-sorted-lists/)
+
+//780s
+class Solution {
+public:
+    int rangeSum(vector<int>& nums, int n, int left, int right) {
+        vector<int> sums { };
+        for (int i = 0; i < n; i++) {
+            int prefixSum = 0;
+            for (int j = i; j < n; j++) {
+                prefixSum += nums[j];
+                sums.push_back(prefixSum);
+            }
+        }
+        sort(begin(sums), end(sums));
+        int res = accumulate(sums.begin() + left - 1, sums.begin() + right, 0LL) % 1000000007;
+        return res;
+        }
+};
