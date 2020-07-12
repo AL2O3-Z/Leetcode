@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int numSub(string s) {
+        const int modu = 1e9 + 7;
+        int l = 0; int r = 0;
+        long long  res = 0;
+        while(r < s.size()){
+            if(s[r] == '0'){
+                r++; l = r;
+            }else{
+                res += (r - l + 1) % modu;
+                r++;
+            }
+        }
+        return res % modu;
+    }
+};
