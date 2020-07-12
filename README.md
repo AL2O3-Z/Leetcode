@@ -24,6 +24,10 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 This STL allows abtain the kth element satisfy the comparasion condition. And it's Time O(n) <br>
 2. cmp in sort()<Br>
 [1471. The k Strongest Values in an Array](https://leetcode.com/problems/the-k-strongest-values-in-an-array/)<br>
+3. Priority_queue to sort in reel time(*****) && cmp in priority_queue<br>
+In defaut, the bigger number is in front of the queue.<br>
+Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
+Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)
 
 ## Array
 1. Permutation of two parts of sub-arrray<br>
@@ -32,6 +36,12 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 ```cpp
 vec1.insert(vec1.end(), vec2.begin(), vec2.end());
 ```
+3. Permutation<br>
+All of elements in a array, add un new elements in the previous resultats and keep it as a new possible result<br>
+[78. Subsets](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/78.%20Subsets)
+4. Conbination<br>
+Number of Conbination => unordered_map as a count of element so that they can be pair<br>
+[1512. Number of Good Pairs](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1512.%20Number%20of%20Good%20Pairs)
 ## Bit wise
 [Properties of XOR ](https://accu.org/index.php/journals/1915)
 ## Link list
