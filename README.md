@@ -6,7 +6,7 @@ Otherwise, we can use sliding window and verify if the condition is satisfied.<b
 `Solution 1: prefix sum + hashmap`<br>
 [LC974](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/974.%20Subarray%20Sums%20Divisible%20by%20K)<br>
 `Solution 2: sliding window`<br>
-[LC1477](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1477.%20Find%20Two%20Non-overlapping%20Sub-arrays%20Each%20With%20Target%20Sum)
+[1477. Find Two Non-overlapping Sub-arrays Each With Target Sum](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1477.%20Find%20Two%20Non-overlapping%20Sub-arrays%20Each%20With%20Target%20Sum)
 ## Frequent pb :
 `hashmap` to store the pair of element and its frequence. <br>
 If needed, use `priority_queue` or `bucket sorting` to sort the frequence.<br>
