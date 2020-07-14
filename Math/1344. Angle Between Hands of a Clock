@@ -1,0 +1,11 @@
+class Solution {
+public:
+    double angleClock(int hour, int minutes) {
+        double angM = 6*minutes;
+        double angH = (hour + ((double)minutes / 60)) * 30;
+        while(angH > 360){
+            angH -= 360;
+        }
+        return min(abs(angH - angM), 360 - abs(angH - angM));
+    }
+};
