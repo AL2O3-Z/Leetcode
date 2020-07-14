@@ -57,3 +57,5 @@ A doublely Linked List<br>
 ```cpp
 int modulo = (sum % k + k )% k;
 ```
+*GOOD PB:
+[1488. Avoid Flood in The City](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1488.%20Avoid%20Flood%20in%20The%20City)
