@@ -1,3 +1,8 @@
+方法一：暴力。遍历每个bloomDay[i]作为min_day，看是否能摘到 m 束花。 时间复杂度O(n^2)
+方法二：二分法。先对bloomDay排序，然后二分地找bloomDay[i]作为min_day，看是否能摘到 m 束花。 时间复杂度O(nlogn)
+如果mid天满足，那么mid+1天也满足，满足单调性，可以二分check
+对于当前天数mid，贪心计算有多少个连续的小于等于mid的k天，假设有cnt个连续k天，判断cnt是否大于等于m即可
+
 class Solution {
 public:
     int minDays(vector<int>& bloomDay, int m, int k) {
