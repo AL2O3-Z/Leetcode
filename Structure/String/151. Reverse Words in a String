@@ -1,0 +1,45 @@
+//Time O(n)
+class Solution {
+public:
+    string reverseWords(string s) {
+        int i = 0; int j = 0;
+        int n = s.size();
+        int start = 0;
+        int wordcount=0;
+        while(true){
+            while(i < n && s[i] == ' ') i++;
+            if(i == n) break;
+            if(wordcount) s[j++] = ' ';
+            start = j;
+            while(i < n && s[i] != ' '){
+                s[j++] = s[i++];
+            }
+            swapString(s, start, j - 1);
+            wordcount ++;
+        }
+        s.resize(j);
+        swapString(s, 0, j - 1);
+        return s;
+    }
+    void swapString(string& s, int i, int j){
+        while(i<j){
+          swap(s[i++], s[j--]);
+        }
+    }
+};
+//Time O(n ^ 2)
+class Solution {
+public:
+    string reverseWords(string s) {
+        string res = "";
+        stringstream ss(s);
+        string word;
+        while(ss >> word){
+            res = word + " " + res;
+        }
+        if(res.size()){
+            res.pop_back();
+        }
+        return res;
+    }
+};
