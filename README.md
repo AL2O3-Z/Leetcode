@@ -60,4 +60,4 @@ int modulo = (sum % k + k )% k;
 *GOOD PB:
 [1488. Avoid Flood in The City](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1488.%20Avoid%20Flood%20in%20The%20City)<Br>
 [1419. Minimum Number of Frogs Croaking](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1419.%20Minimum%20Number%20of%20Frogs%20Croaking)<BR>
-[1493. Longest Subarray of 1's After Deleting One Element](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1493.%20Longest%20Subarray%20of%201's%20After%20Deleting%20One%20Element)<br>
+[1493. Longest Subarray of 1's After Deleting One Element](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1493.%20Longest%20Subarray%20of%201's%20After%20Deleting%20One%20Element)(DP, SW, 2Pointers)<br>
