@@ -1,0 +1,23 @@
+class Solution {
+static bool cmp(const string& a, const string& b){
+    return a.size() < b.size();
+}
+public:
+    vector<string> stringMatching(vector<string>& words) {
+        vector<string> res;
+        sort(words.begin(), words.end(), cmp);
+        //sort(words.begin(), words.end(), [&](string& a, string& b){
+        //    return a.size() < b.size();
+        //});
+        for(int i = 0; i < words.size(); i++){
+            string tmp = words[i];
+            for(int j = i + 1; j < words.size(); j++){
+                if(words[j].find(tmp) != string::npos){
+                    res.push_back(tmp);
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};
