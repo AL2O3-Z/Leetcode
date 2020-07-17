@@ -42,7 +42,8 @@ vec1.insert(vec1.end(), vec2.begin(), vec2.end());
 ```
 3. Permutation<br>
 All of elements in a array, add un new elements in the previous resultats and keep it as a new possible result<br>
-[78. Subsets](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/78.%20Subsets)
+[78. Subsets](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/78.%20Subsets)<br>
+[17. Letter Combinations of a Phone Number]
 4. Conbination<br>
 Number of Conbination => unordered_map as a count of element so that they can be pair<br>
 [1512. Number of Good Pairs](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1512.%20Number%20of%20Good%20Pairs)<br>
