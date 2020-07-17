@@ -1,0 +1,73 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if(digits.size() < 1) return {};
+        vector<string> res = {""};
+        unordered_map<char, vector<string>> map;
+        map['2'] = {"a", "b", "c"};
+        map['3'] = {"d", "e", "f"};
+        map['4'] = {"g", "h", "i"};
+        map['5'] = {"j", "k", "l"};
+        map['6'] = {"m", "n", "o"};
+        map['7'] = {"p", "q", "r", "s"};
+        map['8'] = {"t", "u", "v"};
+        map['9'] = {"w", "x", "y", "z"};
+        for(int i = 0; i < digits.size(); i++){
+            int n = res.size();
+            vector<string> tmp;
+            for(int j = 0; j < n; j++){
+                for(auto c : map[digits[i]]){
+                    string curS = res[j] + c;
+                    tmp.push_back(curS);
+                }
+                
+            }
+            res = tmp;
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if(digits.size() < 1) return  res;
+        unordered_map<char, vector<string>> map;
+        map['2'] = {"a", "b", "c"};
+        map['3'] = {"d", "e", "f"};
+        map['4'] = {"g", "h", "i"};
+        map['5'] = {"j", "k", "l"};
+        map['6'] = {"m", "n", "o"};
+        map['7'] = {"p", "q", "r", "s"};
+        map['8'] = {"t", "u", "v"};
+        map['9'] = {"w", "x", "y", "z"};
+        string cur = "";
+        helper2(map, 0, digits, cur, res);
+        return res;
+        //return helper1(map, 0, digits);
+    }
+    void helper2(unordered_map<char, vector<string>>& map, int index, string& digits, string& cur, vector<string>& res){
+        if(index == digits.length()){
+            res.push_back(cur);
+            return;
+        }
+        for(const auto s : map[digits[index]]){
+            cur += s;
+            helper2(map, index + 1, digits, cur, res);
+            cur.pop_back();
+        }
+    }
+    //vector<string> helper1(unordered_map<char, vector<string>>& map, int index, string& digits){
+    //    if(index == digits.size()) return {""};
+    //    vector<string> sub, res;
+    //    sub= helper1(map, index + 1, digits);
+    //    vector<string> tmp = map[digits[index]];
+    //    for(int i = 0; i < sub.size(); i++){
+    //        for(auto s : tmp){
+    //            res.push_back(s + sub[i]);
+    //        }
+    //    }
+    //    return res;
+    //}
+};
