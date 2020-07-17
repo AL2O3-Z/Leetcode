@@ -41,8 +41,10 @@ Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/
 vec1.insert(vec1.end(), vec2.begin(), vec2.end());
 ```
 3. Permutation<br>
-All of elements in a array, add un new elements in the previous resultats and keep it as a new possible result<br>
+3.1 All of elements in a array, add un new elements in the previous resultats and keep it as a new possible result<br>
 [78. Subsets](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/78.%20Subsets)<br>
+3.2 Expand the result like a tree, and pay attention to the termination condition<br>
+Or the same idea like last one, the difference is that we use the previous results and abandon them<br>
 [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
 4. Conbination<br>
 Number of Conbination => unordered_map as a count of element so that they can be pair<br>
