@@ -1,0 +1,52 @@
+O(n)
+class Solution {
+public:
+    int countLargestGroup(int n) {
+        int res = 0;
+        vector<int> cnt(37, 0);
+        int mc = 0;
+        for(int i = 1; i <= n; i++){
+            int cur = helper(i);
+            cnt[cur]++;
+            mc = max(mc, cnt[cur]);
+        }
+        return count_if(cnt.begin(), cnt.end(), [&mc](int n){
+            return n == mc;
+        });
+        
+    }
+    int helper(int n){
+        int res = 0;
+        while(n > 0){
+            res += n % 10;
+            n /= 10;
+        }
+        return res;
+    }
+};
+//
+class Solution {
+public:
+    int countLargestGroup(int n) {
+        int res = 0;
+        vector<int> cnt(37, 0);
+        int mc = 0;
+        for(int i = 1; i <= n; i++){
+            int cur = helper(i);
+            cnt[cur]++;
+            mc = max(mc, cnt[cur]);
+        }
+        return count_if(cnt.begin(), cnt.end(), [&mc](int n){
+            return n == mc;
+        });
+        
+    }
+    int helper(int n){
+        int res = 0;
+        while(n > 0){
+            res += n % 10;
+            n /= 10;
+        }
+        return res;
+    }
+};
