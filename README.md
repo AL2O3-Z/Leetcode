@@ -65,3 +65,4 @@ int modulo = (sum % k + k )% k;
 [1419. Minimum Number of Frogs Croaking](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1419.%20Minimum%20Number%20of%20Frogs%20Croaking)<BR>
 [1493. Longest Subarray of 1's After Deleting One Element](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1493.%20Longest%20Subarray%20of%201's%20After%20Deleting%20One%20Element)(DP, SW, 2Pointers)<br>
 [1482. Minimum Number of Days to Make m Bouquets](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/1482.%20Minimum%20Number%20of%20Days%20to%20Make%20m%20Bouquets)(Binary Search)<br>
+[621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)<br>
