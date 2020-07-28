@@ -1,0 +1,62 @@
+//round robin with weight
+//always try round robin between the most popular tasks at any time
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        unordered_map<char, int> task;
+        for(auto c : tasks) task[c]++;
+        priority_queue<pair<int, char>> q;
+        int res = 0; int cycle = n + 1;
+        for(auto e : task) q.push({e.second, e.first});
+        while(!q.empty()){
+            vector<pair<int, char>> tmp;
+            int time = 0;
+            for(int i = 0; i < cycle; i++){
+                if(!q.empty()) {
+                    auto cur = q.top(); q.pop();
+                    tmp.push_back(cur);
+                    time++;
+                }
+            }
+            for(auto t : tmp){
+                if(--t.first) q.push(t);
+            }
+            res += q.empty() ? time : cycle;
+        }
+        return res;
+        
+    }
+};
+
+//TLE
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        unordered_map<char, int> task;
+        for(auto c : tasks) task[c]++;
+        priority_queue<pair<int, char>> q;
+        unordered_map<char, int> cpu;
+        vector<char> res;
+        stack<pair<int, char>> s;
+        for(auto e : task) q.push({e.second, e.first});
+        while(!q.empty() || !s.empty()){
+            while(!q.empty()){
+                auto cur = q.top(); q.pop();
+                if(!cpu.count(cur.second) || cpu[cur.second] + n + 1 <= res.size()){
+                    res.push_back(cur.second);
+                    cpu[cur.second] = res.size() - 1;
+                    if(--cur.first) q.push(cur);
+                    break;
+                } else {
+                    s.push(cur);
+                    if(q.empty()) res.push_back('i');
+                }
+            }
+            while(!s.empty()){
+                q.push(s.top()); s.pop();
+            }
+        }
+        return res.size();
+        
+    }
+};
