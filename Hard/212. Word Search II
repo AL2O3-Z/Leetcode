@@ -1,0 +1,68 @@
+class TrieNode {
+public :
+    bool is_end;
+    vector<TrieNode*> children;
+    TrieNode(){
+        is_end = false;
+        children = vector<TrieNode*>(26, nullptr);
+    }
+};
+
+class Trie {
+public :
+    Trie(vector<string>& word){
+        root = new TrieNode();
+        for(int i = 0; i < word.size(); i++){
+            addWord(word[i]);
+        }
+    }
+    TrieNode* getRoot(){
+        return root;
+    }
+    void addWord(string w){
+        TrieNode* cur = root;
+        for(const char c : w){
+            int index = c - 'a';
+            if(!cur->children[index]){
+                cur->children[index] = new TrieNode();
+            }
+            cur = cur->children[index];
+        }
+        cur->is_end = true;
+    }
+private : 
+    TrieNode* root;
+};
+
+class Solution {
+public:
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        Trie* trie = new Trie(words);
+        TrieNode* root = trie->getRoot();
+        unordered_set<string> set;
+        vector<string> res;
+        for(int i = 0; i < board.size(); i++){
+            for(int j = 0; j < board[0].size(); j++){
+                findWordHelper(board, i, j, root, "", set);
+            }
+        }
+        
+        for(auto it : set) res.push_back(it);
+        return res;
+    }
+    
+    void findWordHelper(vector<vector<char>>& board, int i, int j, TrieNode* root, string cur, unordered_set<string>& set){
+        if(i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] == '*') return;
+        if(root->children[board[i][j] - 'a']){
+            cur += board[i][j];
+            root = root->children[board[i][j] - 'a'];
+            if(root->is_end) set.insert(cur);
+            board[i][j] = '*';
+            findWordHelper(board, i, j + 1, root, cur, set);
+            findWordHelper(board, i, j - 1, root, cur, set);
+            findWordHelper(board, i + 1, j, root, cur, set);
+            findWordHelper(board, i - 1, j, root, cur, set);
+            board[i][j] = cur.back();
+        }
+    }
+};
