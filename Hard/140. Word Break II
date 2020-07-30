@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> set;
+        for(auto s : wordDict) set.insert(s);
+        return wordBreakHelper(s, set);
+    }
+    vector<string> wordBreakHelper(string s, unordered_set<string> wordDict) {
+        if(map.count(s)) return map[s];
+        vector<string> res;
+        if(wordDict.count(s)) res.push_back(s);
+        for(int i = 1; i < s.length(); i++) {
+            const string left = s.substr(0, i);
+            const string right = s.substr(i);
+            if(!wordDict.count(right)) continue;
+            vector<string> res_cur = wordBreakHelper(left, wordDict);
+            append(res_cur, right);
+            res.insert(res.end(), res_cur.begin(), res_cur.end());
+        }
+        map[s] = res;
+        return map[s];
+    }
+    void append(vector<string>& left, string right) {
+        for(auto& s : left) {
+            s += " " + right;
+        }
+    }
+private : 
+    unordered_map<string, vector<string>> map;
+};
