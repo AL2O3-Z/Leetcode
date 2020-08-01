@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int change(int amount, vector<int>& coins) {
+        vector<int> dp(amount + 1, 0);
+        dp[0] = 1;
+        
+        for(auto c : coins) {
+            for(int i = c; i < amount + 1; i++) {
+                dp[i] += dp[i - c];
+            }
+        }
+        
+        return dp[amount];
+    }
+};
+这道题和70题Climbing Stairs非常相近，都是从前几个状态转移而来，
+这道题的状态是在vector中定义的，70题是确定的，-1 和 -2
+另外，这道题在乎顺序，
+对于三块钱来说
+1 2 和2 1是相同的获取方式，为了不重复，内层循环的初始值是每个状态。
+而70题则没有这个限制，
+与排列组合很相似，70题是组合，这道题是排列
