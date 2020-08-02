@@ -1,0 +1,76 @@
+class Solution {
+public:
+    string longestWord(vector<string>& words) {
+        string res = "";
+        unordered_set<string> set(words.begin(), words.end());
+        for(const string& w : words) {
+            if(w.size() < res.size() || (w.size() == res.size() && w > res)) continue;
+            bool flag = true;
+            string prefix = "";
+            for(int i = 0; i < w.size() && flag; i++) {
+                prefix += w[i];
+                if(!set.count(prefix)) flag = false;
+            }
+            if(flag) res = prefix;
+        }
+        return res;
+    }
+};
+//Trie
+class Trie{
+public : 
+    
+        Trie(): root(new TrieNode()) {};
+        void insert(string word){
+            TrieNode* cur = root.get();
+            for(const auto& c : word){
+                if(!cur->children[c - 'a']) cur->children[c - 'a'] = new TrieNode();
+                cur = cur->children[c - 'a'];
+            }
+            cur->is_end = true;
+        }
+        
+        bool isAllPrefix(const string& word){
+            TrieNode* cur = root.get();
+            for(const auto& c : word){
+                if(!cur->children[c - 'a']) return false;
+                cur = cur->children[c - 'a'];
+                if(!cur->is_end) return false;
+            }
+            return true;
+        }
+    
+private : 
+    struct TrieNode{
+        bool is_end;
+        vector<TrieNode*> children;
+        TrieNode(){
+            is_end = false;
+            children = vector<TrieNode*>(26, nullptr);
+        }
+        ~TrieNode(){
+            for(auto node : children){
+                delete node;
+            }
+        }
+    };
+    std::unique_ptr<TrieNode> root;
+};
+class Solution {
+public:
+    string longestWord(vector<string>& words) {
+        std::sort(words.begin(), words.end(), 
+                 [](string& a, string& b){
+                     if(a.length() != b.length()) return a.length() > b.length();
+                     return a < b;
+                 });
+        Trie trie;
+        for(const auto& w : words){
+            trie.insert(w);
+        }
+        for(const auto& w : words){
+            if(trie.isAllPrefix(w)) return w;
+        }
+        return "";
+    }
+};
