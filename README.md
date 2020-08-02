@@ -33,6 +33,8 @@ In defaut, the bigger number is in front of the queue.<br>
 Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
 Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)
 
+## Trie
+[720. Longest Word in Dictionary](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/720.%20Longest%20Word%20in%20Dictionary)<br>
 ## Array
 1. Permutation of two parts of sub-arrray<br>
 [1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
@@ -47,9 +49,11 @@ vec1.insert(vec1.end(), vec2.begin(), vec2.end());
 Or the same idea like last one, the difference is that we use the previous results and abandon them<br>
 [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
 4. Conbination<br>
+[322. Coin Change](DP && conbination && permutation)(https://github.com/AL2O3-Z/Leetcode/blob/master/DP/322.%20Coin%20Change)<br>
+[518. Coin Change 2](DP && combination) (https://github.com/AL2O3-Z/Leetcode/blob/master/DP/518.%20Coin%20Change%202)<br>
 Number of Conbination => unordered_map as a count of element so that they can be pair<br>
 [1512. Number of Good Pairs](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1512.%20Number%20of%20Good%20Pairs)<br>
-a string pb[1513. Number of Substrings With Only 1s](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)
+[1513. Number of Substrings With Only 1s](string pb)(https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)
 ## Bit wise
 [Properties of XOR ](https://accu.org/index.php/journals/1915)
 ## Link list
