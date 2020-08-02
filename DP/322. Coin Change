@@ -1,0 +1,49 @@
+//DFS + Pruning 8ms
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        sort(coins.rbegin(), coins.rend());
+        int res = INT_MAX;
+        helper(coins, 0, amount, 0, res);
+        return res == INT_MAX ? -1 : res;
+    }
+    
+    void helper(const vector<int>& coins, int index, int amount, int count, int& res) {
+        if(amount == 0) {
+            res = min(res, count);
+            return;
+        }
+        if(index == coins.size()) return;
+        const int coin = coins[index];
+        for(int i = amount / coin; i >= 0 && count + i < res; i--) {
+            helper(coins, index + 1, amount - i * coin, count + i, res);
+        }
+        return;
+    }
+    //DP + combination 64ms
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> A(amount+1, amount+1);
+        A[0] = 0;
+        for (int coin : coins) {
+            for (int i = coin; i <= amount; i++) {
+                A[i] = min(A[i], A[i - coin] + 1);
+            }
+        }
+        return A[amount] > amount ? -1 : A[amount];
+    }
+    
+    //DP + permination 116ms
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dp(amount + 1, INT_MAX);
+        dp[0] = 0;
+        
+        for(int i = 1; i <= amount; i++) {
+             for(auto c : coins) {
+                 if(i - c >= 0 && dp[i - c] != INT_MAX){
+                     dp[i] = min(dp[i], dp[i - c] + 1);
+                 }
+             }
+        }
+        return dp[amount] == INT_MAX ? -1 : dp[amount];
+    }
+};
