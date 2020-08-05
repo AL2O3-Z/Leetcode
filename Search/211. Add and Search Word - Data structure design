@@ -1,0 +1,62 @@
+
+
+class WordDictionary {
+public:
+    /** Initialize your data structure here. */
+    WordDictionary() : root(new TrieNode()){
+        
+    }
+    
+    /** Adds a word into the data structure. */
+    void addWord(string word) {
+        TrieNode* cur = root.get();
+        for(auto& c : word) {
+            if(!cur->children[c - 'a']) cur->children[c - 'a'] = new TrieNode();
+            cur = cur->children[c - 'a'];
+        }
+        cur->end = true;
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    bool search(string word) {
+        TrieNode* cur = root.get();
+        return searchHelper(word, 0, cur);
+    }
+   
+private : 
+    struct TrieNode {
+        bool end;
+        vector<TrieNode*> children;
+        TrieNode() {
+            end = false;
+            children = vector<TrieNode*>(26, nullptr);
+        }
+        ~TrieNode() {
+            for(auto v : children) {
+                delete v;
+            }
+        }
+    };
+    std::unique_ptr<TrieNode> root;
+     bool searchHelper(string& word, int index, TrieNode* root){
+        if(!root) return false;
+        if(index == word.size()) return root->end;
+        char c = word[index];
+        if(c != '.') {
+            if(!root->children[c - 'a']) return false;
+            return searchHelper(word, index + 1, root->children[c - 'a']);
+        } else {
+            for(auto& child : root->children) {
+                if(searchHelper(word, index + 1, child)) return true;
+            }
+            return false;
+        }
+    }
+};
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary* obj = new WordDictionary();
+ * obj->addWord(word);
+ * bool param_2 = obj->search(word);
+ */
