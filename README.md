@@ -36,6 +36,7 @@ Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/
 
 ## Trie
 [720. Longest Word in Dictionary](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/720.%20Longest%20Word%20in%20Dictionary)<br>
+[211. Add and Search Word - Data structure design](https://leetcode.com/problems/add-and-search-word-data-structure-design/)<br>
 ## Array
 1. Permutation of two parts of sub-arrray<br>
 [1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
