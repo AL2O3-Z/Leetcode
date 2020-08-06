@@ -26,7 +26,34 @@ public:
         }
     }
 };
-
+//Conbination (with no duplicate)+ elements can't be reused
+[3,2,5,6,8]
+8
+===>
+[[3,5],[2,6],[8]]
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        int rest = target;
+        vector<int> cur;
+        //sort(candidates.begin(), candidates.end());
+        dfs(candidates, target, 0, cur, res);
+        return res;
+    }
+    void dfs(vector<int>& candidates, int target, int index, vector<int>& cur, vector<vector<int>>& res) {
+        if(target < 0 ) return;
+        if(target == 0) {
+            res.push_back(cur);
+        }
+        for(int j = index; j < candidates.size(); j++) {
+            int i = candidates[j];
+            cur.push_back(i);
+            dfs(candidates, target - i, j + 1, cur, res);
+            cur.pop_back();
+        }
+    }
+};
 
 //Permutation (ordre is important) element can be reused.
 [2,3,5,6, 8]
@@ -39,18 +66,46 @@ public:
         vector<vector<int>> res;
         int rest = target;
         vector<int> cur;
-        dfs(candidates, target, 0, cur, res);
+        dfs(candidates, target, cur, res);
         return res;
     }
-    void dfs(vector<int>& candidates, int target, int index, vector<int>& cur, vector<vector<int>>& res) {
+    void dfs(vector<int>& candidates, int target, vector<int>& cur, vector<vector<int>>& res) {
         if(target < 0 ) return;
         if(target == 0) {
             res.push_back(cur);
         }
-        for(int j = index; j < candidates.size(); j++) {
+        for(int j = 0; j < candidates.size(); j++) {
             int i = candidates[j];
             cur.push_back(i);
-            dfs(candidates, target - i, index, cur, res);
+            dfs(candidates, target - i, cur, res);
+            cur.pop_back();
+        }
+    }
+};
+//permutation () element can't be reused.
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        int rest = target;
+        vector<int> cur;
+        //permutation
+        vector<bool> ind(candidates.size(), false);
+        helper(candidates, target, ind, cur, res);
+        return res;
+    }
+    void helper(vector<int>& candidates, int target, vector<bool>& ind, vector<int>& cur, vector<vector<int>>& res) {
+        if(target < 0) return;
+        if(target == 0) {
+            res.push_back(cur);
+            return;
+        }
+        for(int i = 0; i < candidates.size(); i++){
+            if(ind[i]) continue;
+            cur.push_back(candidates[i]);
+            ind[i] = true;
+            helper(candidates, target - candidates[i], ind, cur, res);
+            ind[i] = false;
             cur.pop_back();
         }
     }
