@@ -1,0 +1,57 @@
+//Combination (with no duplicate array) element can be reused.
+[2,3,5,6, 8]
+8
+===>
+[[2,2,2,2],[2,3,3],[2,6],[3,5],[8]]
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        int rest = target;
+        vector<int> cur;
+        dfs(candidates, target, 0, cur, res);
+        return res;
+    }
+    void dfs(vector<int>& candidates, int target, int index, vector<int>& cur, vector<vector<int>>& res) {
+        if(target < 0 ) return;
+        if(target == 0) {
+            res.push_back(cur);
+        }
+        for(int j = index; j < candidates.size(); j++) {
+            int i = candidates[j];
+            cur.push_back(i);
+            dfs(candidates, target - i, j, cur, res);
+            cur.pop_back();
+        }
+    }
+};
+
+
+//Permutation (ordre is important) element can be reused.
+[2,3,5,6, 8]
+8
+===>
+[[2,2,2,2],[2,3,3],[2,6],[3,2,3],[3,3,2],[3,5],[5,3],[6,2],[8]]
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        int rest = target;
+        vector<int> cur;
+        dfs(candidates, target, 0, cur, res);
+        return res;
+    }
+    void dfs(vector<int>& candidates, int target, int index, vector<int>& cur, vector<vector<int>>& res) {
+        if(target < 0 ) return;
+        if(target == 0) {
+            res.push_back(cur);
+        }
+        for(int j = index; j < candidates.size(); j++) {
+            int i = candidates[j];
+            cur.push_back(i);
+            dfs(candidates, target - i, index, cur, res);
+            cur.pop_back();
+        }
+    }
+};
