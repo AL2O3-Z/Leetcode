@@ -51,6 +51,9 @@ vec1.insert(vec1.end(), vec2.begin(), vec2.end());
 Or the same idea like last one, the difference is that we use the previous results and abandon them<br>
 [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
 4. Conbination<br>
+with and without repeating elements. And in the pb 39, some code for permutation to compare the difference.<br>
+[39. Combination Sum](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/39.%20Combination%20Sum)<br>
+[40. Combination Sum II](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/40.%20Combination%20Sum%20II<br>)
 [322. Coin Change](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/322.%20Coin%20Change)(DP && conbination && permutation)<br>
 [518. Coin Change 2](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/518.%20Coin%20Change%202)(DP && combination)<br>
 Number of Conbination => unordered_map as a count of element so that they can be pair<br>
