@@ -1,0 +1,47 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        helper(nums, 0, res);
+        return res;
+    }
+    void helper(vector<int>& nums, int count, vector<vector<int>>& res) {
+        if(count == nums.size()) {
+            res.push_back(nums);
+            return;
+        }
+        for(int i = count; i < nums.size(); i++) {
+            swap(nums[i], nums[count]);
+            helper(nums, count + 1, res);
+            swap(nums[i], nums[count]);
+        }
+    }
+};
+
+//
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        unordered_map<int, bool> map;
+        for(int i : nums) map[i] = false;
+        vector<int> cur;
+        helper(0, cur, map, res);
+        return res;
+    }
+    void helper(int count, vector<int>& cur, unordered_map<int, bool>& map, vector<vector<int>>& res) {
+        if(count == map.size()) {
+            res.push_back(cur);
+            return;
+        }
+        for(auto& e : map) {
+            if(e.second == true) continue;
+            e.second = true;
+            cur.push_back(e.first);
+            helper(count + 1, cur, map, res);
+            cur.pop_back();
+            e.second = false;
+            
+        }
+    }
+};
