@@ -49,7 +49,8 @@ vec1.insert(vec1.end(), vec2.begin(), vec2.end());
 [78. Subsets](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/78.%20Subsets)<br>
 3.2 Expand the result like a tree, and pay attention to the termination condition<br>
 Or the same idea like last one, the difference is that we use the previous results and abandon them<br>
-[17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+[17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)<br>
+[46. Permutations](https://leetcode.com/problems/permutations/)<br>
 4. Conbination<br>
 with and without repeating elements. And in the pb 39, some code for permutation to compare the difference.<br>
 [39. Combination Sum](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/39.%20Combination%20Sum)<br>
