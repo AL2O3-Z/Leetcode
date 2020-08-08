@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        unordered_map<int, bool> map;
+        for(int i = 0; i < nums.size(); i++) {
+            map[nums[i]] = false;
+        }
+        unordered_set<int> set(nums.begin(), nums.end());
+        int res = INT_MIN;
+        for(auto& i : nums) {
+            if(map[i]) continue;
+            res = max(res, helper(set, i, map));
+        }
+        return res;
+    }
+    int helper(unordered_set<int>& s, int n, unordered_map<int, bool>& map) {
+        if(s.count(n) ==  0 || n > INT_MAX || n < INT_MIN) return 0;
+        if(map[n]) return 0;
+        map[n] = true;
+        int res = 1;
+        if(n < INT_MAX - 1) res += helper(s, n + 1, map) ;
+        if(n > INT_MIN + 1) res += helper(s, n - 1, map);
+        return res;
+    }
+};
+
+//
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        priority_queue<int> q;
+        for(auto& i : nums) q.push(i);
+        int res = 1;
+        int ans = res;
+        int pre = q.top(); q.pop();
+        while(!q.empty()) {
+            int cur = q.top();
+            if(cur == pre - 1) {
+                res++;
+                pre = cur;
+            } else if(cur == pre) {
+                
+            } else {
+                pre = cur;
+                res = 1;
+            }
+            q.pop();
+            ans = max(ans, res);
+        }
+        return ans;
+    }
+};
