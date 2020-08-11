@@ -37,8 +37,11 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 3. Priority_queue to sort in reel time(*****) && cmp in priority_queue<br>
 In defaut, the bigger number is in front of the queue.<br>
 Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
-Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)
-
+Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)<br>
+### Sorting methods
+4. Counting Sort<br>
+this type of sorting is for the data in the some range. It's not comparable sorting, but it is faster than any sorting method
+[274. H-Index](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/274.%20H-Index)<br>
 ## Trie
 [720. Longest Word in Dictionary](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/720.%20Longest%20Word%20in%20Dictionary)<br>
 [211. Add and Search Word - Data structure design](https://leetcode.com/problems/add-and-search-word-data-structure-design/)<br>
