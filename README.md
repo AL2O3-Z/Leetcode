@@ -30,6 +30,7 @@ count and push the node in the queue<br>
 [542. 01 Matrix]<br>
 [675. Cut Off Trees for Golf Event]
 ## Sort
+### Sort-1. Have fun
 1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
 This STL allows abtain the kth element satisfy the comparasion condition. And it's Time O(n) <br>
 2. cmp in sort()<Br>
@@ -38,9 +39,10 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 In defaut, the bigger number is in front of the queue.<br>
 Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
 Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)<br>
-### Sorting methods
-4. Counting Sort<br>
-this type of sorting is for the data in the some range. It's not comparable sorting, but it is faster than any sorting method
+### Sort-2. Sorting methods
+1. Counting Sort<br>
+Time O(n + k) || Space O(n + k)<br>
+this type of sorting is for the data in the some range. It's not comparable sorting, and it needs extra space, but it is faster than any sorting method<br>
 [274. H-Index](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/274.%20H-Index)<br>
 ## Trie
 [720. Longest Word in Dictionary](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/720.%20Longest%20Word%20in%20Dictionary)<br>
