@@ -25,6 +25,7 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 [79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)<br>
 [140. Word Break II](https://github.com/AL2O3-Z/Leetcode/blob/master/Hard/212.%20Word%20Search%20II)<br>
 ## BFS in matrix
+Distance => BFS or DP
 unique or multi source, to find the shortest route from the source, level by level<br>
 just extends outwards and push the nodes of next level to the queue and treat them as new source <br>
 [994. Rotting Oranges](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/994.%20Rotting%20Oranges)<br>
