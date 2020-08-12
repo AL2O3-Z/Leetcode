@@ -1,5 +1,6 @@
 # Leetcode
 [文字格式](https://blog.csdn.net/u012067966/article/details/50736647)
+[Template](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)
 ## *Subsequence Sum :
 When all elements are positive and negative, we can use prefix sum + hashmap and this is more general.<br>
 Otherwise, we can use sliding window and verify if the condition is satisfied.<br>
