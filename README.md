@@ -24,13 +24,17 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 [130. Surrounded Regions](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/130.%20Surrounded%20Regions)<br>
 [79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)<br>
 [140. Word Break II](https://github.com/AL2O3-Z/Leetcode/blob/master/Hard/212.%20Word%20Search%20II)<br>
-## BFS in matrix
+## BFS 
 Distance => BFS or DP
+### In Matrix
 unique or multi source, to find the shortest route from the source, level by level<br>
 just extends outwards and push the nodes of next level to the queue and treat them as new source <br>
 [994. Rotting Oranges](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/994.%20Rotting%20Oranges)<br>
 [542. 01 Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/542.%2001%20Matrix) && 1162. As Far from Land as Possible<br>
 [675. Cut Off Trees for Golf Event]
+### In Tree
+If we need to backward to the parent, we can build an undirected graph to reprente the relation
+[863. All Nodes Distance K in Binary Tree](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/863.%20All%20Nodes%20Distance%20K%20in%20Binary%20Tree)<br>
 ## Sort
 ### Sort-1. Have fun
 1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
