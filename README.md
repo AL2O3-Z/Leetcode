@@ -27,7 +27,7 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 ## BFS in matrix
 count and push the node in the queue<br>
 [994. Rotting Oranges](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/994.%20Rotting%20Oranges)<br>
-[542. 01 Matrix]<br>
+[542. 01 Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/542.%2001%20Matrix) && 1162. As Far from Land as Possible<br>
 [675. Cut Off Trees for Golf Event]
 ## Sort
 ### Sort-1. Have fun
