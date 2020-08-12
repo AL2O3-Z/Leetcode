@@ -1,0 +1,51 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int K) {
+        vector<int> res;
+        if(!root) return res;
+        buildGraph(root);
+        queue<TreeNode*> q;
+        unordered_set<TreeNode*> visited;
+        q.push(target);
+        while(K >= 0 && !q.empty()) {
+            int cnt = q.size();
+            while(cnt--) {
+                auto cur = q.front(); q.pop();
+                if(K == 0) res.push_back(cur->val);
+                visited.insert(cur);
+                for(auto voisin : graph[cur]) {
+                    if(visited.count(voisin)) continue;
+                    q.push(voisin);
+                }
+                
+            }
+            K--;
+        }
+        return res;
+    }
+private:
+    unordered_map<TreeNode*, vector<TreeNode*>> graph;
+    void buildGraph(TreeNode* parent) {
+        if(!parent) return;
+        if(parent->left) {
+            graph[parent].push_back(parent->left);
+            graph[parent->left].push_back(parent);
+            buildGraph(parent->left);
+        }
+        if(parent->right) {
+            graph[parent].push_back(parent->right);
+            graph[parent->right].push_back(parent);
+            buildGraph(parent->right);
+        }
+        
+    }
+};
