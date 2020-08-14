@@ -1,0 +1,43 @@
+//Runtime: 8 ms, faster than 96.78% of C++ online submissions for Clone Graph.
+//Memory Usage: 8.9 MB, less than 50.13% of C++ online submissions for Clone Graph.
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if(!node) return nullptr;
+        if(!copies.count(node)) {
+            copies[node] = new Node(node->val);
+        } else {
+            return copies[node];
+        }
+        for(Node* n : node->neighbors) {
+            copies[node] -> neighbors.push_back(cloneGraph(n));
+        }
+        return copies[node];
+    }
+private:
+    unordered_map<Node*, Node*> copies;
+};
+//BFS
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if(!node) return nullptr;
+        unordered_map<Node*, Node*> relation;
+        Node* copy = new Node(node -> val, {});
+        relation[node] = copy;
+        queue<Node*> q;
+        q.push(node);
+        while(!q.empty()) {
+            Node* old = q.front(); q.pop();
+            cout<< old->val<<endl;
+            for(Node* neighbor : old->neighbors){
+                if(!relation.count(neighbor)) {
+                    relation[neighbor] = new Node(neighbor -> val,{});
+                    q.push(neighbor);
+                }
+                relation[old]->neighbors.push_back(relation[neighbor]);
+            }
+        }
+        return copy;
+    }
+};
