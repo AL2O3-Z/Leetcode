@@ -20,7 +20,7 @@ prefix sum  [1423. Maximum Points You Can Obtain from Cards](https://github.com/
 difference in sw [1509. Minimum Difference Between Largest and Smallest Value in Three Moves](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1509.%20Minimum%20Difference%20Between%20Largest%20and%20Smallest%20Value%20in%20Three%20Moves)<br>
 ## Binary Search
 A TRICK : In this problem, you can transfer a 2D array to 1D array using `x * y = r => matrix[r/x][r%y]`
-and we can use binary search.
+and we can use binary search.<Br>
 [74. Search a 2D Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/74.%20Search%20a%202D%20Matrix)<br>
 
 ## DFS 
@@ -33,7 +33,7 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 >[79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)<br>
 >[140. Word Break II](https://github.com/AL2O3-Z/Leetcode/blob/master/Hard/212.%20Word%20Search%20II)<br>
 ### In Graph
-In this pb, we use map to mapping the node visited rather than a set, because it's more easy to find the relation of mapping<br>
+>In this pb, we use map to mapping the node visited rather than a set, because it's more easy to find the relation of mapping<br>
 and it works also with DFS.
 [133. Clone Graph](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/133.%20Clone%20Graph)
 ## BFS 
@@ -92,7 +92,7 @@ with and without repeating elements. And in the pb 39, some code for permutation
 [518. Coin Change 2](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/518.%20Coin%20Change%202)(DP && combination)<br>
 Number of Conbination => unordered_map as a count of element so that they can be pair<br>
 [1512. Number of Good Pairs](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1512.%20Number%20of%20Good%20Pairs)<br>
-[1513. Number of Substrings With Only 1s](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)(string pb)
+[1513. Number of Substrings With Only 1s](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)(string pb)<BR>
 ## Bit wise
 [Properties of XOR ](https://accu.org/index.php/journals/1915)
 ## Link list
