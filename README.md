@@ -18,6 +18,10 @@ If needed, use `priority_queue` or `bucket sorting` to sort the frequence.<br>
 K moves - focus on the sliding window of size n - k;<br>
 prefix sum  [1423. Maximum Points You Can Obtain from Cards](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1423.%20Maximum%20Points%20You%20Can%20Obtain%20from%20Cards)<br>
 difference in sw [1509. Minimum Difference Between Largest and Smallest Value in Three Moves](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1509.%20Minimum%20Difference%20Between%20Largest%20and%20Smallest%20Value%20in%20Three%20Moves)<br>
+## Binary Search
+  In this problem, you can transfer a 2D array to 1D array using `x * y = r => matrix[r/x][r%y]`
+[74. Search a 2D Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/74.%20Search%20a%202D%20Matrix)<br>
+
 ## DFS 
 ### In matrix
 Just pay attention to the edge of the matrix and the condition of termination of current recursion<br>
@@ -56,6 +60,8 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 In defaut, the bigger number is in front of the queue.<br>
 Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
 Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)<br>
+### Sort-1. Have fun
+
 ### Sort-2. [Sorting methods](https://www.cnblogs.com/onepixel/p/7674659.html)
 1. Counting Sort => Time O(n + k) || Space O(n + k)<br>
 this type of sorting is for the data in the some range. It's not comparable sorting, and it needs extra space, but it is faster than any sorting method<br>
