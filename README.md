@@ -19,19 +19,19 @@ K moves - focus on the sliding window of size n - k;<br>
 prefix sum  [1423. Maximum Points You Can Obtain from Cards](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1423.%20Maximum%20Points%20You%20Can%20Obtain%20from%20Cards)<br>
 difference in sw [1509. Minimum Difference Between Largest and Smallest Value in Three Moves](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1509.%20Minimum%20Difference%20Between%20Largest%20and%20Smallest%20Value%20in%20Three%20Moves)<br>
 ## Binary Search
-    A TRICK : In this problem, you can transfer a 2D array to 1D array using `x * y = r => matrix[r/x][r%y]`
-    and we can use binary search.
-    [74. Search a 2D Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/74.%20Search%20a%202D%20Matrix)<br>
+A TRICK : In this problem, you can transfer a 2D array to 1D array using `x * y = r => matrix[r/x][r%y]`
+and we can use binary search.
+[74. Search a 2D Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/74.%20Search%20a%202D%20Matrix)<br>
 
 ## DFS 
 ### In matrix
-Just pay attention to the edge of the matrix and the condition of termination of current recursion<br>
+>Just pay attention to the edge of the matrix and the condition of termination of current recursion<br>
 What is more interesting is if we must do the backtrack or not : The same cell may or may not be used more than once.<br>
 [463. Island Perimeter](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/463.%20Island%20Perimeter)<br>
-[130. Surrounded Regions](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/130.%20Surrounded%20Regions)<br>
+>[130. Surrounded Regions](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/130.%20Surrounded%20Regions)<br>
 ### In word
-[79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)<br>
-[140. Word Break II](https://github.com/AL2O3-Z/Leetcode/blob/master/Hard/212.%20Word%20Search%20II)<br>
+>[79. Word Search(with backtrack)](https://leetcode.com/problems/word-search/)<br>
+>[140. Word Break II](https://github.com/AL2O3-Z/Leetcode/blob/master/Hard/212.%20Word%20Search%20II)<br>
 ### In Graph
 In this pb, we use map to mapping the node visited rather than a set, because it's more easy to find the relation of mapping<br>
 and it works also with DFS.
