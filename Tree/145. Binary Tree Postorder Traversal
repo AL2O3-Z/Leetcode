@@ -1,0 +1,48 @@
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if(!root) return res;
+        stack<TreeNode*> s;
+        s.push(root);
+        unordered_set<TreeNode*> visited;
+        visited.insert(nullptr);
+        while(!s.empty()) {
+            auto cur = s.top();
+            if (cur -> right && !visited.count(cur -> right)) s.push(cur -> right);
+            if (cur -> left && !visited.count(cur -> left)) s.push(cur -> left);
+            if (visited.count(cur -> left) && visited.count(cur -> right)) {
+                res.push_back(cur -> val);
+                s.pop();
+                visited.insert(cur);
+            }
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode* last = nullptr;
+        while (!s.empty() || root) {
+            if (root) {
+                s.push(root);
+                root = root -> left;
+            } else {
+                auto cur = s.top();
+                if (cur -> right && cur -> right != last) {
+                    root = cur -> right;
+                } else {
+                    res.push_back(cur -> val);
+                    s.pop();
+                    last = cur;
+                }
+            }
+        }
+        return res;
+    }
+};
