@@ -55,6 +55,7 @@ and it works also with DFS.
 ### Union Find
 No direction, no cycle => every cluster/set includes all the nodes. If another added edge, but their points of this edge is in the same cluster, we think this edge isn't valid.<br>
 [684. Redundant Connection](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/684.%20Redundant%20Connection)<br>
+[547. Friend Circles](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/547.%20Friend%20Circles)<br>
 ## Sort
 ### Sort-1. Have fun
 1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
