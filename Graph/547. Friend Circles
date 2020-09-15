@@ -40,3 +40,37 @@ private :
     vector<int> p;
     vector<int> rank;
 };
+
+//build Graph + dfs
+class Solution {
+public:
+    void helper(int cur, unordered_set<int>& s) {
+        if(s.count(cur)) return;
+        s.insert(cur);
+        for(const auto& i : map[cur]) {
+            helper(i, s);
+        }
+    }
+    int findCircleNum(vector<vector<int>>& M) {
+        int n = M.size();
+        int res = 0;
+        map = vector<vector<int>>(n);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0 ; j < n; j++) {
+                if(M[i][j]) {
+                    map[i].push_back(j);
+                }
+            }
+        }
+        unordered_set<int> s;
+        for(int i = 0; i < n; i ++) {
+            if(!s.count(i)) {
+                helper(i, s);
+                res++;
+            }
+        }
+        return res;
+    }
+private : 
+    vector<vector<int>> map;
+};
