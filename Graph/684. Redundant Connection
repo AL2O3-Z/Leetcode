@@ -1,0 +1,40 @@
+//Union Find
+++optimization path
+++optimization rank
+class Solution {
+public:
+    
+    int find(int n) {
+        if(p[n] != n) {
+            p[n] = find(p[n]);
+        }
+        return p[n];
+    }
+    bool unionEdge(int m, int n) {
+        int rootM = find(m);
+        int rootN = find(n);
+        if(rootM == rootN) return false;
+        if(rank[rootM] > rank[rootN]) {
+            p[rootN] = rootM;
+        } else if (rank[rootM] < rank[rootN]) {
+            p[rootM] = rootN;
+        } else {
+            p[rootM] = rootN;
+            rank[rootN]++;
+        }
+        return true;
+    }
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        int n = edges.size();
+        p = vector<int>(n + 1, 0);
+        rank = vector<int>(n + 1, 1);
+        for(int i = 1; i < n + 1; i++) p[i] = i;
+        for(const auto& e : edges) {
+            if(!unionEdge(e[0], e[1])) return e;
+        }
+        return {};
+    }
+private :
+    vector<int> p;
+    vector<int> rank;
+};
