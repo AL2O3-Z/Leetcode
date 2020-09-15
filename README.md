@@ -45,12 +45,16 @@ just extends outwards and push the nodes of next level to the queue and treat th
 [542. 01 Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/542.%2001%20Matrix) && 1162. As Far from Land as Possible<br>
 [675. Cut Off Trees for Golf Event]
 ### In Tree
-If we need to backward to the parent, we can build an undirected graph to reprente the relation
+If we need to backward to the parent, we can build an undirected graph to reprente the relation<br>
 [863. All Nodes Distance K in Binary Tree](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/863.%20All%20Nodes%20Distance%20K%20in%20Binary%20Tree)<br>
 ### In Graph
 In this pb, we use map to mapping the node visited rather than a set, because it's more easy to find the relation of mapping<br>
 and it works also with DFS.
 [133. Clone Graph](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/133.%20Clone%20Graph)
+## Graph
+### Union Find
+No direction, no cycle => every cluster/set includes all the nodes. If another added edge, but their points of this edge is in the same cluster, we think this edge isn't valid.<br>
+[684. Redundant Connection](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/684.%20Redundant%20Connection)<br>
 ## Sort
 ### Sort-1. Have fun
 1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
