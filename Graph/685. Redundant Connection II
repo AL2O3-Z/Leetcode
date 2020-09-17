@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> findRedundantDirectedConnection(vector<vector<int>>& edges) {
+        int n = edges.size();
+        vector<int> parent(n + 1, 0);
+        vector<int> root(n + 1, 0);
+        vector<int> sizes(n + 1, 1);
+        
+        vector<int> ans1;
+        vector<int> ans2;
+        
+        for (auto& e : edges) {
+            int u = e[0];
+            int v = e[1];
+            
+            if (parent[v]) {
+                ans1 = {parent[v], v};
+                ans2 = e;
+                e[0] = e[1] = -1;
+            }
+            parent[v] = u;
+        }
+        
+        for (auto& e : edges) {
+            int u = e[0]; int v = e[1];
+            if(u < 0 || v < 0) continue;
+            if (!root[u]) root[u] = u;
+            if (!root[v]) root[v] = v;
+            
+            int ru = find(u, root);
+            int rv = find(v, root);
+            if (ru == rv) {
+                return ans1.empty() ? e : ans1;
+            }
+            
+            if (sizes[rv] > sizes[ru]) swap(ru, rv);
+            root[rv] = ru;
+            sizes[ru] += sizes[rv];
+        }
+        return ans2;
+    }
+private : 
+    int find(int cur, vector<int>& root) {
+        if(root[cur] != cur) {
+            root[cur] = find(root[cur], root);
+        }
+        return root[cur];
+    }
+};
