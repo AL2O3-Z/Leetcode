@@ -60,6 +60,9 @@ It's a hard one. And here is a trick to play with : eliminating the second candi
 If there still exist a cycle, it's the old one creat it. so return it.<br>
 else maybe it's the second candidate's fault or nothing to delecting.<br>
 [685. Redundant Connection II](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/685.%20Redundant%20Connection%20II)<br>
+### Shortest path
+Multisource (Floyd-Warshall + V*Dijkstra)
+[1334. Find the City With the Smallest Number of Neighbors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1334.%20Find%20the%20City%20With%20the%20Smallest%20Number%20of%20Neighbors%20at%20a%20Threshold%20Distance)<br>
 ## Sort
 ### Sort-1. Have fun
 1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
