@@ -1,0 +1,77 @@
+//v * Dijkstra
+class Solution {
+public:
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+        vector<vector<pair<int,int>>> g(n);
+        for(const auto& e : edges) {
+            g[e[0]].push_back(make_pair(e[1], e[2]));
+            g[e[1]].push_back(make_pair(e[0], e[2]));
+        }
+        auto dijkstra = [&](int s) {
+            vector<int> d(n, INT_MAX);
+            vector<int> visited(n, 0);
+            d[s] = 0;
+            priority_queue<pair<int,int>> q;
+            q.push(make_pair(0, s));
+            while(!q.empty()) {
+                
+                auto nxt = q.top(); q.pop();
+                int u = nxt.second;
+                if(nxt.first > d[u]) continue;
+                for(int i = 0; i < g[u].size(); i++) {
+                    
+                    int v = g[u][i].first;
+                    int w = g[u][i].second;
+                    if (d[v] > d[u] + w) {
+                        d[v] = d[u] + w;
+                        q.push(make_pair(d[v], v));
+                    }
+                }
+            }
+            return count_if(begin(d), end(d), [distanceThreshold](int d) {
+                return d <= distanceThreshold;
+            });
+        };
+        int res = -1;
+        int cnt = INT_MAX;
+        for (int i = 0; i < n; i++) {
+            int curCnt = dijkstra(i);
+            if (curCnt <= cnt) {
+                cnt = curCnt;
+                res = i;
+            }
+        }
+        return res;
+    }
+};
+//Floyd
+class Solution {
+public:
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+        vector<vector<int>> d(n, vector<int>(n, INT_MAX / 2));
+        for (const auto& e : edges ) {
+            d[e[0]][e[1]] = e[2];
+            d[e[1]][e[0]] = e[2];
+        }
+        for (int k = 0; k < n; k++) {
+            for(int u = 0; u < n; u++) {
+                for(int v = 0; v < n; v++) {
+                    d[u][v] = min(d[u][v], d[u][k] + d[k][v]);
+                }
+            }
+        }
+        int res = -1;
+        int cnt = INT_MAX;
+        for(int i = 0; i < n; i++) {
+            int curCnt = 0;
+            for(int j = 0; j < n; j++) {
+                if (i != j && d[i][j] <= distanceThreshold) curCnt++;
+            }
+            if (curCnt <= cnt) {
+                cnt = curCnt;
+                res = i;
+            }
+        }
+        return res;
+    }
+};
