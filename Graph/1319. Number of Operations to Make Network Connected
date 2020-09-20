@@ -1,0 +1,52 @@
+//dfs
+class Solution {
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        if(connections.size() < n - 1) return -1;
+        vector<vector<int>> g(n);
+        for(const auto& c : connections) {
+            g[c[0]].push_back(c[1]);
+            g[c[1]].push_back(c[0]);
+        }
+        vector<int> visited(n, 0);
+        int cnt = 0;
+        for(int i = 0; i < n; i++) {
+            if(!visited[i]) {
+                dfs(i, g, visited);
+                cnt++;
+            }
+        }
+        return cnt - 1;
+    }
+    void dfs(int cur, vector<vector<int>>& g, vector<int>& visited) {
+        if(visited[cur]) return;
+        visited[cur] = 1;
+        for(const auto& e : g[cur]) {
+            dfs(e, g, visited);
+        }
+    }
+};
+//Union find
+class Solution {
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        if (connections.size() < n -1) return -1;
+        vector<int> root(n);
+        iota(begin(root), end(root), 0);
+        for(const auto& e : connections) {
+            int u = e[0]; int v = e[1];
+            root[find(u, root)] = find(v, root);
+        }
+        unordered_set<int> s;
+        for(auto& i : root) {
+            s.insert(find(i, root));
+        }
+        return s.size() - 1;
+    }
+    int find(int cur, vector<int>& root) {
+        if(root[cur] != cur) {
+            root[cur] = find(root[cur], root);
+        }
+        return root[cur];
+    }
+};
