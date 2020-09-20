@@ -1,0 +1,51 @@
+/*
+// Definition for Employee.
+class Employee {
+public:
+    int id;
+    int importance;
+    vector<int> subordinates;
+};
+*/
+//BFS 
+class Solution {
+public:
+    int getImportance(vector<Employee*> employees, int id) {
+        unordered_map<int, Employee*> map;
+        for(auto& e : employees) {
+            map[e->id] = e;
+        }
+        queue<Employee*> q;
+        q.push(map[id]);
+        int res = 0;
+        while(!q.empty()) {
+            auto cur = q.front(); q.pop();
+            res += cur -> importance;
+            for(auto& i : cur -> subordinates) {
+                q.push(map[i]);
+            }
+        }
+        return res;
+    }
+    
+};
+//DFS
+class Solution {
+public:
+    int getImportance(vector<Employee*> employees, int id) {
+        unordered_map<int, Employee*> map;
+        for(auto& e : employees) {
+            map[e->id] = e;
+        }
+        int res = dfs(id, map);
+        return res;
+    }
+    int dfs(int cur, unordered_map<int, Employee*>& map) {
+        auto e = map[cur];
+        int sum = e -> importance;
+        for(const auto& i : e -> subordinates) {
+            sum += dfs(i, map);
+        }
+        return sum;
+    }
+}
