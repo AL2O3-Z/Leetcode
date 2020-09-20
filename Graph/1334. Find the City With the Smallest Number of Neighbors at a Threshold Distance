@@ -9,14 +9,14 @@ public:
         }
         auto dijkstra = [&](int s) {
             vector<int> d(n, INT_MAX);
-            vector<int> visited(n, 0);
             d[s] = 0;
-            priority_queue<pair<int,int>> q;
+            priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> q;
             q.push(make_pair(0, s));
             while(!q.empty()) {
                 
                 auto nxt = q.top(); q.pop();
                 int u = nxt.second;
+                if(nxt.first > distanceThreshold) break;
                 if(nxt.first > d[u]) continue;
                 for(int i = 0; i < g[u].size(); i++) {
                     
