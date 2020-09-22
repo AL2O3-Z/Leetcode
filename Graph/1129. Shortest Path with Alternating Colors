@@ -1,0 +1,39 @@
+//Directed + non weight => shortest path => BFS
+class Solution {
+public:
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& red_edges, vector<vector<int>>& blue_edges) {
+        vector<unordered_set<int>> edges_r(n);
+        vector<unordered_set<int>> edges_b(n);
+        for(const auto& e : red_edges) {
+            edges_r[e[0]].insert(e[1]);
+        }
+        for(const auto& e : blue_edges) {
+            edges_b[e[0]].insert(e[1]);
+        }
+        unordered_set<int> seen_r;
+        unordered_set<int> seen_b;
+        seen_r.insert(0); seen_b.insert(0);
+        queue<pair<int, int>> q;
+        q.push({0, 0}); q.push({0, 1});
+        vector<int> res(n , -1);
+        int step = 0;
+        while(!q.empty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                int p = q.front().first;
+                int color = q.front().second;
+                q.pop();
+                const auto& edges = color ? edges_r : edges_b;
+                auto& seen = color ? seen_r : seen_b;
+                res[p] = res[p] >= 0 ? min(res[p], step) : step;
+                for(int nxt : edges[p]) {
+                    if(seen.count(nxt)) continue;
+                    seen.insert(nxt);
+                    q.push({nxt, 1 - color});
+                }
+            }
+            step++;
+        }
+        return res;
+    }
+};
