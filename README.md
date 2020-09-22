@@ -75,7 +75,6 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 In defaut, the bigger number is in front of the queue.<br>
 Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
 Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)<br>
-### Sort-1. Have fun
 
 ### Sort-2. [Sorting methods](https://www.cnblogs.com/onepixel/p/7674659.html)
 1. Counting Sort => Time O(n + k) || Space O(n + k)<br>
