@@ -56,10 +56,14 @@ and it works also with DFS.
 No direction, no cycle => every cluster/set includes all the nodes. If another added edge, but their points of this edge is in the same cluster, we think this edge isn't valid.<br>
 [684. Redundant Connection](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/684.%20Redundant%20Connection)<br>
 [547. Friend Circles](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/547.%20Friend%20Circles)<br>
-It's a hard one. And here is a trick to play with : eliminating the second candidate while checking the cycle without it.<br>
+Hard one. And here is a trick to play with : eliminating the second candidate while checking the cycle without it.<br>
 If there still exist a cycle, it's the old one creat it. so return it.<br>
 else maybe it's the second candidate's fault or nothing to delecting.<br>
 [685. Redundant Connection II](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/685.%20Redundant%20Connection%20II)<br>
+Intresting One. 0 : if two surfaces are merged, they are in the same cluster => `Union find`<br>
+A : reforme a 2D array to 1D by indexing i and j and the offset of every triangle in the square <br>
+B : merge the triangle inner connection and inter connection <br>
+[959. Regions Cut By Slashes](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/959.%20Regions%20Cut%20By%20Slashes)<br>
 ### Shortest path
 #### Multisource (Floyd-Warshall + V*Dijkstra)
 [1334. Find the City With the Smallest Number of Neighbors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1334.%20Find%20the%20City%20With%20the%20Smallest%20Number%20of%20Neighbors%20at%20a%20Threshold%20Distance)<br>
@@ -105,7 +109,7 @@ with and without repeating elements. And in the pb 39, some code for permutation
 [518. Coin Change 2](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/518.%20Coin%20Change%202)(DP && combination)<br>
 Number of Conbination => unordered_map as a count of element so that they can be pair<br>
 [1512. Number of Good Pairs](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1512.%20Number%20of%20Good%20Pairs)<br>
-[1513. Number of Substrings With Only 1s](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)(string pb)<BR>
+[1513. Number of Substrings With Only 1s](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)(string pb)<br>
 ## Bit wise
 [Properties of XOR ](https://accu.org/index.php/journals/1915)
 ## Link list
@@ -117,8 +121,8 @@ A doublely Linked List<br>
 int modulo = (sum % k + k )% k;
 ```
 *GOOD PB:
-[1488. Avoid Flood in The City](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1488.%20Avoid%20Flood%20in%20The%20City)<Br>
-[1419. Minimum Number of Frogs Croaking](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1419.%20Minimum%20Number%20of%20Frogs%20Croaking)<BR>
+[1488. Avoid Flood in The City](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1488.%20Avoid%20Flood%20in%20The%20City)<br>
+[1419. Minimum Number of Frogs Croaking](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1419.%20Minimum%20Number%20of%20Frogs%20Croaking)<br>
 [1493. Longest Subarray of 1's After Deleting One Element](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1493.%20Longest%20Subarray%20of%201's%20After%20Deleting%20One%20Element)(DP, SW, 2Pointers)<br>
 [1482. Minimum Number of Days to Make m Bouquets](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/1482.%20Minimum%20Number%20of%20Days%20to%20Make%20m%20Bouquets)(Binary Search)<br>
 [621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)(Priority_queue)<br>
