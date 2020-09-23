@@ -71,6 +71,7 @@ Intresting One : another view of 2D => a stone(data) represente the connection o
 [1334. Find the City With the Smallest Number of Neighbors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1334.%20Find%20the%20City%20With%20the%20Smallest%20Number%20of%20Neighbors%20at%20a%20Threshold%20Distance)<br>
 #### Single Source
 Directed, non-weight => BFS [1129. Shortest Path with Alternating Colors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1129.%20Shortest%20Path%20with%20Alternating%20Colors)<br>
+Directed, weight => BFS/DFS/Bellman-ford[787. Cheapest Flights Within K Stops](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/787.%20Cheapest%20Flights%20Within%20K%20Stops)<br>
 ## Sort
 ### Sort-1. Have fun
 1. `nth_element`(first,nth,last) if we just focus on if the kth elements in the sorted array, don't need to sort entire. <br>
