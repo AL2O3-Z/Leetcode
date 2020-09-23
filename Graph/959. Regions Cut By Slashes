@@ -1,0 +1,85 @@
+//Union Find
+class Solution {
+public:
+    int regionsBySlashes(vector<string>& grid) {
+        n = grid.size();
+        g = vector<int>(n * n * 4, 0);
+        count = n * n * 4;
+        iota(begin(g), end(g), 0);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(i > 0) merge(getIndex(i - 1, j, 2), getIndex(i, j, 0));
+                if(j > 0) merge(getIndex(i, j - 1, 1), getIndex(i, j, 3));
+                if(grid[i][j] != '/') {
+                    merge(getIndex(i, j, 0), getIndex(i, j, 1));
+                    merge(getIndex(i, j, 2), getIndex(i, j, 3));
+                }
+                if(grid[i][j] != '\\') {
+                    merge(getIndex(i, j, 0), getIndex(i, j, 3));
+                    merge(getIndex(i, j, 1), getIndex(i, j, 2));
+                }
+            }
+        }
+        return count;
+    }
+private :
+    vector<int> g;
+    int n , count;
+    int getIndex(int i, int j, int offset) {
+        return (i * n + j) * 4 + offset;
+    }
+    void merge(int x, int y) {
+        int rx = find(x);
+        int ry = find(y);
+        if(rx != ry) {
+            g[rx] = ry;
+            count--;
+        }
+    }
+    int find(int cur) {
+        if(g[cur] != cur) {
+            g[cur] = find(g[cur]);
+        }
+        return g[cur];
+    }
+};
+//DFS
+class Solution {
+public:
+    int regionsBySlashes(vector<string>& grid) {
+        int n = grid.size();
+        vector<vector<int>> g(n * 3, vector<int>(n * 3, 0));
+        for(int i = 0; i < grid.size(); i++) {
+            for(int j = 0; j < grid.size(); j++) {
+                if(grid[i][j] == '/') {
+                    g[i * 3 + 2][j * 3 + 0] = 1;
+                    g[i * 3 + 1][j * 3 + 1] = 1;
+                    g[i * 3 + 0][j * 3 + 2] = 1;
+                } else if (grid[i][j] == '\\') {
+                    g[i * 3 + 0][j * 3 + 0] = 1;
+                    g[i * 3 + 1][j * 3 + 1] = 1;
+                    g[i * 3 + 2][j * 3 + 2] = 1;
+                }
+            }
+        }
+        int res = 0;
+        for(int i = 0; i < 3 * n; i++) {
+            for(int j = 0; j < 3 * n; j++) {
+                if(g[i][j]) continue;
+                dfs(i, j, g);
+                res++;
+            }
+        }
+        return res;
+    }
+    void dfs(int i, int j, vector<vector<int>>& g) {
+        if(i < 0 || j < 0 || i >= g.size() || j >= g[0].size() || g[i][j]) return;
+        vector<int> dir = {1, 0, -1, 0, 1};
+        g[i][j] = 2;
+        for(int k = 0; k < 4; k++) {
+            int x = i + dir[k];
+            int y = j + dir[k + 1];
+            dfs(x, y, g);
+        }
+    }
+};
