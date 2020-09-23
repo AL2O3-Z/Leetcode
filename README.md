@@ -64,6 +64,8 @@ Intresting One. 0 : if two surfaces are merged, they are in the same cluster => 
 A : reforme a 2D array to 1D by indexing i and j and the offset of every triangle in the square <br>
 B : merge the triangle inner connection and inter connection <br>
 [959. Regions Cut By Slashes](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/959.%20Regions%20Cut%20By%20Slashes)<br>
+Intresting One : another view of 2D => a stone(data) represente the connection of col and row, all the stones in the same col or row represente the same island, so the index of col or row can represente different island<br>
+[947. Most Stones Removed with Same Row or Column](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/947.%20Most%20Stones%20Removed%20with%20Same%20Row%20or%20Column)<br>
 ### Shortest path
 #### Multisource (Floyd-Warshall + V*Dijkstra)
 [1334. Find the City With the Smallest Number of Neighbors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1334.%20Find%20the%20City%20With%20the%20Smallest%20Number%20of%20Neighbors%20at%20a%20Threshold%20Distance)<br>
