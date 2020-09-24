@@ -23,7 +23,11 @@ A TRICK : In this problem, you can transfer a 2D array to 1D array using `x * y 
 and we can use binary search.<Br>
 [74. Search a 2D Matrix](https://github.com/AL2O3-Z/Leetcode/blob/master/Search/74.%20Search%20a%202D%20Matrix)<br>
 
-## DFS 
+## Tree
+Using a string or a long int to represent a tree (a long int improve the time)<br>
+[652. Find Duplicate Subtrees](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/652.%20Find%20Duplicate%20Subtrees)<br>
+
+## DFS
 ### In matrix
 >Just pay attention to the edge of the matrix and the condition of termination of current recursion<br>
 What is more interesting is if we must do the backtrack or not : The same cell may or may not be used more than once.<br>
