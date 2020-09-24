@@ -1,0 +1,54 @@
+O(n) 用位移拼接代替string的拼接，来提高速度
+class Solution {
+public:
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        unordered_map<long, int> id;
+        unordered_map<int, int> count;
+        vector<TreeNode*> res;
+        helper(root, id, count, res);
+        return res;
+    }
+    int helper(TreeNode* root, 
+               unordered_map<long, int>& id,
+               unordered_map<int,int>& count,
+               vector<TreeNode*>& res) {
+        if(!root) return 0;
+        long key = (static_cast<long>(static_cast<unsigned>(root -> val)) << 32  |
+                   helper(root-> left, id, count, res) << 16 |
+                   helper(root->right, id, count, res));
+        int curId;
+        if(id.count(key)) {
+            curId = id[key];
+        } else {
+            id[key] = curId = id.size() + 1;
+        }
+        if(++count[curId] == 2) {
+            res.push_back(root);
+        }
+        return curId;
+    }
+};
+//O(n^2)
+每个节点确实只访问了一次，但是处理每个节点的时间是O(i), i是该节点所有子节点的数量，因为字符串拼接是线性时间。
+对于根结点，key的长度是O(n)。
+对于perfect tree (best case)，相当于 T(n) = O(n) + 2T(n/2) = O(nlogn)。
+worst case 就是每个节点只有左子树, T(n) = O(n) + T(n-1) = O(n^2)。
+class Solution {
+public:
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        unordered_map<string, int> count;
+        vector<TreeNode*> res;
+        helper(root, count, res);
+        return res;
+    }
+    string helper(TreeNode* root, unordered_map<string, int>& count, vector<TreeNode*>& res ) {
+        if(!root) return "#";
+        string cur = to_string(root -> val) + "," +
+            helper(root->left, count, res) + "," +
+            helper(root->right, count, res);
+        if(++count[cur] == 2) {
+            res.push_back(root);
+        }
+        return cur;
+    }
+};
