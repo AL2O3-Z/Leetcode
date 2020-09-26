@@ -38,3 +38,48 @@ public:
     }
 };
 
+//DP solution
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& matrix) {
+        if(matrix.empty()) return {};
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<vector<int>> dp(n, vector<int>(m));
+        for (int i = 0; i < n; i++) {
+            dp[i][0] |= 1;
+            dp[i][m - 1] |= 2;
+        }
+        
+        for (int j = 0; j < m; j++) {
+            dp[0][j] |= 1;
+            dp[n - 1][j] |= 2;
+        }
+        vector<int> dir = {1, 0, -1, 0, 1};
+        
+        
+        while (true) {
+            bool isChange = false;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    for (int k = 0; k < 4; k++) {
+                        int x = i + dir[k];
+                        int y = j + dir[k + 1];
+                        if(x < 0 || y < 0 || x == n || y == m) continue;
+                        if(matrix[i][j] < matrix[x][y] || (dp[i][j] | dp[x][y]) == dp[i][j]) continue;
+                        dp[i][j] |= dp[x][y];
+                        isChange = true;
+                    }
+                }
+            }
+            if(!isChange) break;
+        }
+        vector<vector<int>> res;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(dp[i][j] == 3) res.push_back({i, j});
+            }
+        }
+        return res;
+    }
+};
