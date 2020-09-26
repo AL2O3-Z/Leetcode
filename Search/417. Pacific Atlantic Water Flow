@@ -1,0 +1,40 @@
+//DFS
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& matrix) {
+        if(matrix.empty()) return {};
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<vector<int>> p(n, vector<int>(m, 0));
+        vector<vector<int>> a(n, vector<int>(m, 0));
+        for (int i = 0; i < m; i++) {
+            dfs(matrix, 0, i, 0, p);
+            dfs(matrix, n - 1, i, 0, a);
+        }
+        for (int i = 0; i < n; i++) {
+            dfs(matrix, i, 0, 0, p);
+            dfs(matrix, i, m - 1, 0, a);
+        }
+        vector<vector<int>> res;
+        for(int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(p[i][j] && a[i][j]) res.push_back({i, j});
+            }
+        }
+        return res;
+    }
+    void dfs(vector<vector<int>>& matrix, int i, int j, int cur, vector<vector<int>>& reachable) {
+        if(i < 0 || j < 0 || i == matrix.size() || j == matrix[0].size() || reachable[i][j]) return;
+        if(cur > matrix[i][j]) return;
+        reachable[i][j] = 1;
+        
+        vector<int> dir= {1, 0, -1, 0, 1};
+        int nxt = matrix[i][j];
+        for(int k = 0; k < 4; k++) {
+            int x = i + dir[k];
+            int y = j + dir[k + 1];
+            dfs(matrix, x, y, nxt, reachable);
+        }
+    }
+};
+
