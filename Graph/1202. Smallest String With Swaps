@@ -1,0 +1,76 @@
+Runtime: 268 ms, faster than 98.77% of C++ online submissions for Smallest String With Swaps.
+Memory Usage: 53.5 MB, less than 57.20% of C++ online submissions for Smallest String With Swaps.
+class Solution {
+public:
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+        int n = s.length();
+        vector<int> p(n);
+        iota(begin(p), end(p), 0);
+        vector<vector<int>> idx(n);
+        vector<string> tmp(n);
+        
+        function<int(int)> find = [&] (int cur) {
+            if(p[cur] != cur) {
+                p[cur] = find(p[cur]);
+            }
+            return p[cur];
+        };
+        
+        for (const auto& e : pairs) {
+            p[find(e[0])] = find(e[1]);
+        }
+        
+        for (int i = 0; i < n; i++) {
+            int clusterId = find(i);
+            idx[clusterId].push_back(i);
+            tmp[clusterId].push_back(s[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            if(idx[i].size() == 0) continue;
+            sort(begin(tmp[i]), end(tmp[i]));
+            for (int k = 0; k < tmp[i].size(); k ++) {
+                s[idx[i][k]] = tmp[i][k];
+            }
+        }
+        return s;
+    }
+};
+//DFS
+Runtime: 496 ms, faster than 37.12% of C++ online submissions for Smallest String With Swaps.
+Memory Usage: 80.6 MB, less than 9.34% of C++ online submissions for Smallest String With Swaps.
+class Solution {
+public:
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+        int n = s.length();
+        vector<int> idx;
+        string tmp;
+        vector<vector<int>> g(n);
+        unordered_set<int> seen;
+        for(const auto& e : pairs) {
+            g[e[0]].push_back(e[1]);
+            g[e[1]].push_back(e[0]);
+        }
+        function<void(int)> dfs = [&] (int cur) {
+            if (seen.count(cur)) return;
+            seen.insert(cur);
+            idx.push_back(cur);
+            tmp += s[cur];
+            for (auto& e : g[cur]) {
+                dfs(e);
+            }
+        };
+        
+        for (int i = 0; i < n; i++) {
+            if (seen.count(i)) continue;
+            idx.clear();
+            tmp.clear();
+            dfs(i);
+            sort(begin(idx), end(idx));
+            sort(begin(tmp), end(tmp));
+            for (int k = 0; k < idx.size(); k++) {
+                s[idx[k]] = tmp[k];                
+            }
+        }
+        return s;
+    }
+};
