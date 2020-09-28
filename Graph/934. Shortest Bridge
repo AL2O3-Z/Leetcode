@@ -1,0 +1,55 @@
+class Solution {
+public:
+    int shortestBridge(vector<vector<int>>& A) {
+        int res = INT_MAX;
+        int n = A.size();
+        int m = A[0].size();
+        queue<pair<int,int>> q;
+        bool found = true;
+        for (int i = 0; i < n && found; i++) {
+            for(int j = 0; j < m && found; j++) {
+                if(A[i][j] == 1) {
+                    dfs(A, i, j, q);
+                    found = false;
+                }
+            }
+        }
+        
+        vector<int> dirs = {1, 0, -1, 0, 1};
+        int step = 0;
+        while (!q.empty()) {
+            int sizes = q.size();
+            
+            
+            for (int i = 0; i < sizes; i++) {
+                auto e = q.front(); q.pop();
+                
+                for (int k = 0; k < 4; k++) {
+                    int x = e.first + dirs[k];
+                    int y = e.second + dirs[k + 1];
+                    if(x < 0 || y < 0 || x == n || y == m || A[x][y] == 2) continue;
+                    if (A[x][y] == 1) return step;
+                    else if (A[x][y] == 0) {
+                        A[x][y] = 2;
+                        q.push({x, y});
+                    }
+                }
+            }
+            step++;
+        }
+        return -1;
+    }
+    void dfs(vector<vector<int>>& matrix, int i, int j, queue<pair<int,int>>& q) {
+        if(i < 0 || j < 0 || i == matrix.size() || j == matrix[0].size() ) return;
+        if (matrix[i][j] == 0 || matrix[i][j] == 2) return;
+        matrix[i][j] = 2;
+        q.push({i,j});
+        
+        vector<int> dir = {1, 0, -1, 0, 1};
+        for (int k = 0; k < 4; k++) {
+            int x = i + dir[k];
+            int y = j + dir[k + 1];
+            dfs(matrix, x, y, q);
+        }
+    }
+};
