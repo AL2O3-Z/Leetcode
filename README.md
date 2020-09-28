@@ -73,9 +73,11 @@ Interesting One : another view of 2D => a stone(data) represente the connection 
 [947. Most Stones Removed with Same Row or Column](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/947.%20Most%20Stones%20Removed%20with%20Same%20Row%20or%20Column)<br>
 Interesting One : a pair of swap represente one connection. All of the characters in the same clusters can be sorted. So this problem could be transformed to find the connection component.<br>
 [1202. Smallest String With Swaps](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1202.%20Smallest%20String%20With%20Swaps)<br>
-### Shortest path (with weight)
-#### Multisource (Floyd-Warshall + V*Dijkstra)
+### Shortest path 
+#### Multisource + single-destination (Floyd-Warshall + V*Dijkstra) (weight)
 non-directed, weight[1334. Find the City With the Smallest Number of Neighbors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1334.%20Find%20the%20City%20With%20the%20Smallest%20Number%20of%20Neighbors%20at%20a%20Threshold%20Distance)<br>
+#### Multisource + multi-destination (DFS + BFS) (non-weight)
+non-directed, non weight[934. Shortest Bridge](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/934.%20Shortest%20Bridge)<br>
 #### Single Source
 Directed, non-weight => BFS [1129. Shortest Path with Alternating Colors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1129.%20Shortest%20Path%20with%20Alternating%20Colors)<br>
 Directed, weight => BFS/DFS/Bellman-ford[787. Cheapest Flights Within K Stops](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/787.%20Cheapest%20Flights%20Within%20K%20Stops)<br>
