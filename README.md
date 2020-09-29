@@ -42,8 +42,8 @@ What is more interesting is if we must do the backtrack or not : The same cell m
 and it works also with DFS.
 [133. Clone Graph](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/133.%20Clone%20Graph)<br>
 >COLORING <br>
-Node's coloring[785. Is Graph Bipartite?](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/785.%20Is%20Graph%20Bipartite%3F)<br>
-Edge's coloring[1129. Shortest Path with Alternating Colors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1129.%20Shortest%20Path%20with%20Alternating%20Colors)<br>
+Node's coloring [785. Is Graph Bipartite?](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/785.%20Is%20Graph%20Bipartite%3F) same with 886. Possible Bipartition<br>
+Edge's coloring [1129. Shortest Path with Alternating Colors](https://github.com/AL2O3-Z/Leetcode/blob/master/Graph/1129.%20Shortest%20Path%20with%20Alternating%20Colors)<br>
 ## BFS 
 Distance/non-weight => BFS or DP
 ### In Matrix
