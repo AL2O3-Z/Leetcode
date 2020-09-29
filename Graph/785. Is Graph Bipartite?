@@ -1,0 +1,102 @@
+//dfs
+class Solution {
+public:
+    vector<int> color;
+    bool isBipartiteHelper(vector<vector<int>>& graph, int i) {
+        for (int j : graph[i]) {
+            if (color[j] != -1) {
+                if (color[j] == color[i]) {
+                    return false;
+                }
+            } else {
+                color[j] = 1 - color[i];
+                if (!isBipartiteHelper(graph, j))
+                    return false;
+            }
+        }
+        return true;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        int len = graph.size();
+        color.resize(len, -1);
+        for (int i = 0; i < len; i++) {
+            if (color[i] == -1)
+                color[i] = 0;
+                if (!isBipartiteHelper(graph, i))
+                    return false;
+        }
+        return true;
+    }
+};
+//bfs version 1
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        unordered_set<int> red;
+        unordered_set<int> blue;
+        vector<int> seen(n, 0);
+        queue<int> q;
+        int cnt = 0; bool isRed = true;
+        for (int i = 0; i < n; i++) {
+            if (seen[i]) continue;
+            if (graph[i].size() == 0) cnt ++;
+            else {
+                red.insert(i);
+                q.push(i);
+                while (!q.empty()) {
+                    int sizes = q.size();
+                    auto& sCur = isRed ? red : blue;
+                    auto& sNxt = isRed ? blue : red;
+                    
+                    while (sizes--) {
+                        auto cur = q.front(); q.pop();
+                        for (auto i : graph[cur]) {
+                            if(seen[i]) continue;
+                            if(sCur.count(i)) return false;
+                            sNxt.insert(i);
+                            q.push(i);
+                        }
+                        seen[cur] = 1;
+                    }
+                    isRed = !isRed;
+                }
+            }
+        }
+        
+        
+        
+        return (cnt + red.size() + blue.size() == n) ? true : false;
+        
+    }
+};
+//bfs version 2
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> color(n, -1);
+        queue<int> q;
+        int cnt = 0; bool isRed = true;
+        for (int i = 0; i < n; i++) {
+            if (color[i] != -1) continue;
+            color[i] = 1;
+            q.push(i);
+            while (!q.empty()) {
+                int sizes = q.size();
+                while (sizes--) {
+                    auto cur = q.front(); q.pop();
+                    for (auto g : graph[cur]) {
+                        if(color[g] == color[cur]) return false;
+                        if(color[g] == -1) {
+                            color[g] = 1 - color[cur];
+                            q.push(g);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+        
+    }
+};
