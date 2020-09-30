@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> visited(n, -1); //{-1 : unvisited/nonCycle ; 0 : inCycle; 1 : visiting}
+        unordered_set<int> seen;
+        for (int i = 0; i < graph.size(); i++) {
+            if (seen.count(i)) continue;
+            dfs(graph, i, visited, seen);
+        }
+        vector<int> res;
+        for (int i =0; i < graph.size(); i++) {
+            if(visited[i] == -1) res.push_back(i);
+        }
+        return res;
+    }
+    bool dfs(vector<vector<int>>& graph, int cur, vector<int>& visited, unordered_set<int>& seen) {
+        if(visited[cur] == 1 || visited[cur] == 0){ 
+            visited[cur] = 0;
+            return true;
+        }
+        if(!graph[cur].size() || seen.count(cur)) {
+            visited[cur] = -1;
+            return false;
+        } 
+        visited[cur] = 1;
+        bool r = false;
+        for (auto i : graph[cur]) {
+            bool res = dfs(graph, i, visited, seen);
+            if (res) r = res;
+        }
+        visited[cur] = r ? 0 : -1;
+        seen.insert(cur);
+        return r;
+    }
+};
