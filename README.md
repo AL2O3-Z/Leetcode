@@ -5,7 +5,8 @@
 When all elements are positive and negative, we can use prefix sum + hashmap and this is more general.<br>
 Otherwise, we can use sliding window and verify if the condition is satisfied.<br>
 `Solution 1: prefix sum + hashmap`<br>
-[LC974](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/974.%20Subarray%20Sums%20Divisible%20by%20K)<br>
+[974. Subarray Sums Divisible by K](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/974.%20Subarray%20Sums%20Divisible%20by%20K)<br>
+[1546. Maximum Number of Non-Overlapping Subarrays With Sum Equals Target](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/1546.%20Maximum%20Number%20of%20Non-Overlapping%20Subarrays%20With%20Sum%20Equals%20Target)<br>
 `Solution 2: sliding window`<br>
 [1477. Find Two Non-overlapping Sub-arrays Each With Target Sum](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1477.%20Find%20Two%20Non-overlapping%20Sub-arrays%20Each%20With%20Target%20Sum)
 ## Frequent pb :
