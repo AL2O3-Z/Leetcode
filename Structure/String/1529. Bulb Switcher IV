@@ -1,0 +1,15 @@
+Using parameter last to track the last flip state, not really to flip the vector or string
+O(n^2) to O(n)
+class Solution {
+public:
+    int minFlips(string target) {
+        
+        int res = 0; int last = 0;
+        for (int i = 0; i < target.size(); i++) {
+            if(last == target[i] - '0') continue;
+            last = target[i] - '0';
+            res++;
+        }
+        return res;
+    }
+};
