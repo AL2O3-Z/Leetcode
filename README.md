@@ -95,6 +95,9 @@ This STL allows abtain the kth element satisfy the comparasion condition. And it
 In defaut, the bigger number is in front of the queue.<br>
 Prefix sum [1508. Range Sum of Sorted Subarray Sums](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1508.%20Range%20Sum%20of%20Sorted%20Subarray%20Sums)<br>
 Linked list [23. Merge k Sorted Lists](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/23.%20Merge%20k%20Sorted%20Lists)<br>
+4. Sort of vector<br>
+Value max by incrementing of its frequence == Value min by decreasing it. In addition, we can use operator ==, <, > to compare two sorting array.<br>
+[1366. Rank Teams by Votes](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1366.%20Rank%20Teams%20by%20Votes)<br>
 
 ### Sort-2. [Sorting methods](https://www.cnblogs.com/onepixel/p/7674659.html)
 1. Counting Sort => Time O(n + k) || Space O(n + k)<br>
@@ -144,3 +147,5 @@ int modulo = (sum % k + k )% k;
 [621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)(Priority_queue)<br>
 [1558. Minimum Numbers of Function Calls to Make Target Array](https://github.com/AL2O3-Z/Leetcode/blob/master/Bit%20Wise/1558.%20Minimum%20Numbers%20of%20Function%20Calls%20to%20Make%20Target%20Array)(Bit wise)<br>
 [1560. Most Visited Sector in a Circular Track](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1560.%20Most%20Visited%20Sector%20in%20a%20Circular%20Track)<br>
+[1366. Rank Teams by Votes](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1366.%20Rank%20Teams%20by%20Votes)<br>
+
