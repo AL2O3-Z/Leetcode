@@ -27,6 +27,9 @@ and we can use binary search.<Br>
 ## Tree
 Using a string or a long int to represent a tree (a long int improve the time)<br>
 [652. Find Duplicate Subtrees](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/652.%20Find%20Duplicate%20Subtrees)<br>
+### KMP
+Intresting pb, comparision of two string (a link-list and a path of a tree)
+[1367. Linked List in Binary Tree](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/1367.%20Linked%20List%20in%20Binary%20Tree)<br>
 
 ## DFS
 ### In matrix
@@ -147,5 +150,6 @@ int modulo = (sum % k + k )% k;
 [621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)(Priority_queue)<br>
 [1558. Minimum Numbers of Function Calls to Make Target Array](https://github.com/AL2O3-Z/Leetcode/blob/master/Bit%20Wise/1558.%20Minimum%20Numbers%20of%20Function%20Calls%20to%20Make%20Target%20Array)(Bit wise)<br>
 [1560. Most Visited Sector in a Circular Track](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1560.%20Most%20Visited%20Sector%20in%20a%20Circular%20Track)<br>
-[1366. Rank Teams by Votes](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1366.%20Rank%20Teams%20by%20Votes)<br>
+[1366. Rank Teams by Votes](https://github.com/AL2O3-Z/Leetcode/blob/master/Sort/1366.%20Rank%20Teams%20by%20Votes)(Comparision of Vector)<br>
+[1367. Linked List in Binary Tree](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/1367.%20Linked%20List%20in%20Binary%20Tree)(KMP)<br>
 
