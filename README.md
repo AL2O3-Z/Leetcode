@@ -30,6 +30,8 @@ Using a string or a long int to represent a tree (a long int improve the time)<b
 ### KMP
 Intresting pb, comparision of two string (a link-list and a path of a tree)
 [1367. Linked List in Binary Tree](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/1367.%20Linked%20List%20in%20Binary%20Tree)<br>
+### Fenwick tree
+[1409. Queries on a Permutation With Key](https://github.com/AL2O3-Z/Leetcode/blob/master/Tree/Fenwick%20tree/1409.%20Queries%20on%20a%20Permutation%20With%20Key)<br>
 
 ## DFS
 ### In matrix
