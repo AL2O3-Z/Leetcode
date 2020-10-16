@@ -1,0 +1,56 @@
+//O(n log n)
+class FenwickTree {
+private:
+    vector<int> arr; 
+
+public:
+    FenwickTree(int n) {
+        arr = vector<int>(n, 0);
+    }
+    
+    const void add(int index, const int num) {
+        index++;
+        
+        while (index < static_cast<int>(arr.size())) {
+            arr[index] += num;
+            index += (~index + 1) & index; 
+        }
+    }
+    
+    const int getPrefixSum(int index) {
+        int sum = 0;
+        index++;
+        
+        while (index > 0) {
+            sum += arr[index];
+            index -= (~index + 1) & index; 
+        }
+        return sum;
+    }
+};
+
+class Solution {
+public:
+    const vector<int> processQueries(const vector<int>& queries, const int m) {
+        const int n = static_cast<int>(queries.size());
+        vector<int> res(n, 0);
+        FenwickTree tree(m + n + 1);
+        unordered_map<int, int> valToIndices; 
+        
+        for (int i = 1; i <= m; i++) {
+            valToIndices[i] = n + i;
+            tree.add(n + i, 1);
+        }
+        
+        for (int i = 0; i < n; i++) {
+            int index = valToIndices[queries[i]];
+            int newIndex = n - i;
+            res[i] = tree.getPrefixSum(index - 1);
+            tree.add(index, -1);
+            tree.add(newIndex, 1);
+            valToIndices[queries[i]] = newIndex;
+        }
+        
+        return res; 
+    }
+};
