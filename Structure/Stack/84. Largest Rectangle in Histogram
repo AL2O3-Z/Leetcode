@@ -1,0 +1,21 @@
+front sentinel : -1 at the botton of stack
+end sentinel : height of 0 at the end of heights;
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        heights.push_back(0);
+        int n = heights.size();
+        stack<int> s;
+        s.push(-1);
+        int res = 0;
+        for (int i = 0; i < heights.size(); i++) {
+            while (s.top() != -1 && heights[s.top()] >= heights[i]) {
+                int h = heights[s.top()]; s.pop();
+                int left = s.top();
+                res = max(res, h * (i - left - 1));
+            }
+            s.push(i);
+        }
+        return res;
+    }
+};
