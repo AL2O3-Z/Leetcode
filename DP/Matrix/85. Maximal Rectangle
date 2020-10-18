@@ -1,3 +1,5 @@
+//O(n*n*m)
+横向压缩，在某一i，j位置上可以达到的最大宽度
 class Solution {
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
@@ -21,6 +23,45 @@ public:
                 }
                 res = max(res, max_squ);
             } 
+        }
+        return res;
+    }
+};
+O(n*m)纵向压缩
+用84题柱状图思想，计算出每一层的最大的矩形面积，然后一层一层往下走，就是全局的最大矩形面积
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int m = matrix.size();
+        if (m == 0) return 0;
+        int n = matrix[0].size();
+        if (n == 0) return 0;
+        int res = 0;
+        vector<vector<int>> dp(m + 1, vector<int>(n));
+        for (int i = 1; i <= m; i++) {
+            for (int j = 0; j < n; j++) {
+                if(matrix[i - 1][j] == '0') continue;
+                dp[i][j] = dp[i - 1][j] + 1;
+            }
+            res = max(res, helper(dp[i]));
+        }
+        return res;
+    }
+    int helper(vector<int>& height) {
+        int n = height.size();
+        vector<int> left(n, -1), right(n, n);
+        stack<int> s;
+        for (int i = 0; i < n; i++) {
+            while (!s.empty() && height[s.top()] >= height[i]) {
+                right[s.top()] = i;
+                s.pop();
+            }
+            if (!s.empty()) left[i] = s.top();
+            s.push(i);
+        }
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            res = max(res, height[i] * (right[i] - left[i] - 1));
         }
         return res;
     }
