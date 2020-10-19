@@ -153,7 +153,7 @@ A doublely Linked List<br>
 ```cpp
 int modulo = (sum % k + k )% k;
 ```
-*a circular array can be represented by modulo of size of array
+* a circular array can be represented by modulo of size of array
 ```
 nums[i] == nums[i % n]
 ```
