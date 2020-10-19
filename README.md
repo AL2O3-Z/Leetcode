@@ -153,6 +153,10 @@ A doublely Linked List<br>
 ```cpp
 int modulo = (sum % k + k )% k;
 ```
+*a circular array can be represented by modulo of size of array
+```
+nums[i] == nums[i % n]
+```
 *GOOD PB:
 [1488. Avoid Flood in The City](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1488.%20Avoid%20Flood%20in%20The%20City)<br>
 [1419. Minimum Number of Frogs Croaking](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1419.%20Minimum%20Number%20of%20Frogs%20Croaking)<br>
