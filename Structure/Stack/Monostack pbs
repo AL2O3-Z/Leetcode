@@ -13,3 +13,16 @@ monostack特点，后进先出，大小严格递减或者递增 =》顺序+ 大�
   出栈时，需要条件，如果一直不符合出栈条件呢？即， 遍历完成，栈中仍然有元素
  ==》》在两端的哨兵就避免了上述两种情况的讨论，让哨兵作为栈底元素，最小的，在遍历结束后，加入另一个哨兵使全部元素出栈
  ==》》初始化数组操作，使所有原色的左侧第一个最小值为-1，右侧第一个最小值是n，
+ 
+More pb on Leetcode
+Here are some problems that impressed me.
+Good luck and have fun.
+
+1130. Minimum Cost Tree From Leaf Values
+907. Sum of Subarray Minimums
+901. Online Stock Span
+856. Score of Parentheses
+503. Next Greater Element II
+496. Next Greater Element I
+84. Largest Rectangle in Histogram
+42. Trapping Rain Water
