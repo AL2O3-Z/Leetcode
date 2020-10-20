@@ -13,16 +13,23 @@ monostack特点，后进先出，大小严格递减或者递增 =》顺序+ 大�
   出栈时，需要条件，如果一直不符合出栈条件呢？即， 遍历完成，栈中仍然有元素
  ==》》在两端的哨兵就避免了上述两种情况的讨论，让哨兵作为栈底元素，最小的，在遍历结束后，加入另一个哨兵使全部元素出栈
  ==》》初始化数组操作，使所有原色的左侧第一个最小值为-1，右侧第一个最小值是n，
+3，入栈顺序问题
+正序入栈，倒序出栈 ==》》出栈时，要入栈的元素即为下一个最大，但是需要知道出栈元素的index才能记录在该位置上的下一个最大值，所以入栈的是index而不是元素值
+倒序入栈，正序出栈 ==》》入栈时，栈顶元素即为下一个最大，因为在for循环内，所以可用for循环的idx作为当前元素的index，记录下一个最大值，所以入栈元素可以是元素值
+4, prefix max and suffix max
+如果O(n) DP的方法计算两个前序最大值和后序最大值，需要两个loop
+但是如果是用monostack，只需要一个循环就可以了，在出栈入栈时分别记录前序和后序，且每个点只出入栈一次，也是O(n)
  
 More pb on Leetcode
 Here are some problems that impressed me.
 Good luck and have fun.
 
 1130. Minimum Cost Tree From Leaf Values
+1019. Next Greater Node in Linked List (right) //same to 496 -> linked-list
 907. Sum of Subarray Minimums
 901. Online Stock Span
 856. Score of Parentheses
-503. Next Greater Element II
-496. Next Greater Element I
-84. Largest Rectangle in Histogram
-42. Trapping Rain Water
+503. Next Greater Element II (right) // same to 496 -> circular array
+496. Next Greater Element I (right)
+84. Largest Rectangle in Histogram (left + right) // same to 42 -> area of height
+42. Trapping Rain Water (left + right)
