@@ -120,6 +120,8 @@ Monostack : ORDER + valueMIN/MAX PB<br>
 Monostack + sentinel<br>
 [84. Largest Rectangle in Histogram](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/84.%20Largest%20Rectangle%20in%20Histogram)(1D)<br>
 [85. Maximal Rectangle](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/Matrix/85.%20Maximal%20Rectangle)(2D)<br>
+Stack : parentheses
+[856. Score of Parentheses](https://github.com/AL2O3-Z/Leetcode/blob/master/Recursion/856.%20Score%20of%20Parentheses)<br>
 ## Array
 1. Permutation of two parts of sub-arrray<br>
 [1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
