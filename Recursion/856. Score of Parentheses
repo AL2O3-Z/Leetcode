@@ -1,3 +1,26 @@
+//栈 ：遇到括号问题，首相想到的是栈，但是我没想出来，根据Lee215的思路，是用cur表示当前层的分数，
+每当遇到（，则新开一层，并把当前层的分数记录在栈上，新一层的分数reset成0；遇到）则关闭一层，并根据栈上已保存分数，更新该层的分数，并把对应的（弃掉
+int scoreOfParentheses(string S) {
+        stack<int> stack;
+        int cur = 0;
+        for (char i : S)
+            if (i == '(') {
+                stack.push(cur);
+                cur = 0;
+            }
+            else {
+                cur += stack.top() + max(cur, 1);
+                stack.pop();
+            }
+        return cur;
+    }
+
+
+
+//有嵌套的形式，所以可以推断可以用递归的方式，分割字符串，
+遇到一个完全括号（也就是说平衡的一组），那么可以认为这一组是一个加号分量，剩下的是另一个加号分量
+如果在到达最后一个字符前没有找到完全括号，那么就是说这是一层二倍量
+分割的思想有点像139 word break，在找到的合法量中继续往下递归。
 class Solution {
 public:
     int scoreOfParentheses(string S) {
@@ -16,4 +39,20 @@ public:
         }
         return 2 * helper(S, l + 1, r - 1);
     }
+};
+//Counting 花花酱的一种方法 是这道题的一个特例
+根据乘法原理（a + b） * 2 = a * 2 + b * 2；
+每当我们遇到一个‘）’，说明该量完成，那他之前有d个‘（’ ，那么在当前这个子分量之外有d - 1层，多一层 *2，那么对该子分量来说应该有2^(d-1)
+class Solution {
+public:
+  int scoreOfParentheses(string S) {
+    int ans = 0;
+    int d = -1;
+    for (int i = 0; i < S.length(); ++i) {
+      d += S[i] == '(' ? 1 : -1;
+      if (S[i] == '(' && S[i + 1] == ')')
+        ans += 1 << d;
+    }
+    return ans;
+  }
 };
