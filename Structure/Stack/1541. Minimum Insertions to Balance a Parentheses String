@@ -1,0 +1,48 @@
+//括号问题，一般都是用栈做，但是O（n），想要继续降维，就必须使用计数法，但是有什么不同呢？ 和LC856比较像 ==>> 左括号入栈，右括号出栈并更新结果
+1， 栈，一般是以左括号作为标准，符合出栈标准后，左括号方可出栈
+2， 计数法，比较灵活，在这道题中是按着右括号来算，因为右括号算是一个组合的关闭，rightNeed -= 2；
+==>>如果连续两个右括号，则， 如果正确关闭，
+==>>如果只有一个右括号，就需要额外加入一个cntSimple的变量来记录这个只加了一个括号的行为，同时满足关闭组合的条件
+同时，如果在关闭一个组合后发现rightNeed是负数，那么就意味着这个组合缺一个左括号，
+class Solution {
+public:
+    int minInsertions(string s) {
+        int cnt = 0;
+        stack<char> st;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') st.push(s[i]);
+            else {
+                if (s[i] == s[i + 1]) i++;
+                else cnt ++;
+                if (!st.empty()) st.pop();
+                else cnt++;
+            }
+        }
+        return cnt + st.size() * 2;
+    }
+};
+
+class Solution {
+public:
+    int minInsertions(string s) {
+        int left = 0, right = 0;
+        int cntSimple = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') right += 2;
+            else {
+                if (s[i] == s[i + 1]) {
+                    i++;
+                    right -= 2;
+                } else {
+                    cntSimple ++;
+                    right -= 2;
+                }
+                if (right < 0) {
+                    left ++;
+                    right += 2;
+                }
+            }
+        }
+        return left + cntSimple + right;
+    }
+};
