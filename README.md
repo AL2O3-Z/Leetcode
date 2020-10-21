@@ -117,12 +117,19 @@ this type of sorting is for the data in the some range. It's not comparable sort
 ## Stack
 Stack : last in, first out ==>> ORDER PB <br>
 Monostack : ORDER + valueMIN/MAX PB<br>
-Monostack + sentinel<br>
+### Monostack + sentinel<br>
+1, Vector<br>
 [84. Largest Rectangle in Histogram](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/84.%20Largest%20Rectangle%20in%20Histogram)(1D)<br>
 [85. Maximal Rectangle](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/Matrix/85.%20Maximal%20Rectangle)(2D)<br>
-Stack : parentheses<br>
-[856. Score of Parentheses](https://github.com/AL2O3-Z/Leetcode/blob/master/Recursion/856.%20Score%20of%20Parentheses)<br>
+2，String<br>
 [316. Remove Duplicate Letters](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/316.%20Remove%20Duplicate%20Letters)<br>
+### Simple Stack : <br>
+==>括号问题，一般都是用栈做，但是O（n），想要继续降维，就必须使用计数法，但是有什么不同呢？ <br>
+I， 栈，一般是以左括号作为标准，符合出栈标准后，左括号方可出栈. 左括号入栈，右括号出栈并更新结果 <br>
+II， 计数法，比较灵活，在这道题中是按着右括号来算，因为右括号算是一个组合的关闭<br>
+[856. Score of Parentheses](https://github.com/AL2O3-Z/Leetcode/blob/master/Recursion/856.%20Score%20of%20Parentheses)<br>
+[1541. Minimum Insertions to Balance a Parentheses String](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/1541.%20Minimum%20Insertions%20to%20Balance%20a%20Parentheses%20String)<br>
+
 ## Array
 1. Permutation of two parts of sub-arrray<br>
 [1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1442.%20Count%20Triplets%20That%20Can%20Form%20Two%20Arrays%20of%20Equal%20XOR)<br>
