@@ -115,18 +115,16 @@ this type of sorting is for the data in the some range. It's not comparable sort
 [720. Longest Word in Dictionary](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/720.%20Longest%20Word%20in%20Dictionary)<br>
 [211. Add and Search Word - Data structure design](https://leetcode.com/problems/add-and-search-word-data-structure-design/)<br>
 ## Stack
-Stack : last in, first out ==>> ORDER PB <br>
-Monostack : ORDER + valueMIN/MAX PB<br>
+    Stack : last in, first out ==>> ORDER PB
+    Monostack : ORDER + valueMIN/MAX PB
 ### Monostack + sentinel<br>
-1, Vector<br>
+
+* Vector
 [84. Largest Rectangle in Histogram](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/84.%20Largest%20Rectangle%20in%20Histogram)(1D)<br>
 [85. Maximal Rectangle](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/Matrix/85.%20Maximal%20Rectangle)(2D)<br>
-2，String<br>
+* String 
 [316. Remove Duplicate Letters](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/316.%20Remove%20Duplicate%20Letters)<br>
 ### Simple Stack : <br>
-==>括号问题，一般都是用栈做，但是O（n），想要继续降维，就必须使用计数法，但是有什么不同呢？ <br>
-I， 栈，一般是以左括号作为标准，符合出栈标准后，左括号方可出栈. 左括号入栈，右括号出栈并更新结果 <br>
-II， 计数法，比较灵活，在这道题中是按着右括号来算，因为右括号算是一个组合的关闭<br>
 [856. Score of Parentheses](https://github.com/AL2O3-Z/Leetcode/blob/master/Recursion/856.%20Score%20of%20Parentheses)<br>
 [1541. Minimum Insertions to Balance a Parentheses String](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/1541.%20Minimum%20Insertions%20to%20Balance%20a%20Parentheses%20String)<br>
 
