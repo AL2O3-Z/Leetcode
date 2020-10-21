@@ -1,3 +1,9 @@
+//这题有两个关键点来判断每个字符是否可用  ： 不重复，且按字典序升序
+根据已经总结的经验来看，判断大小且有序是可以用单调栈，一旦确定是单调栈，首先要确定的是升序还是降序，也就是出栈条件。
+对于第二个要求，判断如果栈顶元素，是否后面还有可用的，并且，是否比当前元素大。如果符合这两个条件，则可弃掉栈顶元素 ====>>>出栈条件
+那对于第一个要求，我们可以用静态数组visited表示，当前元素是否已经在栈内，如果在站内，则不需要考虑其他后续，直接跳过即可 ====>>>>不重复
+=》在对判断是否后面还有可用的这一个条件时，有个技巧，就是先遍历字符串，保存每个字符最后一次出现的位置，如果栈顶元素最后出现的位置大于当前index，则表明后面还有可用的
+=》另一个corner case，如果有连续的几个相同字符abbbbc，一开始是选择最后一个位置4，但是好像不用这样，因为有visited表明是否在栈内的状态，所以第一个b，即visited[1] = 1已经显示了在栈内的状态
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
@@ -11,10 +17,10 @@ public:
         stack<int> st;
         string res = "";
         for (int i = 0; i < s.size(); i++) {
-            while (i < s.size() && s[i] == s[i + 1]) i++;
+            //while (i < s.size() && s[i] == s[i + 1]) i++;
             char cur = s[i];
-            while (!st.empty() && !visited[cur - 'a'] && s[st.top()] > cur && arr[s[st.top()] - 'a'] > i) {
-                int idx = st.top();
+            if (visited[cur - 'a']) continue;
+            while (!st.empty() && s[st.top()] > cur && arr[s[st.top()] - 'a'] > i) {
                 visited[s[st.top()] - 'a'] = 0;
                 st.pop();
             }
