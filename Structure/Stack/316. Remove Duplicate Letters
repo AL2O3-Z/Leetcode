@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        int arr[26];
+        int visited[26];
+        memset(arr, 0, sizeof(arr));
+        memset(visited, 0, sizeof(visited));
+        for (int i = 0; i < s.size(); i++) {
+            arr[s[i] - 'a'] = i;
+        } 
+        stack<int> st;
+        string res = "";
+        for (int i = 0; i < s.size(); i++) {
+            while (i < s.size() && s[i] == s[i + 1]) i++;
+            char cur = s[i];
+            while (!st.empty() && !visited[cur - 'a'] && s[st.top()] > cur && arr[s[st.top()] - 'a'] > i) {
+                int idx = st.top();
+                visited[s[st.top()] - 'a'] = 0;
+                st.pop();
+            }
+            
+            if (!visited[cur - 'a']) st.push(i);
+            visited[cur - 'a'] = 1;
+        }
+        while (!st.empty()) {
+            res += s[st.top()];
+            st.pop();
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
