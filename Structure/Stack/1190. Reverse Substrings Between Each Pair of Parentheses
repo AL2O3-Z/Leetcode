@@ -1,0 +1,64 @@
+这道题是对括号内的元素进行操作，第一反应就是递归和栈，和LC856类似，只是对string边界问题需要注意
+//Solution 1 : STACK
+和之前的题目类似，遇到开括号，记录其位置。遇到闭括号则表明当前括号内的完成，要找与之对应的开括号的位置，即为栈顶元素。==>>很多题的中心思想
+在这道题中，当前括号完成，要对字符串进行翻转，字符串可以本地翻转（本地翻转时是iterator，而且是左闭右开）
+在所有翻转完成之后，对结果中的字母字符进行取值
+class Solution {
+public:
+    string reverseParentheses(string s) {
+        stack<int> st;
+        string res = "";
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') {
+                st.push(i); 
+            } else  if (s[i] == ')'){
+                int last = st.top(); st.pop();
+                reverse(s.begin() + last + 1, s.begin() + i);
+            }
+        }
+        for (int i = 0; i < s.size(); i++) {
+            if (isalpha(s[i])) res += s[i];
+        }
+        return res;
+    }
+};
+//Solution 2 : Recursion
+另外，在递归解中，因为不断需要对当前字符串找第一个完全平衡括号，比如（a（e（m）e）a）（t（i）t），并把括号内的内容进行翻转，然后递归求解括号内的字符串， 所以是O（n^2）复杂度，
+对于剩余的元素，和当前完全平衡括号属于平级，所以可以继续递归求解。
+其实递归本来就是一种栈，每次往下递归一层，就是把当前结果压栈，然后用返回值和栈顶元素操作再退栈 
+==> 这个往下递归压栈的操作类似于树，对于同层节点，都是压栈，一旦同层节点全部操作完，退栈
+class Solution {
+public:
+    string reverseParentheses(string s) {
+        return helper(s, 0, s.size() - 1);
+    }
+    string helper(string s, int left, int right) {
+        int cnt = 0; bool isFirst = false; int open = 0;
+        int first = left, end = right;
+        for (int i = left; i <= right; i++){
+            if (isalpha(s[i])) continue;
+            cnt++;
+            if (s[i] == '(') {
+                if (!isFirst) {
+                    first = i;
+                    isFirst = true;
+                } 
+                open++;
+            } else {
+                open--;
+            }
+            if (open == 0) {
+                end = i;
+                break;
+            }
+        } 
+        string res= "";
+        if (cnt == 0) return s.substr(left, right - left + 1);
+        else {
+            string cur  = helper(s, first + 1, end - 1);
+            reverse(cur.begin(), cur.end());
+            res = s.substr(left, first - left) + cur + helper(s, end + 1, right);
+        } 
+       return res;
+    }
+};
