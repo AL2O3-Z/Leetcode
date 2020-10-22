@@ -63,3 +63,28 @@ public:
        return res;
     }
 };
+//Solution 3， lee215 虫洞
+找到所有配对的括号位置，再根据换方向来达到翻转的目的，这个方法我是想不到的，欣赏一下聪明的大脑
+string reverseParentheses(string s) {
+        int n = s.length();
+        vector<int> opened, pair(n);
+        for (int i = 0; i < n; ++i) {
+            if (s[i] == '(')
+                opened.push_back(i);
+            if (s[i] == ')') {
+                int j = opened.back();
+                opened.pop_back();
+                pair[i] = j;
+                pair[j] = i;
+            }
+        }
+        string res;
+        for (int i = 0, d = 1; i < n; i += d) {
+            if (s[i] == '(' || s[i] == ')')
+                i = pair[i], d = -d;
+            else
+                res += s[i];
+        }
+        return res;
+    }
+
