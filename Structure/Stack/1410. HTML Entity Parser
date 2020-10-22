@@ -1,0 +1,47 @@
+//这道题的配对是&和；但并非所有的配对都可以转换成特殊字符，和括号问题类似，
+遇到&，把index压栈（因为字符串可以通过index取子串，不管是对比是否可转换还是取已经压栈的区间都可以）
+遇到；看栈顶元素，因为如果不是栈顶元素配对，之前的更不可能了，
+      所以我们取栈底botton和栈顶元素up，
+          在botton和up之间是肯定不可能做转换的，所以在原字符串中取出加到结果中 res += pre；
+          在up和当前i（即为；）的字符串是有可能的，在dic中找，如果存在，则做转换，不存在，也把这个区间的字符串加入结果中 res += last；
+另外，我们还有不在配对区间的元素，要和在区间内的元素区别开，就用boolean，在遇到；号时已经完成了对可能配对区间的操作，isChange就重设为false，
+有且只有在isChange == false的时候，才能直接加；
+        
+class Solution {
+public:
+    string entityParser(string text) {
+        unordered_map<string, char> dic;
+        dic["&quot;"] = '\"';
+        dic["&apos;"] = '\'';
+        dic["&amp;"] = '\&';
+        dic["&gt;"] = '\>';
+        dic["&lt;"] = '\<';
+        dic["&frasl;"] = '\/';
+        bool isChange = false;;
+        string res = "";
+        stack<int> s;
+        for (int i = 0; i < text.size(); i++) {
+            if (text[i] == '\&') {
+                s.push(i);
+                isChange = true;
+            } else if (text[i] == '\;') {
+                if (!s.empty()) {
+                    int last = s.top(), first = s.top();
+                    while (!s.empty()) {
+                        first = s.top(); s.pop();
+                    }
+                    string pre = text.substr(first, last - first);
+                    string  poss = text.substr(last, i - last + 1);
+                    string cur = "";
+                    if (dic.count(poss)) cur = dic[poss];
+                    else cur = poss;
+                    res += pre + cur;
+                    isChange = false;
+                } else {
+                    res += text[i];
+                }
+            } else if (!isChange) res += text[i];
+        }
+        return res;
+    }
+};
