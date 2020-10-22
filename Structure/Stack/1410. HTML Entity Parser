@@ -42,6 +42,15 @@ public:
                 }
             } else if (!isChange) res += text[i];
         }
-        return res;
+        string e = "";
+        if (!s.empty()) {
+            int end = s.top();
+            while (!s.empty()) {
+                end = s.top();
+                s.pop();
+            }
+            e = text.substr(end);
+        }
+        return res += e;
     }
 };
