@@ -1,3 +1,4 @@
+//这个题很直观，就是字符的大小比较，但是需要注意的是，正序走的的时候，很有可能减完的数字和之前的数字小于等于，这依旧不满足要求，所以用last来表示res最后一个元素更改后的结果
 class Solution {
 public:
     int monotoneIncreasingDigits(int N) {
@@ -22,5 +23,26 @@ public:
         }
         int ans = stoi(res);
         return ans;
+    }
+};
+所以这种情况下用倒序比较好，找到当前元素小于前一个元素的index，最终的结果，就是要更改为9的index起始。
+
+//More Concise
+class Solution {
+public:
+    int monotoneIncreasingDigits(int N) {
+        string n_str = to_string(N);
+        
+        int marker = n_str.size();
+        for(int i = n_str.size()-1; i > 0; i --) {
+            if(n_str[i] < n_str[i-1]) {
+                marker = i;
+                n_str[i-1] = n_str[i-1]-1;
+            }
+        }
+        
+        for(int i = marker; i < n_str.size(); i ++) n_str[i] = '9';
+        
+        return stoi(n_str);
     }
 };
