@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int monotoneIncreasingDigits(int N) {
+        string s = to_string(N);
+        string res = "";
+        int n = s.size();
+        bool found = false;
+        int i = 0;
+        for (; i < n; i++) {
+            char last = s[i];
+            while (res.size() && res.back() > last) {
+                last = res.back() - 1;
+                res.pop_back();
+                found = true;
+            }
+            if (found) break;
+            res += s[i];
+        }
+        res += s[res.size()] - 1;
+        for (int j = res.size(); j < s.size(); j++) {
+            res += '9';
+        }
+        int ans = stoi(res);
+        return ans;
+    }
+};
