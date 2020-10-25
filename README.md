@@ -122,7 +122,7 @@ this type of sorting is for the data in the some range. It's not comparable sort
 * Vector
 [84. Largest Rectangle in Histogram](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/84.%20Largest%20Rectangle%20in%20Histogram)(1D) --&&-- [85. Maximal Rectangle](https://github.com/AL2O3-Z/Leetcode/blob/master/DP/Matrix/85.%20Maximal%20Rectangle) --||-- [42. Trapping Rain Water](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/42.%20Trapping%20Rain%20Water)(2D)<br>
 * String 
-[316. Remove Duplicate Letters](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/316.%20Remove%20Duplicate%20Letters)<br>
+[316. Remove Duplicate Letters](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/316.%20Remove%20Duplicate%20Letters) --||-- [1209. Remove All Adjacent Duplicates in String II](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/1209.%20Remove%20All%20Adjacent%20Duplicates%20in%20String%20II)<br>
 #### Simple Stack : <br>
 [856. Score of Parentheses](https://github.com/AL2O3-Z/Leetcode/blob/master/Recursion/856.%20Score%20of%20Parentheses) --&&-- [1190. Reverse Substrings Between Each Pair of Parentheses](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/1190.%20Reverse%20Substrings%20Between%20Each%20Pair%20of%20Parentheses)<br>
 [1541. Minimum Insertions to Balance a Parentheses String](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Stack/1541.%20Minimum%20Insertions%20to%20Balance%20a%20Parentheses%20String)<br>
