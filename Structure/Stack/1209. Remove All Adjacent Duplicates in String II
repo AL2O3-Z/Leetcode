@@ -1,0 +1,40 @@
+//O(n)
+用栈来记录之前的字符的个数，如果达到上限，则抛出，也就是说栈内留下的都是合法的字符及其个数
+对于这种字符串的栈的题目，可以考虑用vector来模拟栈，因为vector也有push和pop。
+此外还提供一个好处就是在最终的结果，可以正序遍历数组来得到最终的字符串而不必像栈一样先倒出来，在翻转
+class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        int n = s.size();
+        stack<pair<char, int>> st;
+        for (int i = 0; i < n; i++) {
+            if (!st.empty() && st.top().first == s[i] && st.top().second == k - 1) {
+                st.pop();
+                continue;
+            }
+            if (!st.empty() && st.top().first == s[i]) st.top().second++;
+            else st.push({s[i], 1});
+        }
+        string res = "";
+        while (!st.empty()) {
+            res.append(st.top().second, st.top().first);
+            st.pop();
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
+//O(n) Counting
+class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        int n = s.size(), left = 0;
+        vector<int> cnt(n, 0);
+        for (int i = 0; i < n; i++, left++) {
+            s[left] = s[i];
+            cnt[left] = left > 0 && s[left - 1] == s[i] ? cnt[left - 1] + 1 : 1;
+            if (cnt[left] == k) left -= k;
+        }
+        return s.substr(0, left);
+    }
+};
