@@ -1,0 +1,10 @@
+upper_bound : >
+prev(upper_bound) : <=
+lower_bound : >=
+prev(lower_bound) : <
+-> 1 2 5 5 5 6 7 9
+-> 0 1 2 3 4 5 6 7
+upper_bound : > index5
+prev(upper_bound) : <= index4
+lower_bound : >= index2
+prev(lower_bound) : < index1
