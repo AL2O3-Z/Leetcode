@@ -1,0 +1,31 @@
+//O(n)
+这道题和LC84很像，都是求两边比当前元素小的位置在哪
+这道题也是，通过求两边第一个比当前元素小的位置，确定以当前元素值为最小值的子数组的范围，然后在这个范围内的任何包含当前元素的子数组的最小值都是它，
+所以问题转化成在这个范围内，有多少个包含它的子数组。即（左边元素个数 + 1） * （右边元素个数 + 1）
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& A) {
+        int n = A.size();
+        vector<int> left(n, -1), right(n, n);
+        stack<int> s;
+        s.push(-1);
+        for (int i = 0; i < n; i++) {
+            while (s.top() != -1 && A[s.top()] > A[i]) {
+                right[s.top()] = i;
+                s.pop();
+            }
+            left[i] = s.top();
+            s.push(i);
+        }
+        int res = 0;
+        constexpr int modulo = 1e9 + 7;
+        for (int i = 0; i < n; i++) {
+            int leftcnt = i - left[i];
+            int rightcnt = right[i] - i;
+            int cnt = (leftcnt * rightcnt) % modulo;
+            res += (A[i] * cnt) % modulo;
+            res %= modulo;
+        }
+        return res;
+    }
+};
