@@ -1,0 +1,49 @@
+//O(n)
+有顺序问题，大小问题，很显然就是可以用单调栈做，s1 < s3 < s2
+只是这里我先记录一遍当前位置左边有没有比它小的元素并记录，s1 < s2
+然后再用递减栈求大，每个在栈内要pop出去的元素都遇到了左边第一个比它大的元素，这就满足了s3 < s2,
+同时比较在left数组中的内容(if s1 < s3)，如果同时成立，则返回true
+class Solution {
+public:
+    bool find132pattern(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> left(n, INT_MAX);
+        int minVal = INT_MAX;
+        for (int i = 0; i < n; i++){
+            if (minVal < nums[i]) left[i] = minVal;
+            minVal = min(minVal, nums[i]);
+        }
+        stack<int> s;
+        for (int i = n - 1; i >= 0; i--) {
+            while (!s.empty() && s.top() < nums[i]) {
+                if (left[i] < s.top()) return true;
+                s.pop();
+            }
+            s.push(nums[i]);
+        }
+        return false;
+    }
+};
+
+//O(nlogn)
+Using lower_bound to find if il exist a smaller elements in the passed array. Inspired by the pb of 975 Odd Even jump
+class Solution {
+public:
+    bool find132pattern(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> left(n, INT_MAX);
+        int minVal = INT_MAX;
+        for (int i = 0; i < n; i++){
+            if (minVal < nums[i]) left[i] = minVal;
+            minVal = min(minVal, nums[i]);
+        }
+        set<int> s;
+        s.insert(nums[n - 1]);
+        for (int i = n - 2; i >= 0; i--) {
+            auto e = s.lower_bound(nums[i]);
+            if (e != s.begin() && *prev(e) > left[i]) return true;
+            s.insert(nums[i]);
+        }
+        return false;
+    }
+};
