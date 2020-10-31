@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isValidSerialization(string preorder) {
+        stack<int> st;
+        for (int i = 0; i < preorder.size(); i++) {
+            if (preorder[i] == ',') continue;
+            if (isdigit(preorder[i])) {
+                string cur = "";
+                while (isdigit(preorder[i])){
+                    cur += preorder[i++];
+                }
+                st.push(stoi(cur));
+                continue;
+            } 
+            while (!st.empty() && st.top() == INT_MAX) {
+                st.pop();
+                st.pop();
+            }
+            
+            if (!st.empty()) st.push(INT_MAX);
+            if (st.empty() && i < preorder.size()  - 1) return false;
+            
+        }
+        return st.empty();
+    }
+};
