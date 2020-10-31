@@ -33,3 +33,4 @@ Good luck and have fun.
 496. Next Greater Element I (right)
 84. Largest Rectangle in Histogram (left + right) // same to 42 -> area of height
 42. Trapping Rain Water (left + right)
+******涉及到整数在字符串中，要抠出来用的时候，要用while直到最后一个不是数字的字节**********
