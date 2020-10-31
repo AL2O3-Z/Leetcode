@@ -1,0 +1,74 @@
+//Stack
+class Solution {
+public:
+    string decodeString(string s) {
+        string res = "";
+        stack<string> str;
+        string cur = "";
+        string time = "";
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '[') {
+                str.push(time);
+                time = "";
+            }
+            if (s[i] == ']') {
+                if (cur.size()) str.push(cur);
+                cur = "";
+                string level = "";
+                while (!isdigit(str.top().back())) {
+                    level = str.top() + level;
+                    str.pop();
+                }
+                int repeat = stoi(str.top()); str.pop();
+                string nxt = "";
+                while (repeat--) nxt += level;
+                if (str.empty()) res += nxt;
+                else str.push(nxt);
+            }
+            if (isalpha(s[i])) {
+                cur += s[i];
+            }
+            if (isdigit(s[i])) {
+                time += s[i];
+                if (cur.size()) {
+                    if (str.empty()) res += cur;
+                    else str.push(cur);
+                    cur = "";
+                } 
+            }
+        }
+        return res + cur;
+    }
+};
+
+//Recursion
+class Solution {
+public:
+    string decodeString(const string& s, int& i) {
+        string res;
+        
+        while (i < s.length() && s[i] != ']') {
+            if (!isdigit(s[i]))
+                res += s[i++];
+            else {
+                int n = 0;
+                while (i < s.length() && isdigit(s[i]))
+                    n = n * 10 + s[i++] - '0';
+                    
+                i++; // '['
+                string t = decodeString(s, i);
+                i++; // ']'
+                
+                while (n-- > 0)
+                    res += t;
+            }
+        }
+        
+        return res;
+    }
+
+    string decodeString(string s) {
+        int i = 0;
+        return decodeString(s, i);
+    }
+};
