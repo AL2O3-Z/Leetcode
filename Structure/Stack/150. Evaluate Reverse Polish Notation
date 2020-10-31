@@ -1,0 +1,58 @@
+//unordered_map to store the function of a operator. impressive
+unordered_map<string, function<int (int, int) > > map = {
+            { "+" , [] (int a, int b) { return a + b; } },
+            { "-" , [] (int a, int b) { return a - b; } },
+            { "*" , [] (int a, int b) { return a * b; } },
+            { "/" , [] (int a, int b) { return a / b; } }
+        };
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        unordered_map<string, function<int (int, int) > > map = {
+            { "+" , [] (int a, int b) { return a + b; } },
+            { "-" , [] (int a, int b) { return a - b; } },
+            { "*" , [] (int a, int b) { return a * b; } },
+            { "/" , [] (int a, int b) { return a / b; } }
+        };
+        std::stack<int> stack;
+        for (string& s : tokens) {
+            if (!map.count(s)) {
+                stack.push(stoi(s));
+            } else {
+                int op1 = stack.top();
+                stack.pop();
+                int op2 = stack.top();
+                stack.pop();
+                stack.push(map[s](op2, op1));
+            }
+        }
+        return stack.top();
+    }
+};
+//
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> st;
+        set<string> s;
+        s.insert("*");
+        s.insert("/");
+        s.insert("+");
+        s.insert("-");
+        for (int i = 0; i < tokens.size(); i++) {
+            if (!s.count(tokens[i])) {
+                st.push(stoi(tokens[i]));
+                continue;
+            } 
+            int res  = 0;
+            int first = st.top(); st.pop();
+            int second = st.top(); st.pop();
+            if (tokens[i] == "+") res = first + second;
+            else if (tokens[i] == "-") res = second - first;
+            else if (tokens[i] == "*") res = second * first;
+            else res = second / first;
+            st.push(res);
+        }
+        return st.empty() ? 0 : st.top();
+    }
+};
