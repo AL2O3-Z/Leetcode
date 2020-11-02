@@ -1,0 +1,40 @@
+// Monotonic queue O(n)
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int limit) {
+        int res = 0;
+        deque<int> max_q;
+        deque<int> min_q;
+        int l = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            while (!max_q.empty() && max_q.back() < nums[i]) max_q.pop_back();
+            while (!min_q.empty() && min_q.back() > nums[i]) min_q.pop_back();
+            max_q.push_back(nums[i]);
+            min_q.push_back(nums[i]);
+            while (!max_q.empty() && !min_q.empty() && max_q.front() - min_q.front() > limit) {
+                if (nums[l] == max_q.front()) max_q.pop_front();
+                if (nums[l] == min_q.front()) min_q.pop_front();
+                l++;
+            }
+            res = max(res, i - l + 1);
+        }
+        return res;
+    }
+};
+//BST : binary search tree => multiset in c++
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int limit) {
+        multiset<int> s;
+        int res = 0;
+        int l = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            s.insert(nums[i]);
+            while (*s.rbegin() - *s.begin() > limit) {
+                s.erase(s.equal_range(nums[l++]).first);
+            }
+            res = max(res, i - l + 1);
+        }
+        return res;
+    }
+};
