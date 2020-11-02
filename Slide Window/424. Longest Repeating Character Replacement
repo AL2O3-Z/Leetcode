@@ -1,0 +1,24 @@
+//这题一直想不到什么时候缩小窗口，就是k和窗口的关系一直想不到。
+如果一个窗口大小 - 窗口内最大重复的元素 = 要替换的元素，且要替换的元素的个数<=k才符合条件
+所以要维护一个窗口内最大重复量，，窗口内的元素是变化的，但是每移动一次窗口，窗口内的最大重复量要不断更新。
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        memset(arr, 0, sizeof(arr));
+        int maxRepeat = 0;
+        int left = 0, res = 0;
+        for (int i = 0; i < s.size(); i++) {
+            char c = s[i];
+            //enter in windows and update the variable
+            arr[c - 'A']++;
+            maxRepeat = max(maxRepeat, arr[c - 'A']);
+            //the window is no more valide;
+            while (i - left + 1 - maxRepeat > k) {
+                arr[s[left] - 'A']--;
+                left++;
+            }
+            res = max(res, i - left + 1);
+        }
+        return res;
+    }
+};
