@@ -12,6 +12,10 @@ a，当要求子串或者子数组一直不符合条件，就一直往窗口内�
 b，直到某一刻符合了条件，更新结果，去掉左端元素看是否依然符合，得到就是当前窗口内符合条件的最短子串或者子数组，直到去掉左边元素后再次不符合，右边继续前进
 
 
+//更新结果
+当在min slide windows中，移动left收缩窗口时，窗口内的字符都是可行解，所以应该在收缩窗口的阶段进行结果的更新
+当在max slide windows中，移动left收缩窗口时，在while之后才是可行解，所以应该在扩大窗口时进行结果的更新，
+
 More Similar Sliding Window Problems
 Here are some similar sliding window problems.
 Also find more explanations.
