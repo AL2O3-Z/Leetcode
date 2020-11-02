@@ -1,3 +1,4 @@
+//min slide windows 就是在while内部一直符合条件，直到不符合条件后，开始向右边跑
 class Solution {
 public:
     string minWindow(string s, string t) {
