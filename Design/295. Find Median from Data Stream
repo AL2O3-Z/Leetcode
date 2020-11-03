@@ -1,0 +1,55 @@
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int num) {
+        s.insert(num);
+    }
+    
+    double findMedian() {
+        int k = s.size();
+        auto f = next(s.begin(), (k - 1) / 2);
+        return (*f + *next(f, (k - 1) % 2)) /2.0;
+    }
+private :
+    multiset<int> s;
+};
+
+
+//two priority_queue
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int num) {
+        if (!left.empty() && num > left.top()){
+            right.push(num);
+        } else left.push(num);
+        //Balanced heap
+        if (left.size() - right.size() == 2) {
+            right.push(left.top());
+            left.pop();
+        } else if (left.size() < right.size()) {
+            left.push(right.top());
+            right.pop();
+        }
+    }
+    
+    double findMedian() {
+        int ls = left.size(), rs = right.size();
+        if (ls == rs && rs == 0) return 0;
+        if (rs == 0) return left.top();
+        if (ls == rs) return (left.top() + right.top()) / 2.0;
+        else return left.top() * 1.0;
+    }
+private :
+    priority_queue<int, vector<int>, less<int>> left;
+    priority_queue<int, vector<int>, greater<int>> right;
+};
+
