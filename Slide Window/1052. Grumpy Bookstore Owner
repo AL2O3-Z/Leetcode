@@ -1,0 +1,22 @@
+这道题不要想当然，先分析，分析后得到结果就是凡是为0的位置，都可以被记入满意的客户中，这道题就转化成了在固定窗口中找到不满意客户的最大值，
+用了药，这些不满意的客户就可以转化为满意的，从而达到整体最大值
+分为两个步骤，对于为0的，自动记入；为1的，用滑动窗口计算最大值
+二者之和为最终结果
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int X) {
+        int res = 0;
+        int n = customers.size();
+        int cntHappy = 0, total = 0, sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (grumpy[i] == 0) sum += customers[i];
+            
+            if (grumpy[i]) cntHappy += customers[i];
+            if (i >= X && grumpy[i - X]){
+                cntHappy -= customers[i - X];
+            }
+            total = max(total, cntHappy);
+        }
+        return sum + total;
+    }
+};
