@@ -1,0 +1,34 @@
+和LC76简直一样，只是条件变了
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int n = s.size();
+        vector<int> res;
+        int left = 0;
+        int need[26], win[26];
+        memset(need, 0, sizeof(need));
+        memset(win, 0, sizeof(win));
+        int validCnt = 0; int needCnt = 0;
+        for (auto c : p) {
+            if (!need[c - 'a']) needCnt++;
+            need[c - 'a']++;
+        } 
+        for (int i = 0; i < n; i++) {
+            char cur = s[i];
+            if (need[cur - 'a']) {
+                win[cur - 'a']++;
+                if (win[cur - 'a'] == need[cur - 'a']) validCnt++;
+            }
+            while (validCnt == needCnt) {
+                char lchar = s[left];
+                if ((i - left + 1) == p.size()) res.push_back(left);
+                if (need[lchar - 'a']) {
+                    if (win[lchar - 'a'] == need[lchar - 'a']) validCnt--;
+                    win[lchar - 'a']--;
+                }
+                left++;
+            }
+        }
+        return res;
+    }
+};
