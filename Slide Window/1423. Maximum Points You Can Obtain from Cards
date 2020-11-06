@@ -1,3 +1,28 @@
+这道题有个拐弯，并没有很直接，求的是从两边取k次值能得到和的最大值，这并不好想，可以转换成存在一个子数组，长度为n - k， 其和最小。
+所以这道题就很容易得得到解法了，和上一次那个书店的题类似，那道题是在窗口内得到其位置为1的情况下的最大值，
+都是在指定长度的窗口内得到最大或最小值
+再推一层，这种指定窗口大小的问题，甭管窗口里和窗口外，或者窗口内有什么要求和条件，都是i加一个，去掉i - k那个元素
+//slid windows
+class Solution {
+public:
+    int maxScore(vector<int>& cp, int k) {
+        int total = 0;
+        int minVal = INT_MAX, curWin = 0;
+        int winSize = cp.size() - k;
+        for (int i = 0; i < cp.size(); i++) {
+            total += cp[i];
+            curWin += cp[i];
+            if (i >= winSize) {
+                curWin = curWin - cp[i - winSize];
+            }
+            minVal = min(minVal, curWin);
+        }
+        return total - minVal;
+    }
+};
+
+
+
 class Solution {
 public:
     int maxScore(vector<int>& cardPoints, int k) {
