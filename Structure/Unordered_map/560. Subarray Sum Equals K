@@ -1,0 +1,18 @@
+//用unordered_map<sum, fre> 计数，与two sum和1074. Number of Submatrices That Sum to Target思想一致
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int res = 0;
+        unordered_map<int, int> sum;
+        sum[0] = 1;
+        int total = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            total += nums[i];
+            if (sum.count(total - k)) {
+                res += sum[total - k];
+            }
+            sum[total] ++;
+        }
+        return res;
+    }
+};
