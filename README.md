@@ -5,6 +5,8 @@
 When all elements are positive and negative, we can use prefix sum + hashmap and this is more general.<br>
 Otherwise, we can use sliding window and verify if the condition is satisfied.<br>
 `Solution 1: prefix sum + hashmap`<br>
+[560. Subarray Sum Equals K](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/560.%20Subarray%20Sum%20Equals%20K)<br>
+[1074. Number of Submatrices That Sum to Target](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1074.%20Number%20of%20Submatrices%20That%20Sum%20to%20Target)<br>
 [974. Subarray Sums Divisible by K](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/974.%20Subarray%20Sums%20Divisible%20by%20K)<br>
 [1546. Maximum Number of Non-Overlapping Subarrays With Sum Equals Target](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Unordered_map/1546.%20Maximum%20Number%20of%20Non-Overlapping%20Subarrays%20With%20Sum%20Equals%20Target)<br>
 `Solution 2: sliding window`<br>
@@ -20,9 +22,17 @@ If needed, use `priority_queue` or `bucket sorting` to sort the frequence.<br>
 prefix sum  [1423. Maximum Points You Can Obtain from Cards](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1423.%20Maximum%20Points%20You%20Can%20Obtain%20from%20Cards)<br>
 difference in sw [1509. Minimum Difference Between Largest and Smallest Value in Three Moves](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1509.%20Minimum%20Difference%20Between%20Largest%20and%20Smallest%20Value%20in%20Three%20Moves)<br>
 
-#### min&&max length substring/subarry
-[424. Longest Repeating Character Replacement](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/424.%20Longest%20Repeating%20Character%20Replacement)<br>
+#### min sliding windows => while (contition ok)
 [76. Minimum Window Substring](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/76.%20Minimum%20Window%20Substring)<br>
+#### max sliding windows => while (contition ko)
+[424. Longest Repeating Character Replacement](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/424.%20Longest%20Repeating%20Character%20Replacement)<br>
+904. Fruit Into Baskets<br>
++++ Reduciton<br>
+[992. Subarrays with K Different Integers](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/992.%20Subarrays%20with%20K%20Different%20Integers)<br>
+1248. Count Number of Nice Subarrays<br>
+930. Binary Subarrays With Sum<br>
+#### Outside of windows 
+[1234. Replace the Substring for Balanced String](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1234.%20Replace%20the%20Substring%20for%20Balanced%20String)<br>
 ## Binary Search
 A TRICK : In this problem, you can transfer a 2D array to 1D array using `x * y = r => matrix[r/x][r%y]`
 and we can use binary search.<br>
