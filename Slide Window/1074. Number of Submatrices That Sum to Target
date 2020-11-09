@@ -1,0 +1,42 @@
+//这道题是在求二维数组的和，也可以用prefixsum思想计算出每一行的值和这个点到原点的和（即子矩阵的和）
+此外因为存在负数，所以计数的时候不能直接用i-j + 1作为计数方式，要把这个坐标所有的左边和上边的和过一遍，这样的话就是O(n^2 * m^2)
+还有一种方式就是用unordered_map<sum, fre> 存储好之前的计算结果，思想是1. two sum 和 560. Subarray Sum Equals K
+class Solution {
+public:
+    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+        vector<vector<int>> dpSum(n + 1, vector<int>(m + 1, 0));
+        for (int i = 1 ; i <= n; i ++) {
+            for (int j = 1; j <= m; j++) {
+                dp[i][j] = dp[i][j - 1] + matrix[i - 1][j - 1];
+                dpSum[i][j] = dpSum[i - 1][j] + dpSum[i][j - 1] - dpSum[i - 1][j - 1] + matrix[i - 1][j - 1];
+            }
+        }
+        
+        int res = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                int total = 0;
+                int k = i;
+                while (k ) {
+                    total += dp[k][j];
+                    int left = 0;
+                    int cur = total;
+                    while (left < j) {
+                        cur = total;
+                        int leftCol = dpSum[i][left] - dpSum[k - 1][left];
+                        left++;
+                        cur -= leftCol;
+                        if (cur == target) {
+                            res ++;
+                        } 
+                    }
+                    k--;
+                }
+            }
+        }
+        return res;
+    }
+};
