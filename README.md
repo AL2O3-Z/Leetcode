@@ -166,7 +166,10 @@ Number of Conbination => unordered_map as a count of element so that they can be
 [1512. Number of Good Pairs](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/Array/1512.%20Number%20of%20Good%20Pairs)<br>
 [1513. Number of Substrings With Only 1s](https://github.com/AL2O3-Z/Leetcode/blob/master/Structure/String/1513.%20Number%20of%20Substrings%20With%20Only%201s)(string pb)<br>
 ## Bit wise
-[Properties of XOR ](https://accu.org/index.php/journals/1915)
+[异或可以理解为奇偶数，加减都是可以用异或来表达加减后奇偶性]
+[Properties of XOR ](https://accu.org/index.php/journals/1915)<br>
+[995. Minimum Number of K Consecutive Bit Flips](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/995.%20Minimum%20Number%20of%20K%20Consecutive%20Bit%20Flips)
+
 ## Link list
 A doublely Linked List<br>
 [430. Flatten a Multilevel Doubly Linked List](https://github.com/AL2O3-Z/Leetcode/blob/master/Link%20List/430.%20Flatten%20a%20Multilevel%20Doubly%20Linked%20List)
