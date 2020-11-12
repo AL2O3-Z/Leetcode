@@ -1,3 +1,8 @@
+这道题也没啥特别难得，而且对于x来说已经排序好了，经过观察，就是求yi - xi + xj + yj最大；且i < j 且xj - xi <= k
+单调队列，就是这个特性，队首是yi - xi的最大值，
+在队首维护当前x和队首x不超过k。在队尾维护单调性，把尾部比当前元素小的都扔掉。
+这个题难点可能就在于队首和队尾的pop条件不同。其他和239题大差不大
+另外，要注意在第二个while循环之前进行res的更新，是未加入当前元素的状态，不然可能会有损失数据
 class Solution {
 public:
     int findMaxValueOfEquation(vector<vector<int>>& points, int k) {
