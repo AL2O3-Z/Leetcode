@@ -1,0 +1,36 @@
+//这个异或好难想到，
+isfli[i] 表示是否在i位开始翻转，其实就是大小为K 的窗口的左边界
+curFli表示在当前这个位置上是否在窗口内需要翻转
+如果上一位需要翻转，且以上一位为结尾的窗口的起始点也是需要翻转，那么表示翻转完成，当前位置不在窗口内，
+如下 ；
+isFlip  curFlip
+  1   ^   1    => 之前的窗口翻转完成
+  1   ^   0    => 前窗口已经翻转完成，但有了新的翻转，当前位在新窗口内
+  0   ^   1    => 以上一位结尾的窗口并不需要翻转，但是上一位需要翻转，所以当前位在新窗口内
+  0   ^   0    => 无事发生
+这种用异或表明上一位结束的窗口是否完成或者是否产生了新的窗口的技巧很难想到。
+第二步，如果curFlip和数值相等，则需要翻转，否则不需要，curFlip更多的是表明的一翻转的状态，并非是需要翻转，在翻转后更新。
+如  0 0 0 1
+cur 1 1 1 0
+//异或可以理解为奇偶数，加减都是可以用异或来表达加减后奇偶性
+
+class Solution {
+public:
+    int minKBitFlips(vector<int>& A, int K) {
+        int res = 0;
+        int curFli = 0;
+        vector<int> isFli(A.size(), 0);
+        for (int i = 0; i < A.size(); i++) {
+            if (i >= K) {
+                curFli ^= isFli[i - K];
+            }
+            if ((curFli ^ A[i]) == 0) {
+                if (i + K > A.size()) return -1;
+                res++;
+                isFli[i] = 1;
+                curFli ^= 1;
+            }
+        }
+        return res;
+    }
+};
