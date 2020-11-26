@@ -1,0 +1,22 @@
+这道题有两个拐弯，
+1，取值最左边或者最右边，使操作次数最小，那么剩下来的就是一个连续的最长子数组，这个方法可以用于很多关于取最左边或者最右边的问题
+2，反向思维，既然最左边或/和最右边的元素和为x，那么剩下元素之和为 total - x，把这个作为target，求和为target的最长子数组。
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int x) {
+        int n = nums.size();
+        int target = accumulate(nums.begin(), nums.end(), 0) - x;
+        int left = 0;
+        int res = INT_MAX;
+        int sum = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            sum += nums[i];
+            while (sum > target && left <= i) {
+                sum -= nums[left];
+                left++;
+            }
+            if (sum == target) res = min(res, n - (i - left + 1));
+        }
+        return res == INT_MAX ? -1 : res;
+    }
+};
