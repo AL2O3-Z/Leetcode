@@ -1,0 +1,24 @@
+这道题是求最短长度，所以可以用到sliding windows中的monotonic queue
+把prefix sum 加进去，如果前端元素和当前前缀和大于等于k，那么更新res，并抛出
+此外，还要保持队列的单调性，不断把更小的元素加到队尾，以求的更短的符合条件的值。
+要和560. Subarray Sum Equals K有所区分，这道题是在求子数组等于k的个数，所以用unordered_map用于计数比较好
+class Solution {
+public:
+    int shortestSubarray(vector<int>& A, int K) {
+        deque<int> d;
+        int res = INT_MAX;
+        for (int i = 1; i < A.size(); i++) A[i] += A[i - 1];
+        for (int i = 0; i < A.size(); i++) {
+            if (A[i] >= K) res = min(res, i + 1);
+            while (d.size() && A[i] - A[d.front()] >= K) {
+                res = min(res, i - d.front());
+                d.pop_front();
+            }
+            while (d.size() && A[i] <= A[d.back()]) {
+                d.pop_back();
+            }
+            d.push_back(i);
+        }
+        return res == INT_MAX ? -1 : res;
+    }
+};
