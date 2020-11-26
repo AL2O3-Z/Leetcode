@@ -33,6 +33,9 @@ difference in sw [1509. Minimum Difference Between Largest and Smallest Value in
 930. Binary Subarrays With Sum<br>
 #### Outside of windows 
 [1234. Replace the Substring for Balanced String](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1234.%20Replace%20the%20Substring%20for%20Balanced%20String)<br>
+#### leftmost/rightmost
+[1423. Maximum Points You Can Obtain from Cards](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1423.%20Maximum%20Points%20You%20Can%20Obtain%20from%20Cards)<br>
+[1658. Minimum Operations to Reduce X to Zero](https://github.com/AL2O3-Z/Leetcode/blob/master/Slide%20Window/1658.%20Minimum%20Operations%20to%20Reduce%20X%20to%20Zero)<br>
 ## Binary Search
 A TRICK : In this problem, you can transfer a 2D array to 1D array using `x * y = r => matrix[r/x][r%y]`
 and we can use binary search.<br>
