@@ -1,0 +1,93 @@
+这个并查集很有意思，union的思想和聚合，但是敲砖的动作会离散，这是相反的，如果要使用聚合的思想就应该倒序，每加一块砖，使其他连接分量聚合。
+首先要把所有第一行的元素都union 到ceilling上面，
+然后标记所有需要敲掉的砖，然后再把剩余元素做union，这种情况是最后剩下的砖的情况。
+既然是最后的情况，那我们就倒序加砖，如果加上去一个砖，能使连接到ceilling上的砖的个数变多，那么这个差值即为敲掉该砖后掉落的砖的个数
+难点在于如何计算这个差值呢？记录敲砖之前和ceilling在同一个连通分量里的个数和敲砖之后的个数，可以用rank数组记录个数（一般来讲，cnt都是记录连通分量的个数）
+注意 ： 要去掉我们刚才添加的砖头才是所求，也有可以添加后，总数并没有变化，这种情况下就要取0.
+class Solution {
+public:
+    vector<int> hitBricks(vector<vector<int>>& grid, vector<vector<int>>& hits) {
+        n = grid.size(), m = grid[0].size();
+        g.swap(grid);
+        p = vector<int>(n * m + 1, 0);
+        iota(p.begin(), p.end(), 0);
+        rank = vector<int>(n * m + 1, 1);
+        cnt = n * m;
+        int ceilling = n * m;
+        vector<int> res(hits.size(), 0);
+        for (auto& h : hits) {
+            int i = h[0], j = h[1];
+            if (g[i][j] == 1) g[i][j] = 2;
+        } 
+        for (int i = 0; i < m; i++) {
+            if (g[0][i] == 1) unionFind(ceilling, iop(0, i));
+        }
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (g[i][j] == 1) {
+                    int idx = iop(i, j);
+                    for (int k = 0; k < 4; k++) {
+                        int x = i + dir[k], y = j + dir[k + 1];
+                        if (!valid(x, y) || g[x][y] != 1) continue;
+                        
+                        unionFind(idx, iop(x, y));
+                    }
+                }
+            }
+        }
+        int lastCnt = rank[find(ceilling)]; 
+        for (int d = hits.size() - 1; d >= 0; d--) {
+            int i = hits[d][0], j = hits[d][1];
+            int ans = 0;
+            
+            if (g[i][j] == 2) {
+                g[i][j] = 1;
+                int idx = iop(i, j);
+                if (i == 0) unionFind(ceilling, idx);
+                for (int k = 0; k < 4; k++) {
+                    int x = i + dir[k], y = j + dir[k + 1];
+                    if (valid(x, y) && g[x][y] == 1) {
+                        unionFind(idx, iop(x, y));
+                    }
+                }
+                int newCnt = rank[find(ceilling)];
+                ans = max(newCnt - lastCnt - 1, 0);
+                lastCnt = newCnt;
+            }
+            res[d] = ans;
+        }
+        return res;
+    }
+    void unionFind(int a, int b) {
+        int roota = find(a);
+        int rootb = find(b);
+        if(roota == rootb) return;
+        if (rank[roota] > rank[rootb]) {
+            p[rootb] = roota;
+            rank[roota] += rank[rootb];
+        } else {
+            p[roota] = rootb;
+            rank[rootb] += rank[roota];
+        }
+    }
+    int find(int a) {
+        if (p[a] != a) {
+            p[a] = find(p[a]);
+        }
+        return p[a];
+    }
+    int iop(int i, int j) {
+        return i * m + j;
+    }
+    bool valid(int i, int j) {
+        return i < n && j < m && i >= 0 && j >= 0;
+    }
+private :
+    int n, m;
+    vector<int> dir = {1, 0, -1, 0, 1};
+    vector<vector<int>> g;
+    vector<int> p;
+    vector<int> rank;
+    int cnt;
+};
