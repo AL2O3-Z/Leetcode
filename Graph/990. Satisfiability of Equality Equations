@@ -1,0 +1,39 @@
+//UnionFind
+class Solution {
+public:
+    bool equationsPossible(vector<string>& equa) {
+        int n = equa.size();
+        for (auto& e : equa) {
+            if (!p.count(e[0])) p[e[0]] = e[0];
+            if (!p.count(e[3])) p[e[3]] = e[3];
+        }
+        for (auto& e : equa) {
+            if (e[1] == '=') {
+                unionFind(e[0], e[3]);
+            }
+        }
+        for (auto& e : equa) {
+            if (e[1] == '!' && isConnected(e[0], e[3])) {
+                return false;
+            }
+        }
+        return true;        
+    }
+    void unionFind(char a, char b) {
+        char roota = find(a);
+        char rootb = find(b);
+        if(roota == rootb) return;
+        p[roota] = rootb;
+    }
+    bool isConnected(char a, char b) {
+        char roota = find(a);
+        char rootb = find(b);
+        return roota == rootb;
+    }
+    char find(char a) {
+        if (p[a] != a) p[a] = find(p[a]);
+        return p[a];
+    }
+private :
+    unordered_map<char, char> p;
+};
