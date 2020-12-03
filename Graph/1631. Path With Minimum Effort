@@ -1,0 +1,86 @@
+Same with 	778	Swim in Rising Water
+//Dijkstra => priority_queue
+class Solution {
+public:
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        int res = 0;
+        n = heights.size(), m = heights[0].size();
+        priority_queue<array<int, 2>, vector<array<int, 2>>, greater<>> pq;
+        pq.push({0, 0});
+        unordered_set<int> visited;
+        int target = n * m - 1;
+        vector<int> dir = {1, 0, -1, 0, 1};
+        while (!pq.empty()) {
+            auto cur = pq.top(); pq.pop();
+            int value = cur[0], i = cur[1] / m, j = cur[1] % m;
+            res = max(res, value);
+            if (i == n - 1 && j == m - 1) return res;
+            visited.insert(i * m + j);
+            for (int k = 0; k < 4; k++) {
+                int x = i + dir[k], y = j + dir[k + 1];
+                if (!valid(x, y) || visited.count(x * m + y)) continue;
+                pq.push({abs(heights[x][y] - heights[i][j]), x * m + y});
+            }
+            
+        }
+        return 0;
+    }
+private :
+    int n, m;
+    bool valid(int x, int y) {
+        return x >= 0 && y >= 0 && x < n && y < m;
+    }
+};
+//UnionFind
+class Solution {
+public:
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        int res = 0;
+        n = heights.size(), m = heights[0].size();
+        p = vector<int>(n * m, 0);
+        iota(p.begin(), p.end(), 0);
+        vector<vector<int>> visited(n, vector<int>(m, 0));
+        vector<int> dir = {1, 0, -1, 0, 1};
+        priority_queue<array<int,3>, vector<array<int,3>>, greater<>> pq;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                for (int k = 0; k < 4; k++) {
+                    int x = i + dir[k], y = j + dir[k + 1];
+                    if (!valid(x, y) || visited[x][y]) continue;
+                    pq.push({abs(heights[i][j] - heights[x][y]), i * m + j, x * m + y});
+                }
+                visited[i][j] = 1;
+            }
+        }
+        while (!pq.empty()) {
+            auto cur = pq.top(); pq.pop();
+            res = max(res, cur[0]);
+            unionFind(cur[1], cur[2]);
+            if (isConnected(0, n * m - 1)) return res;
+        }
+        return 0;
+    }
+private :
+    vector<int> p;
+    int n, m;
+    bool valid(int x, int y) {
+        return x >= 0 && y >= 0 && x < n && y < m;
+    }
+    int find(int a) {
+        if (p[a] != a) p[a] = find(p[a]);
+        return p[a];
+    }
+    void unionFind(int a, int b) {
+        int roota = find(a);
+        int rootb = find(b);
+        if (roota == rootb) return;
+        p[roota] = rootb;
+    }
+    bool isConnected(int a, int b){
+        int roota = find(a);
+        int rootb = find(b);
+        return roota == rootb;
+    }
+};
+
+
