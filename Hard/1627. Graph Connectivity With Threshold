@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<bool> areConnected(int n, int threshold, vector<vector<int>>& q) {
+        p = vector<int>(n + 1, 0);
+        iota(p.begin(), p.end(), 0);
+        for (int i = 1; i <= n; i++) {
+            for (int k = 1; k * k <= i; k++) {
+                if (i % k == 0) {
+                    if (k > threshold ) unionFind(i, k);
+                    if (i / k > threshold ) unionFind(i, i / k);
+                }
+            }
+        }
+        vector<bool> res(q.size());
+        for (int i = 0; i < q.size(); i++) {
+            auto e = q[i];
+            int x = e[0], y = e[1];
+            res[i] = isConnected(x, y);
+        }
+        return res;
+    }
+    bool isConnected(int a, int b) {
+        return find(a) == find(b);
+    }
+    void unionFind(int a, int b) {
+        int roota = find(a);
+        int rootb = find(b);
+        if (roota == rootb) return;
+        p[roota] = rootb;
+    }
+    int find(int a ) {
+        if (p[a] != a) p[a] = find(p[a]);
+        return p[a];
+    }
+private :
+    vector<int> p;
+};
