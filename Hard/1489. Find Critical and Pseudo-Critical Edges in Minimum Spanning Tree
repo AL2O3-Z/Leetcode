@@ -1,0 +1,77 @@
+class Solution {
+public:
+    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
+        int nb = edges.size(), cnt = n;
+        p = vector<int>(n, 0);
+        vector<vector<int>> weights;
+        for (int i = 0; i < nb; i++) {
+            auto& cur = edges[i];
+            int mark = cur[0] * n + cur[1];
+            idx[cur[0] * n + cur[1]] = i;
+            weights.push_back({cur[2], cur[0], cur[1]});
+        }
+        sort(weights.begin(), weights.end());
+        costMST = MST(weights, INT_MAX);
+        vector<int> cri, pseudo;
+        int cntMST = 0;
+        for (int i = 0; i < nb; i++) {
+            int test = MSTWithEdge(weights, i);
+            if (test > costMST)  continue;
+            int tmp = MST(weights, i);
+            if (tmp > costMST || tmp == -1) cri.push_back(idx[weights[i][1] * n + weights[i][2]]);
+            if (tmp == costMST) { 
+                 pseudo.push_back(idx[weights[i][1] * n + weights[i][2]]);
+                                
+            }
+        }
+        vector<vector<int>> res ;
+        res.push_back(cri);
+        res.push_back(pseudo);
+        return res;
+    }
+    int MSTWithEdge(vector<vector<int>>& weights, int toAdd) {
+        iota(p.begin(), p.end(), 0);
+        cnt = p.size();
+        int cost = 0;
+        int nb = weights.size();
+        auto& add = weights[toAdd];
+        unionFind(add[1], add[2]); cost += add[0];
+        for (int i = 0; i < nb; i++) {
+            if (i == toAdd) continue;
+            auto& cur = weights[i];
+            if (!unionFind(cur[1], cur[2]) ) cost += cur[0];
+            if (cnt == 1) return cost;
+        }
+        return 0;
+    }
+    int MST(vector<vector<int>>& weights, int toIgnore) {
+        
+        iota(p.begin(), p.end(), 0);
+        cnt = p.size();
+        int cost = 0;
+        int nb = weights.size();
+        for (int i = 0; i < nb; i++) {
+            if (i == toIgnore) continue;
+            auto& cur = weights[i];
+            if (!unionFind(cur[1], cur[2]) ) cost += cur[0];
+            if (cnt == 1) return cost;
+        }
+        return -1;
+    }
+    bool unionFind(int a, int b) {
+        int roota = find(a);
+        int rootb = find(b);
+        if (roota == rootb) return true;
+        cnt--;
+        p[roota] = rootb;
+        return false;
+    }
+    int find(int a) {
+        if (p[a] != a) p[a] = find(p[a]);
+        return p[a];
+    }
+private :
+    unordered_map<int, int> idx;
+    vector<int> p;
+    int cnt, costMST;
+};
