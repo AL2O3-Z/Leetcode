@@ -1,4 +1,9 @@
 # Leetcode
+## 子集划分问题 ：
+[473. 火柴拼正方形](https://leetcode.cn/problems/matchsticks-to-square/)<br>
+[698. 划分为k个相等的子集](https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/)<br>
+[1723. 完成所有工作的最短时间](https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/)<br>
+[2305. 公平分发饼干](https://leetcode.cn/problems/fair-distribution-of-cookies/)<br>
 [文字格式](https://blog.csdn.net/u012067966/article/details/50736647)
 [Template](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)
 ## *Subsequence Sum :
